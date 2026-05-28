@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OKR 2026 — Estabilidade (Folha)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f2f5;
+      color: #1f1f1f;
+      line-height: 1.55;
+    }
+    header {
+      background: #1f1f1f;
+      color: #fff;
+      padding: 24px 48px 20px;
+      border-bottom: 3px solid #d64000;
+      position: sticky; top: 0; z-index: 10;
+    }
+    header h1 { font-size: 20px; font-weight: 600; }
+    header p { font-size: 12px; color: #aaa; margin-top: 4px; }
+    .wrap { display: grid; grid-template-columns: 260px 1fr; gap: 0; max-width: 1400px; margin: 0 auto; }
+    nav {
+      position: sticky; top: 75px; align-self: start;
+      background: #fff; border-right: 1px solid #e0e0e0;
+      max-height: calc(100vh - 75px); overflow-y: auto;
+      padding: 16px 12px; font-size: 12px;
+    }
+    nav h4 { font-size: 11px; text-transform: uppercase; color: #888; margin: 12px 8px 4px; letter-spacing: .4px; }
+    nav h4:first-child { margin-top: 0; }
+    nav a {
+      display: block; padding: 4px 8px; color: #1f1f1f; text-decoration: none;
+      border-radius: 3px;
+    }
+    nav a:hover { background: #f4f4f4; }
+    main { padding: 32px 40px; background: #fff; min-height: calc(100vh - 75px); }
+    section { margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid #eee; }
+    section:last-child { border-bottom: none; }
+    h2 { font-size: 18px; margin-bottom: 12px; color: #1f1f1f; border-left: 3px solid #d64000; padding-left: 10px; }
+    h3 { font-size: 15px; margin: 18px 0 8px; color: #1f1f1f; }
+    h4 { font-size: 13px; margin: 14px 0 6px; color: #1f1f1f; text-transform: uppercase; letter-spacing: .3px; }
+    p, li { font-size: 13px; }
+    ul, ol { padding-left: 22px; margin: 6px 0 10px; }
+    li { margin-bottom: 4px; }
+    table {
+      width: 100%; border-collapse: collapse; margin: 10px 0 16px;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #e0e0e0; padding: 6px 8px; text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f4f4f4; font-weight: 600; }
+    code, .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; background: #f4f4f4; padding: 1px 5px; border-radius: 3px; }
+    .tag { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 3px; background: #f4f4f4; color: #666; margin-right: 4px; }
+    .tag.req { background: #ffe0e0; color: #a00; }
+    .tag.opt { background: #e0f0ff; color: #036; }
+    .tag.cond { background: #fff3d0; color: #855; }
+    .note {
+      background: #fff8e1; border-left: 3px solid #d64000;
+      padding: 10px 14px; font-size: 12px; margin: 10px 0;
+    }
+    .kv { display: grid; grid-template-columns: 200px 1fr; gap: 4px 12px; font-size: 12px; margin: 8px 0; }
+    .kv dt { font-weight: 600; color: #555; }
+    .step-box {
+      border: 1px solid #e0e0e0; border-left: 3px solid #d64000;
+      padding: 12px 14px; margin: 8px 0; background: #fafafa;
+    }
+    .step-box h4 { margin-top: 0; color: #d64000; }
+    .badge { font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-left: 6px; }
+    .badge.b1 { background: #d4edda; color: #155724; }
+    .badge.b2 { background: #fff3cd; color: #856404; }
+    .badge.b3 { background: #d1ecf1; color: #0c5460; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OKR 2026 — Módulo Estabilidade (Folha)</h1>
+    <p>Especificação funcional e UX • padrão formulário (Sindicato/Convenção) • grid apenas como consulta</p>
+  </header>
+
+  <div class="wrap">
+    <nav>
+      <h4>Visão</h4>
+      <a href="#sumario">1. Sumário Executivo</a>
+      <a href="#supos">2. Suposições</a>
+      <a href="#personas">3. Personas & JTBD</a>
+      <a href="#fluxos">4. Mapa de Fluxos</a>
+
+      <h4>Telas</h4>
+      <a href="#telas">5. Inventário de Telas</a>
+      <a href="#config">6. Configuração de Estabilidades</a>
+      <a href="#wizard">7. Wizard Criar/Editar</a>
+      <a href="#lista">8. Lista-resumo</a>
+      <a href="#detalhe">9. Detalhe do Período</a>
+
+      <h4>Regras</h4>
+      <a href="#campos">10. Tabela Mestre de Campos</a>
+      <a href="#calculos">11. Cálculos por Motivo</a>
+      <a href="#permissoes">12. Permissões & Auditoria</a>
+      <a href="#estados">13. Estados Obrigatórios</a>
+      <a href="#bloqueio">14. Bloqueio de Desligamento</a>
+
+      <h4>Conteúdo</h4>
+      <a href="#microcopias">15. Microcópias</a>
+      <a href="#banners">16. Banners & Avisos</a>
+
+      <h4>Stepper</h4>
+      <a href="#stepper">17. Comportamento do Stepper</a>
+
+      <h4>Métricas & Validação</h4>
+      <a href="#telemetria">18. Plano de Telemetria & KPIs</a>
+      <a href="#teste">19. Roteiro de Teste A/B</a>
+      <a href="#objecoes">20. Objeções & Respostas</a>
+
+      <h4>Entrega</h4>
+      <a href="#backlog">21. Backlog Faseado</a>
+      <a href="#slides">22. Roteiro de Slides</a>
+    </nav>
+
+    <main>
+
+      <section id="sumario">
+        <h2>1. Sumário Executivo (defesa em 10 bullets)</h2>
+        <ol>
+          <li>Estabilidade migra de <strong>grid de lançamento manual</strong> para <strong>formulário guiado</strong>, alinhado ao padrão do módulo Sindicato/Convenção; o grid permanece apenas como consulta pós-cadastro.</li>
+          <li>O <strong>wizard em 5 passos</strong> reduz erros de digitação, força preenchimento de dependências legais e produz registro de auditoria automático em cada decisão.</li>
+          <li>O <strong>cálculo da data-limite</strong> é automático por Motivo (ex.: Acidente de trabalho = 12 meses após retorno); override exige justificativa textual e fica logado.</li>
+          <li>A origem do período pode ser <strong>Manual</strong> ou derivada de um <strong>Afastamento</strong> existente — meta de ≥ 60% de redução em lançamentos manuais.</li>
+          <li>Os <strong>Motivos</strong> aparecem priorizados pelos mais usados (base SQL) com busca por texto, dispensando memorização de códigos.</li>
+          <li>Dimensões condicionais (<strong>Sexo, Idade, Meses Trabalhados</strong>) aparecem apenas quando ativadas, com comparador configurável (≥, =) ao lado do campo.</li>
+          <li>O sistema <strong>bloqueia o desligamento</strong> de colaborador com estabilidade ativa e exibe o motivo e a data de fim; exceção exige justificativa e permissão.</li>
+          <li><strong>Sobreposição de períodos</strong> é detectada e impedida por padrão; exceção administrativa com justificativa e registro.</li>
+          <li>Telemetria cobre <strong>precisão do cálculo, tempo por passo, tentativas bloqueadas, adoção por empresa</strong> — base para os KPIs do OKR.</li>
+          <li>Entrega faseada: <strong>Fase 1</strong> (cadastro + bloqueio), <strong>Fase 2</strong> (importação/edição em massa), <strong>Fase 3</strong> (alertas proativos e exibição em outros módulos).</li>
+        </ol>
+      </section>
+
+      <section id="supos">
+        <h2>2. Suposições e ambiguidades a confirmar</h2>
+        <table>
+          <thead><tr><th style="width:30%">Suposição</th><th>Implicação</th><th>Alternativa (se inválida)</th></tr></thead>
+          <tbody>
+            <tr><td>A lista priorizada de Motivos virá de uma view SQL atualizada periodicamente.</td><td>Ordenação dinâmica + cache no front; busca por texto sempre disponível.</td><td>Se lista for estática, definir prioridade manual em backoffice.</td></tr>
+            <tr><td>"Utiliza afastamento" é uma flag por regra de Motivo, não por período individual.</td><td>Configurar na tela de regras; herdar no wizard.</td><td>Se for por período, mover o campo para o passo 1 do wizard.</td></tr>
+            <tr><td>O override de data-limite pode estender ou encurtar o período.</td><td>Validar coerência (data ≥ início) e exigir justificativa em ambos os casos.</td><td>Restringir apenas à extensão; encurtamento via "Encerrar".</td></tr>
+            <tr><td>Sobreposição é validada para o mesmo CPF, independente da matrícula.</td><td>Útil para múltiplos vínculos; pode gerar falso-positivo.</td><td>Validar por matrícula; sobreposição entre vínculos vira aviso, não bloqueio.</td></tr>
+            <tr><td>Trilha de aprovação não é requerida em Fase 1.</td><td>Edição/encerramento liberados por permissão, sem workflow.</td><td>Incluir aprovador em campos sensíveis (override, exceção de sobreposição).</td></tr>
+            <tr><td>Anexos aceitos: PDF/JPG/PNG até 10 MB por arquivo.</td><td>Validação client + server, scan antivírus assumido.</td><td>Ajustar limites por política do produto.</td></tr>
+            <tr><td>O cálculo da data-limite usa o calendário corrido (não dias úteis).</td><td>Mais simples; cobre os casos legais conhecidos.</td><td>Suportar matriz por motivo se houver caso de dias úteis.</td></tr>
+          </tbody>
+        </table>
+        <div class="note">Cada suposição acima deve ser confirmada antes da Fase 1. As que falharem viram <em>spike</em> de descoberta.</div>
+      </section>
+
+      <section id="personas">
+        <h2>3. Personas e Jobs to be Done</h2>
+        <h3>Gestor de RH</h3>
+        <ul>
+          <li><strong>Contexto:</strong> opera dezenas a centenas de colaboradores; precisa garantir compliance trabalhista.</li>
+          <li><strong>Dor atual:</strong> grid livre permite erros de data e ausência de justificativa; descobre o problema só na auditoria.</li>
+          <li><strong>JTBD:</strong> "Quando recebo um atestado/afastamento, quero registrar a estabilidade corretamente em &lt; 2 min para não bloquear meu dia e não correr risco trabalhista."</li>
+        </ul>
+        <h3>Contador (escritório contábil)</h3>
+        <ul>
+          <li><strong>Contexto:</strong> opera múltiplas empresas; recorre a regras de convenção coletiva específicas por cliente.</li>
+          <li><strong>Dor atual:</strong> precisa duplicar conhecimento legal entre empresas; não há ponto único de configuração.</li>
+          <li><strong>JTBD:</strong> "Quando configuro uma nova empresa, quero replicar regras já validadas para reduzir retrabalho e padronizar atendimento."</li>
+        </ul>
+        <h3>User Story consolidada</h3>
+        <p>"Como gestor de RH e contador, quero <strong>gerenciar períodos de estabilidade de forma automatizada</strong> para garantir cumprimento legal e evitar demissões irregulares."</p>
+      </section>
+
+      <section id="fluxos">
+        <h2>4. Mapa de Fluxos</h2>
+        <h3>4.1 Fluxos críticos (a prototipar)</h3>
+        <ol>
+          <li><strong>Configurar regra por convenção</strong> com dimensão (Sexo/Idade/Meses) e comparador.</li>
+          <li><strong>Criar estabilidade a partir de um afastamento</strong> (origem = Afastamento).</li>
+          <li><strong>Tentar desligar</strong> colaborador com estabilidade ativa → bloqueio com motivo e data.</li>
+          <li><strong>Editar período</strong> com override de data-limite (obriga justificativa).</li>
+          <li><strong>Encerrar estabilidade</strong> antes da data-limite (registra motivo).</li>
+        </ol>
+
+        <h3>4.2 Estado da arte vs. proposto</h3>
+        <table>
+          <thead><tr><th>Aspecto</th><th>Legado (grid)</th><th>Proposto (formulário)</th></tr></thead>
+          <tbody>
+            <tr><td>Entrada de dados</td><td>Linha por linha, sem dependências</td><td>Wizard com dependências e validação por passo</td></tr>
+            <tr><td>Cálculo de data-limite</td><td>Manual</td><td>Automático com override justificado</td></tr>
+            <tr><td>Histórico</td><td>Misturado à criação</td><td>Lista-resumo separada + detalhe com auditoria</td></tr>
+            <tr><td>Bloqueio de desligamento</td><td>Inexistente/passivo</td><td>Ativo, com mensagem e fim previsto</td></tr>
+            <tr><td>Configuração centralizada</td><td>Espalhada</td><td>Única tela de "Configuração de Estabilidades"</td></tr>
+          </tbody>
+        </table>
+
+        <h3>4.3 Diagrama textual do fluxo principal</h3>
+        <pre style="background:#f4f4f4;padding:10px;font-size:12px;overflow-x:auto;">
+[Início]
+  → [Lista-resumo de Estabilidades]
+       ├── (vazio) → CTA "Cadastrar primeira estabilidade"
+       ├── [+ Nova] → [Wizard: Passo 1 Origem]
+       │                ├── Manual → seleciona colaborador
+       │                └── Afastamento → seleciona afastamento existente
+       │             → [Passo 2 Motivo + Condições]
+       │             → [Passo 3 Período & Cálculo]
+       │                ├── usa data automática
+       │                └── override → justificativa obrigatória
+       │             → [Passo 4 Revisão & Anexos]
+       │             → [Passo 5 Confirmação]
+       │                → grava + registra auditoria
+       │                → retorna à Lista-resumo com toast de sucesso
+       ├── [Ver detalhe] → [Detalhe do Período]
+       │                     ├── Editar (reabre wizard no passo aplicável)
+       │                     ├── Duplicar (pré-preenche novo período)
+       │                     ├── Encerrar (justificativa)
+       │                     └── Exportar
+       └── [Tentar desligar colaborador]
+                          → se estabilidade ATIVA → [Bloqueio com motivo + fim previsto]
+                          → senão → segue fluxo de desligamento</pre>
+      </section>
+
+      <section id="telas">
+        <h2>5. Inventário de Telas</h2>
+        <table>
+          <thead><tr><th>#</th><th>Tela</th><th>Propósito</th><th>Quem usa</th><th>Frequência</th></tr></thead>
+          <tbody>
+            <tr><td>T1</td><td>Configuração de Estabilidades</td><td>Definir regras (motivos, dimensões, cálculos) que valem para a empresa/convenção</td><td>Contador, RH avançado</td><td>Baixa (setup + ajustes pontuais)</td></tr>
+            <tr><td>T2</td><td>Lista-resumo de Estabilidades</td><td>Consultar, filtrar e iniciar ações sobre períodos</td><td>RH, Contador</td><td>Alta</td></tr>
+            <tr><td>T3</td><td>Wizard Criar/Editar Estabilidade</td><td>Cadastrar/atualizar um período com validação guiada</td><td>RH</td><td>Média</td></tr>
+            <tr><td>T4</td><td>Detalhe do Período</td><td>Visão completa de um período (regras, cálculo, justificativas, anexos, auditoria)</td><td>RH, Auditoria</td><td>Média</td></tr>
+            <tr><td>T5</td><td>Modal de Bloqueio de Desligamento</td><td>Interromper desligamento quando há estabilidade ativa</td><td>RH</td><td>Baixa (mas crítica)</td></tr>
+            <tr><td>T6</td><td>Modal de Encerramento</td><td>Encerrar período com justificativa antes da data-limite</td><td>RH</td><td>Baixa</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="config">
+        <h2>6. Tela T1 — Configuração de Estabilidades</h2>
+        <h3>Objetivo</h3>
+        <p>Centralizar a definição das regras que serão aplicadas no cadastro de períodos. Esta tela substitui a configuração espalhada do legado.</p>
+
+        <h3>Estrutura</h3>
+        <ul>
+          <li>Cabeçalho com escopo (Empresa atual / Convenção vinculada) e ações: <code>Nova regra</code>, <code>Duplicar</code>, <code>Importar</code> (Fase 2).</li>
+          <li>Tabela de regras existentes (consulta), com filtros: Motivo, Origem, Ativa/Inativa.</li>
+          <li>Painel/diálogo de edição da regra com os campos abaixo.</li>
+        </ul>
+
+        <h3>Campos da regra</h3>
+        <table>
+          <thead><tr><th>Campo</th><th>Tipo</th><th>Tags</th><th>Comportamento</th></tr></thead>
+          <tbody>
+            <tr><td>Motivo</td><td>Select (busca por texto)</td><td><span class="tag req">obrigatório</span></td><td>Lista priorizada por uso; mostra código + descrição.</td></tr>
+            <tr><td>Origem permitida</td><td>Multi-select</td><td><span class="tag req">obrigatório</span></td><td>Valores: <em>Manual</em>, <em>Afastamento</em>. Permite ambos.</td></tr>
+            <tr><td>Utiliza afastamento</td><td>Toggle</td><td><span class="tag req">obrigatório</span></td><td>Quando ON, o cálculo considera a data de retorno do afastamento como base.</td></tr>
+            <tr><td>Dimensão Sexo</td><td>Toggle + select</td><td><span class="tag cond">condicional</span></td><td>Valores: Feminino, Masculino, Outro. Aparece quando toggle ON.</td></tr>
+            <tr><td>Dimensão Idade</td><td>Toggle + número + comparador</td><td><span class="tag cond">condicional</span></td><td>Comparadores: ≥, =. Validar 0–120.</td></tr>
+            <tr><td>Dimensão Meses Trabalhados</td><td>Toggle + número + comparador</td><td><span class="tag cond">condicional</span></td><td>Comparadores: ≥, =. Validar 0–600.</td></tr>
+            <tr><td>Duração</td><td>Radio + número</td><td><span class="tag req">obrigatório</span></td><td>Opções: "Dias" ou "Período derivado (meses após retorno/evento)".</td></tr>
+            <tr><td>Condição</td><td>Texto livre curto</td><td><span class="tag opt">opcional</span></td><td>Ex.: "Se atestado emitido por médico do trabalho".</td></tr>
+            <tr><td>Resultado</td><td>Select</td><td><span class="tag req">obrigatório</span></td><td>Valores: <em>Bloqueia desligamento</em>, <em>Apenas alerta</em>.</td></tr>
+            <tr><td>Vigência</td><td>Período (datas)</td><td><span class="tag req">obrigatório</span></td><td>Quando a regra começa/encerra a valer (independente do período do colaborador).</td></tr>
+            <tr><td>Ativa</td><td>Toggle</td><td><span class="tag req">obrigatório</span></td><td>Inativar não apaga; preserva auditoria.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Ações</h3>
+        <ul>
+          <li><code>Salvar</code> — valida, persiste e registra auditoria.</li>
+          <li><code>Duplicar regra</code> — abre nova regra pré-preenchida, exigindo novo Motivo/escopo distinto.</li>
+          <li><code>Cancelar</code> — confirma descarte se houver alterações.</li>
+        </ul>
+      </section>
+
+      <section id="wizard">
+        <h2>7. Tela T3 — Wizard Criar/Editar Estabilidade</h2>
+        <p>Segue rigorosamente o comportamento de stepper descrito em <a href="#stepper">§17</a>: passos podem ser revisitados (clique no número), o passo mais avançado nunca regride, passos condicionais aparecem/desaparecem e renumeram, o botão "Próximo" pode pular passos não aplicáveis.</p>
+
+        <div class="step-box">
+          <h4>Passo 1 — Origem &amp; Identificação</h4>
+          <p><strong>Pergunta-âncora:</strong> "De onde vem este período?"</p>
+          <ul>
+            <li>Radio <em>Origem</em>: <code>Manual</code> | <code>Afastamento</code>.</li>
+            <li>Se Manual → busca de colaborador (nome/CPF/matrícula).</li>
+            <li>Se Afastamento → seleção de afastamento existente do colaborador (mostra: tipo, início, fim, motivo do afastamento).</li>
+            <li>Pré-visualização do colaborador selecionado: nome, matrícula, cargo, data de admissão.</li>
+          </ul>
+          <p><strong>Validações:</strong> colaborador obrigatório; se Origem = Afastamento, afastamento obrigatório.</p>
+          <p><strong>Erros visíveis:</strong> "Selecione um colaborador para continuar." • "Este afastamento já gerou um período de estabilidade ativo."</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Passo 2 — Motivo &amp; Condições</h4>
+          <p><strong>Pergunta-âncora:</strong> "Qual o fundamento legal?"</p>
+          <ul>
+            <li>Select <em>Motivo</em> com busca por texto e priorização SQL.</li>
+            <li>Ao escolher, exibir um chip + descrição legal curta (microcópia em <a href="#microcopias">§15</a>).</li>
+            <li>Dimensões condicionais (Sexo/Idade/Meses) aparecem se a regra associada ao Motivo as ativar.</li>
+            <li>Comparador visível ao lado do input numérico (≥ ou =).</li>
+          </ul>
+          <p><strong>Validações:</strong> Motivo obrigatório; dimensões obrigatórias quando ativadas; comparador exige valor numérico válido.</p>
+          <p><strong>Erros visíveis:</strong> "Selecione um motivo." • "Informe a idade mínima ou troque o comparador."</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Passo 3 — Período &amp; Cálculo</h4>
+          <p><strong>Pergunta-âncora:</strong> "Qual o intervalo desta estabilidade?"</p>
+          <ul>
+            <li>Data inicial: auto-preenchida (regra de cálculo do Motivo) e editável com justificativa.</li>
+            <li>Data-limite: calculada automaticamente; mostrar memorial de cálculo via link "Como é calculado?".</li>
+            <li>Override de qualquer das datas → abre campo <em>Justificativa</em> (mín. 20 caracteres).</li>
+            <li>Aviso de sobreposição em tempo real se houver outro período ativo para o mesmo colaborador.</li>
+          </ul>
+          <p><strong>Validações:</strong> data-limite ≥ data inicial; sobreposição bloqueia o avanço (exceto com permissão e justificativa); justificativa obrigatória em override.</p>
+          <p><strong>Erros visíveis:</strong> "Data-limite não pode ser anterior à data inicial." • "Período sobreposto a um existente (12/03/2026 – 11/03/2027). Justifique para prosseguir."</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Passo 4 — Revisão &amp; Anexos</h4>
+          <p><strong>Pergunta-âncora:</strong> "Os dados estão corretos? O que comprova?"</p>
+          <ul>
+            <li>Resumo read-only de todos os campos preenchidos.</li>
+            <li>Upload de anexos (atestado, laudo, decisão judicial) — múltiplos arquivos.</li>
+            <li>Campo opcional "Observações internas" (não aparece na lista pública).</li>
+          </ul>
+          <p><strong>Validações:</strong> ao menos 1 anexo recomendado (não bloqueante), exceto se a regra do Motivo exigir comprovação documental, quando passa a ser obrigatório.</p>
+          <p><strong>Erros visíveis:</strong> "Este motivo exige anexo de comprovação." • "Arquivo excede 10 MB."</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Passo 5 — Confirmação</h4>
+          <p><strong>Pergunta-âncora:</strong> "Confirma o registro?"</p>
+          <ul>
+            <li>Resumo final com data-limite destacada.</li>
+            <li>Botão primário <code>Confirmar e registrar</code>; secundário <code>Voltar</code>.</li>
+            <li>Após confirmar: toast de sucesso + redirecionamento à Lista-resumo, com o novo período em destaque por 5s.</li>
+          </ul>
+          <p><strong>Auditoria:</strong> entrada criada com snapshot completo dos campos, usuário, IP, data/hora.</p>
+        </div>
+
+        <h3>Persistência entre passos</h3>
+        <ul>
+          <li>Rascunho salvo automaticamente a cada mudança de passo.</li>
+          <li>Se o usuário fechar sem confirmar: rascunho retomável por 7 dias na Lista-resumo (badge "Em rascunho").</li>
+          <li>Ao retomar, abre no último passo válido; passos anteriores ficam <em>Completo</em>.</li>
+        </ul>
+      </section>
+
+      <section id="lista">
+        <h2>8. Tela T2 — Lista-resumo de Estabilidades</h2>
+        <h3>Colunas</h3>
+        <table>
+          <thead><tr><th>Coluna</th><th>Conteúdo</th><th>Ordenável</th><th>Filtrável</th></tr></thead>
+          <tbody>
+            <tr><td>Motivo</td><td>Código + descrição curta (chip)</td><td>Sim</td><td>Sim (multi)</td></tr>
+            <tr><td>Colaborador</td><td>Nome + matrícula</td><td>Sim</td><td>Sim (busca)</td></tr>
+            <tr><td>Origem</td><td>Manual / Afastamento</td><td>Sim</td><td>Sim</td></tr>
+            <tr><td>Status</td><td>Ativa / Agendada / Encerrada / Rascunho</td><td>Sim</td><td>Sim</td></tr>
+            <tr><td>Vigência</td><td>Início — Fim (data)</td><td>Sim (por início)</td><td>Sim (range)</td></tr>
+            <tr><td>Dimensões aplicadas</td><td>Chips: Sexo, Idade, Meses</td><td>Não</td><td>Sim</td></tr>
+            <tr><td>Última alteração</td><td>Usuário + timestamp relativo</td><td>Sim</td><td>Não</td></tr>
+          </tbody>
+        </table>
+        <h3>Ações por linha</h3>
+        <ul>
+          <li><code>Ver detalhe</code> — abre Tela T4.</li>
+          <li><code>Editar</code> — abre wizard no último passo válido.</li>
+          <li><code>Duplicar</code> — pré-preenche novo período (sem colaborador).</li>
+          <li><code>Encerrar</code> — abre modal de encerramento (justificativa obrigatória).</li>
+          <li><code>Exportar</code> — gera CSV/PDF do período.</li>
+        </ul>
+        <h3>Ações em massa</h3>
+        <ul>
+          <li>Exportar seleção.</li>
+          <li>Encerrar seleção (Fase 2 — exige justificativa única ou por linha).</li>
+        </ul>
+      </section>
+
+      <section id="detalhe">
+        <h2>9. Tela T4 — Detalhe do Período</h2>
+        <h3>Seções (ordem)</h3>
+        <ol>
+          <li><strong>Dados principais</strong>: Motivo, Colaborador, Origem, Status, Vigência, Resultado.</li>
+          <li><strong>Regras condicionais aplicadas</strong>: dimensões com comparador e valor (chips).</li>
+          <li><strong>Cálculo &amp; justificativas</strong>: método utilizado, parâmetros, links a regras de origem, justificativas de override.</li>
+          <li><strong>Anexos</strong>: lista com nome, tamanho, quem subiu, ação <em>Baixar</em>.</li>
+          <li><strong>Auditoria</strong>: linha do tempo com quem, o quê, quando, antes/depois (diff legível).</li>
+          <li><strong>Eventos relacionados</strong>: tentativas de desligamento bloqueadas, edições, encerramentos.</li>
+        </ol>
+        <h3>Ações no detalhe</h3>
+        <ul>
+          <li><code>Editar</code> — abre wizard.</li>
+          <li><code>Encerrar</code> — exige justificativa.</li>
+          <li><code>Duplicar</code> — novo período pré-preenchido.</li>
+          <li><code>Exportar</code> — PDF com o conteúdo da tela.</li>
+        </ul>
+      </section>
+
+      <section id="campos">
+        <h2>10. Tabela Mestre de Campos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campo</th><th>Tipo</th><th>Obrig.</th><th>Dependências</th><th>Validação</th><th>Máscara/Unid.</th><th>Exemplo</th><th>Mensagem de erro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Origem</td><td>Radio</td><td>Sim</td><td>—</td><td>1 dos 2 valores</td><td>—</td><td>Afastamento</td><td>"Selecione a origem do período."</td></tr>
+            <tr><td>Colaborador</td><td>Lookup</td><td>Sim</td><td>Origem</td><td>Existente, ativo</td><td>—</td><td>"Ana Silva — 1023"</td><td>"Selecione um colaborador."</td></tr>
+            <tr><td>Afastamento</td><td>Select</td><td>Cond.</td><td>Origem = Afastamento</td><td>Existente, mesmo CPF</td><td>—</td><td>"Atestado 12/03–10/04"</td><td>"Selecione o afastamento de origem."</td></tr>
+            <tr><td>Motivo</td><td>Select busca</td><td>Sim</td><td>—</td><td>Da lista oficial</td><td>—</td><td>"03 — Acidente de trabalho &gt; 15 dias"</td><td>"Selecione um motivo."</td></tr>
+            <tr><td>Sexo (condicional)</td><td>Select</td><td>Cond.</td><td>Regra do Motivo</td><td>Da lista</td><td>—</td><td>"Feminino"</td><td>"Informe o sexo aplicável."</td></tr>
+            <tr><td>Idade + comparador</td><td>Número + select</td><td>Cond.</td><td>Regra do Motivo</td><td>0–120; comparador ≥ ou =</td><td>anos</td><td>≥ 18</td><td>"Informe a idade e o comparador."</td></tr>
+            <tr><td>Meses trabalhados + comparador</td><td>Número + select</td><td>Cond.</td><td>Regra do Motivo</td><td>0–600; comparador ≥ ou =</td><td>meses</td><td>≥ 12</td><td>"Informe os meses trabalhados."</td></tr>
+            <tr><td>Data inicial</td><td>Data</td><td>Sim</td><td>Motivo</td><td>Não futura sem justificativa</td><td>DD/MM/AAAA</td><td>10/04/2026</td><td>"Data inicial inválida."</td></tr>
+            <tr><td>Data-limite</td><td>Data (auto)</td><td>Sim</td><td>Motivo, Data inicial</td><td>≥ Data inicial</td><td>DD/MM/AAAA</td><td>10/04/2027</td><td>"Data-limite não pode ser anterior à data inicial."</td></tr>
+            <tr><td>Justificativa de override</td><td>Texto</td><td>Cond.</td><td>Override de data</td><td>Mín. 20 caracteres</td><td>—</td><td>"Acordo extrajudicial homologado em…"</td><td>"Justificativa muito curta (mín. 20 caracteres)."</td></tr>
+            <tr><td>Anexos</td><td>Upload múltiplo</td><td>Cond.</td><td>Regra do Motivo</td><td>PDF/JPG/PNG, ≤10 MB cada</td><td>—</td><td>atestado.pdf</td><td>"Arquivo excede 10 MB." / "Formato não suportado."</td></tr>
+            <tr><td>Observações internas</td><td>Texto longo</td><td>Não</td><td>—</td><td>≤ 2000 chars</td><td>—</td><td>"Cliente solicitou revisão em 30 dias."</td><td>—</td></tr>
+            <tr><td>Status</td><td>Enum sistema</td><td>Sim</td><td>Datas</td><td>Derivado</td><td>—</td><td>Ativa</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="calculos">
+        <h2>11. Cálculos por Motivo</h2>
+        <h3>Princípios</h3>
+        <ul>
+          <li>Calendário corrido por padrão (não dias úteis).</li>
+          <li>Data inicial padrão = <em>data do evento gerador</em> (atestado, parto, retorno do afastamento, posse, eleição).</li>
+          <li>Override permitido com justificativa; memorial do cálculo sempre acessível.</li>
+        </ul>
+
+        <h3>Matriz</h3>
+        <table>
+          <thead>
+            <tr><th>Motivo (exemplo)</th><th>Base da data inicial</th><th>Duração</th><th>Exceções</th><th>Comprovação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>03 — Acidente de trabalho &gt; 15 dias</td><td>Data de retorno do afastamento</td><td>12 meses</td><td>Se o afastamento ultrapassar 12 meses, recomeça contagem a partir do retorno efetivo.</td><td>CAT + atestado médico</td></tr>
+            <tr><td>05 — Licença maternidade</td><td>Data do parto (ou início da licença)</td><td>5 meses após o parto (Constituição + ADCT art. 10, II, b)</td><td>Adoção: matriz própria por idade da criança.</td><td>Atestado/declaração</td></tr>
+            <tr><td>20 — Adoção 1 ano</td><td>Data da guarda provisória</td><td>120 dias</td><td>—</td><td>Termo de guarda</td></tr>
+            <tr><td>21 — Adoção 1 até 4 anos</td><td>Data da guarda</td><td>120 dias (a confirmar com matriz cliente)</td><td>—</td><td>Termo de guarda</td></tr>
+            <tr><td>22 — Adoção 4 a 8 anos</td><td>Data da guarda</td><td>60 dias (placeholder — confirmar)</td><td>—</td><td>Termo de guarda</td></tr>
+            <tr><td>Dirigente sindical (convenção)</td><td>Data de registro da candidatura/posse</td><td>Mandato + 1 ano após o fim</td><td>Por convenção; pode haver limite de número de dirigentes.</td><td>Ata, ofício do sindicato</td></tr>
+            <tr><td>Cipeiro</td><td>Data do registro da candidatura</td><td>Até 1 ano após o término do mandato</td><td>Pré-candidatura também coberta.</td><td>Ata da eleição</td></tr>
+            <tr><td>Pré-aposentadoria (convenção)</td><td>Data atingida X meses antes da elegibilidade</td><td>Conforme convenção (ex.: 12 ou 24 meses)</td><td>Depende da regra de cada convenção.</td><td>Declaração</td></tr>
+            <tr><td>Doença ocupacional</td><td>Data do retorno do afastamento por B91</td><td>12 meses</td><td>—</td><td>Laudo + CAT</td></tr>
+            <tr><td>Outros (motivo livre)</td><td>Definida pelo usuário</td><td>Definida (dias ou meses)</td><td>Sempre requer justificativa + anexo.</td><td>Conforme caso</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Regras de arredondamento</h3>
+        <ul>
+          <li>Meses → soma calendário-civil (10/04 → 10/05 mesmo se o mês tiver 28/30/31 dias).</li>
+          <li>Quando o dia-alvo não existe (ex.: 31/01 + 1 mês → 28/02 ou 29/02), usar último dia do mês de destino.</li>
+          <li>Dias → soma corrida.</li>
+          <li>Final em dia não útil não desloca; o sistema apenas informa (não bloqueia desligamento por isso).</li>
+        </ul>
+      </section>
+
+      <section id="permissoes">
+        <h2>12. Permissões &amp; Auditoria</h2>
+        <h3>Matriz de permissões</h3>
+        <table>
+          <thead><tr><th>Ação</th><th>RH</th><th>RH Avançado</th><th>Contador</th><th>Auditor</th></tr></thead>
+          <tbody>
+            <tr><td>Visualizar lista</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Criar período</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Editar campos não-críticos</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Override de data-limite</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Encerrar antes do prazo</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Aceitar sobreposição (exceção)</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Configurar regras (T1)</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
+            <tr><td>Ver detalhe + auditoria</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+            <tr><td>Exportar</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Eventos logados (modelo)</h3>
+        <table>
+          <thead><tr><th>Evento</th><th>Quando</th><th>Conteúdo do log</th></tr></thead>
+          <tbody>
+            <tr><td><code>estabilidade.criada</code></td><td>Confirmação do wizard</td><td>Snapshot de todos os campos, usuário, IP, hora, hash</td></tr>
+            <tr><td><code>estabilidade.editada</code></td><td>Salvar edição</td><td>Diff antes/depois por campo + justificativa (se houver)</td></tr>
+            <tr><td><code>estabilidade.override</code></td><td>Override de data</td><td>Valor calculado, valor manual, justificativa, usuário</td></tr>
+            <tr><td><code>estabilidade.encerrada</code></td><td>Encerramento</td><td>Data efetiva, motivo, justificativa, usuário</td></tr>
+            <tr><td><code>estabilidade.sobreposicao_aceita</code></td><td>Exceção a sobreposição</td><td>IDs dos períodos envolvidos, justificativa, usuário</td></tr>
+            <tr><td><code>desligamento.bloqueado</code></td><td>Tentativa em período ativo</td><td>ID do período, usuário que tentou, motivo do bloqueio</td></tr>
+            <tr><td><code>regra.configurada</code></td><td>Salvar regra em T1</td><td>Diff antes/depois, escopo (empresa/convenção), usuário</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Exemplo de entrada de log:</strong></p>
+        <pre style="background:#f4f4f4;padding:10px;font-size:12px;overflow-x:auto;">{
+  "event": "estabilidade.override",
+  "user": "ana.silva@cliente.com.br",
+  "ts": "2026-04-12T14:22:08-03:00",
+  "ip": "189.x.x.x",
+  "entity_id": "EST-00193",
+  "before": { "data_limite": "2027-04-10" },
+  "after":  { "data_limite": "2027-06-30" },
+  "justificativa": "Acordo extrajudicial homologado em 11/04/2026 estende prazo para 30/06/2027.",
+  "hash": "sha256:..."
+}</pre>
+      </section>
+
+      <section id="estados">
+        <h2>13. Estados Obrigatórios</h2>
+        <table>
+          <thead><tr><th>Estado</th><th>Quando aparece</th><th>O que mostrar</th></tr></thead>
+          <tbody>
+            <tr><td>Vazio (sem regras)</td><td>T1 sem regras configuradas</td><td>Texto explicativo + CTA "Configurar primeira regra"</td></tr>
+            <tr><td>Vazio (sem períodos)</td><td>T2 sem cadastros</td><td>Texto explicativo + CTA "Cadastrar estabilidade"</td></tr>
+            <tr><td>Carregando</td><td>Qualquer chamada &gt; 300ms</td><td>Skeleton da estrutura final (sem espinner solto)</td></tr>
+            <tr><td>Erro</td><td>Falha de rede/servidor</td><td>Mensagem clara + ação "Tentar novamente"</td></tr>
+            <tr><td>Sem permissão</td><td>Usuário sem grant para a ação</td><td>Mensagem + link "Solicitar acesso"</td></tr>
+            <tr><td>Sucesso</td><td>Pós-confirmação</td><td>Toast verde + destaque do item recém-criado</td></tr>
+            <tr><td>Conflito (sobreposição)</td><td>Passo 3 do wizard</td><td>Banner com os IDs/datas dos períodos conflitantes</td></tr>
+            <tr><td>Bloqueio de desligamento</td><td>Ação de desligar com período ativo</td><td>Modal T5 com motivo e data-limite</td></tr>
+            <tr><td>Rascunho retomável</td><td>Wizard fechado sem confirmar</td><td>Badge "Em rascunho" na lista; expira em 7 dias</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="bloqueio">
+        <h2>14. Bloqueio de Desligamento — Tela T5</h2>
+        <h3>Trigger</h3>
+        <p>Toda ação de "Desligar colaborador" verifica se existe período de estabilidade <em>Ativo</em> na data atual. Se sim, abre modal bloqueante.</p>
+
+        <h3>Conteúdo do modal</h3>
+        <ul>
+          <li>Título: "Desligamento bloqueado por estabilidade".</li>
+          <li>Linha 1: motivo + data-limite. Ex.: "Acidente de trabalho &gt; 15 dias — estabilidade até <strong>10/04/2027</strong>".</li>
+          <li>Linha 2: link para o detalhe do período.</li>
+          <li>Linha 3 (somente para perfis com permissão): botão "Registrar exceção" → abre formulário com justificativa obrigatória, anexo recomendado, e aviso de que o evento será auditado.</li>
+          <li>Ações: <code>Voltar</code> (padrão), <code>Registrar exceção</code> (condicional).</li>
+        </ul>
+
+        <h3>Auditoria</h3>
+        <p>Toda abertura do modal gera evento <code>desligamento.bloqueado</code>. Toda exceção registrada gera <code>desligamento.excecao_registrada</code> com justificativa.</p>
+      </section>
+
+      <section id="microcopias">
+        <h2>15. Microcópias (rótulos, ajuda, erros, avisos)</h2>
+
+        <h3>Rótulos &amp; ajuda contextual</h3>
+        <table>
+          <thead><tr><th>Campo</th><th>Rótulo</th><th>Texto de ajuda (curto)</th></tr></thead>
+          <tbody>
+            <tr><td>Motivo</td><td>Motivo da estabilidade</td><td>"Fundamento legal do período. Use a busca por código ou palavra-chave."</td></tr>
+            <tr><td>Origem</td><td>Origem do período</td><td>"Manual: você informa as datas. Afastamento: o sistema deriva do afastamento."</td></tr>
+            <tr><td>Comparador</td><td>Como comparar</td><td>"≥ exige valor igual ou maior. = exige valor exato."</td></tr>
+            <tr><td>Dias / Período</td><td>Duração</td><td>"Em dias corridos ou em meses a partir da data inicial."</td></tr>
+            <tr><td>Data inicial</td><td>Início da estabilidade</td><td>"Padrão: data do evento gerador. Edite somente quando houver fato concreto."</td></tr>
+            <tr><td>Data-limite</td><td>Fim da estabilidade</td><td>"Calculada automaticamente. Override exige justificativa."</td></tr>
+            <tr><td>Justificativa</td><td>Justificativa de override</td><td>"Descreva o fato que motivou a alteração. Mín. 20 caracteres."</td></tr>
+            <tr><td>Status</td><td>Situação</td><td>"Ativa: em vigor agora. Agendada: começa no futuro. Encerrada: já passou ou foi encerrada manualmente."</td></tr>
+            <tr><td>Auditoria</td><td>Histórico de alterações</td><td>"Lista cronológica de quem alterou o quê e quando."</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Mensagens de validação</h3>
+        <ul>
+          <li>Obrigatório: "Campo obrigatório."</li>
+          <li>Sobreposição: "Período sobreposto com estabilidade existente (DD/MM/AAAA – DD/MM/AAAA). Justifique para prosseguir."</li>
+          <li>Comparador inválido: "Selecione ≥ ou = para esta dimensão."</li>
+          <li>Permissão: "Você não tem permissão para esta ação. Solicite acesso ao administrador."</li>
+          <li>Override sem justificativa: "Para alterar esta data, descreva o motivo (mín. 20 caracteres)."</li>
+          <li>Anexo inválido: "Arquivo excede 10 MB." / "Formato não suportado. Use PDF, JPG ou PNG."</li>
+          <li>Data inconsistente: "Data-limite não pode ser anterior à data inicial."</li>
+        </ul>
+
+        <h3>Ajuda legal curta (chips/popovers)</h3>
+        <ul>
+          <li><em>Acidente de trabalho</em>: "Estabilidade de 12 meses após retorno do afastamento (Lei 8.213/91, art. 118)."</li>
+          <li><em>Gestante</em>: "Estabilidade desde a confirmação da gravidez até 5 meses após o parto (ADCT art. 10, II, b)."</li>
+          <li><em>Cipeiro</em>: "Estabilidade desde o registro da candidatura até 1 ano após o fim do mandato (CF art. 8º, ADCT art. 10, II, a)."</li>
+          <li><em>Dirigente sindical</em>: "Estabilidade durante o mandato e até 1 ano após o término (CLT art. 543, §3º)."</li>
+          <li><em>Pré-aposentadoria</em>: "Conforme convenção/acordo coletivo aplicável."</li>
+        </ul>
+      </section>
+
+      <section id="banners">
+        <h2>16. Banners &amp; Avisos</h2>
+        <ul>
+          <li><strong>Banner em detalhe (período ativo):</strong> "Estabilidade ativa até DD/MM/AAAA. Desligamento bloqueado."</li>
+          <li><strong>Aviso no wizard (override):</strong> "Você está alterando a data calculada. A alteração será registrada na auditoria."</li>
+          <li><strong>Aviso de sobreposição:</strong> "Sobreposição detectada com [EST-00112] (10/02/2026 – 09/02/2027)."</li>
+          <li><strong>Aviso de proximidade do fim (D-30):</strong> "Esta estabilidade termina em 30 dias. Verifique se aplica-se renovação ou alerta ao RH."</li>
+          <li><strong>Toast de sucesso:</strong> "Estabilidade registrada. Vigência até DD/MM/AAAA."</li>
+          <li><strong>Toast de erro:</strong> "Não foi possível salvar. Tente novamente. (cod. ERR-EST-014)"</li>
+        </ul>
+      </section>
+
+      <section id="stepper">
+        <h2>17. Comportamento do Stepper (alinhado ao prompt)</h2>
+        <p>Referência integral: <code>stepper-behavior-prompt.md</code>. Pontos a respeitar no wizard de Estabilidade:</p>
+        <ul>
+          <li><strong>Estados:</strong> Pendente, Em andamento (active), Completo (complete). O passo atual é sempre <em>active</em>; passos visitados ficam <em>complete</em>.</li>
+          <li><strong>Navegação por clique:</strong> qualquer step pode ser clicado se já estiver visitado (Completo); steps Pendentes não são clicáveis até serem alcançados pelo botão "Próximo".</li>
+          <li><strong>maxStepIndex não regride:</strong> ao voltar para um passo anterior, ele permanece <em>complete</em>; o passo atual vira <em>active</em>.</li>
+          <li><strong>Passos condicionais:</strong> dimensões (Sexo/Idade/Meses) podem inserir <em>substeps</em> ou ramificar perguntas no Passo 2 — quando aplicável, renumerar os steps visíveis.</li>
+          <li><strong>Pular passos não aplicáveis:</strong> se a regra do Motivo não exige anexo, o Passo 4 reduz-se ao resumo; o botão "Próximo" avança para o Passo 5 sem fricção.</li>
+          <li><strong>Persistência de rascunho:</strong> ao sair, o stepper preserva o último passo alcançado; ao retomar, abre nele.</li>
+          <li><strong>Validação por passo:</strong> "Próximo" só é habilitado quando todos os campos obrigatórios do passo atual passam na validação.</li>
+          <li><strong>Recuperação de erro:</strong> ao tentar avançar com erro, os campos inválidos ganham foco e mensagem; o stepper indica o passo com problema (badge discreta na step-status).</li>
+        </ul>
+
+        <h3>Mapeamento concreto (placeholders)</h3>
+        <table>
+          <thead><tr><th>Passo</th><th>step-name</th><th>page-id (placeholder)</th><th>Condicional</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Origem &amp; Identificação</td><td><code>page-est-origem</code></td><td>Não</td></tr>
+            <tr><td>2</td><td>Motivo &amp; Condições</td><td><code>page-est-motivo</code></td><td>Não</td></tr>
+            <tr><td>3</td><td>Período &amp; Cálculo</td><td><code>page-est-periodo</code></td><td>Não</td></tr>
+            <tr><td>4</td><td>Revisão &amp; Anexos</td><td><code>page-est-revisao</code></td><td>Condicional: oculta upload se regra não exigir</td></tr>
+            <tr><td>5</td><td>Confirmação</td><td><code>page-est-confirmacao</code></td><td>Não</td></tr>
+          </tbody>
+        </table>
+        <div class="note">As constantes <code>FLOW_PAGES</code> e <code>STEP_NAME_TO_PAGE</code> do prompt devem ser preenchidas com estes valores na implementação. Steps condicionais (caso surjam dimensões dinâmicas) devem ter <code>id</code> único e iniciar ocultos.</div>
+      </section>
+
+      <section id="telemetria">
+        <h2>18. Plano de Telemetria &amp; KPIs</h2>
+        <h3>Eventos</h3>
+        <table>
+          <thead><tr><th>Evento</th><th>Propriedades</th><th>Quando dispara</th></tr></thead>
+          <tbody>
+            <tr><td><code>est.wizard.iniciado</code></td><td>origem, motivo (se já escolhido), empresa_id, perfil</td><td>Abertura do Passo 1</td></tr>
+            <tr><td><code>est.passo.avancado</code></td><td>passo_de, passo_para, tempo_no_passo_ms</td><td>Clique em "Próximo"</td></tr>
+            <tr><td><code>est.passo.voltou</code></td><td>passo_de, passo_para</td><td>Clique em step anterior</td></tr>
+            <tr><td><code>est.calculo_ok</code></td><td>motivo, data_inicial, data_limite</td><td>Cálculo automático bem-sucedido</td></tr>
+            <tr><td><code>est.calculo_override</code></td><td>motivo, valor_auto, valor_manual, tem_justificativa</td><td>Confirmação do override</td></tr>
+            <tr><td><code>est.calculo_erro</code></td><td>motivo, mensagem</td><td>Falha no cálculo (ex.: data inválida)</td></tr>
+            <tr><td><code>est.criada</code></td><td>origem, motivo, dimensoes_aplicadas, anexos_qtd, tempo_total_ms</td><td>Confirmação do Passo 5</td></tr>
+            <tr><td><code>est.rascunho_salvo</code></td><td>passo_atual, motivo (opcional)</td><td>Auto-save</td></tr>
+            <tr><td><code>est.rascunho_retomado</code></td><td>idade_rascunho_h, passo_atual</td><td>Reabertura de rascunho</td></tr>
+            <tr><td><code>est.encerrada</code></td><td>motivo, dias_antes_do_limite</td><td>Encerramento antecipado</td></tr>
+            <tr><td><code>est.sobreposicao_detectada</code></td><td>motivo, conflito_id</td><td>Validação no Passo 3</td></tr>
+            <tr><td><code>est.sobreposicao_aceita</code></td><td>motivo, conflito_id, justificativa_len</td><td>Aceitação de exceção</td></tr>
+            <tr><td><code>desligamento_bloqueado</code></td><td>est_id, motivo</td><td>Modal T5 aberto</td></tr>
+            <tr><td><code>empresa_configurada</code></td><td>empresa_id, qtd_regras</td><td>Primeira regra ativa salva</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Funis</h3>
+        <ol>
+          <li><strong>Funil de cadastro:</strong> <code>est.wizard.iniciado</code> → <code>est.passo.avancado</code> (1→2→3→4→5) → <code>est.criada</code>.</li>
+          <li><strong>Funil de adoção:</strong> <code>empresa_configurada</code> → primeira <code>est.criada</code> → 5ª <code>est.criada</code>.</li>
+          <li><strong>Funil de proteção:</strong> <code>est.criada</code> → <code>desligamento_bloqueado</code> (positivo, proteção funcionou).</li>
+        </ol>
+
+        <h3>KPIs</h3>
+        <table>
+          <thead><tr><th>KPI</th><th>Meta</th><th>Cálculo</th></tr></thead>
+          <tbody>
+            <tr><td>Precisão do cálculo de data-limite</td><td>≥ 99,5%</td><td>(calculo_ok) / (calculo_ok + calculo_erro)</td></tr>
+            <tr><td>Redução de lançamentos manuais</td><td>≥ 60%</td><td>1 - (origem=Manual) / (origem=Manual + origem=Afastamento)</td></tr>
+            <tr><td>Tickets sobre estabilidade</td><td>↓ ≥ 40%</td><td>Comparação trimestral pós-rollout</td></tr>
+            <tr><td>Tempo mediano de cadastro</td><td>≤ 2 min</td><td>Mediana de <code>tempo_total_ms</code> em est.criada</td></tr>
+            <tr><td>Desligamentos bloqueados corretamente</td><td>100%</td><td>1 - falsos positivos confirmados em auditoria</td></tr>
+            <tr><td>Adoção por empresa</td><td>≥ 80% até D+60</td><td>empresas com empresa_configurada / total elegível</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="teste">
+        <h2>19. Roteiro de Teste de Usabilidade A/B (Formulário vs Grid)</h2>
+        <h3>Objetivo</h3>
+        <p>Provar que o formulário guiado supera o grid legado em sucesso, tempo, erros críticos e satisfação (SUS).</p>
+
+        <h3>Amostra</h3>
+        <ul>
+          <li><strong>12 participantes</strong> divididos em 2 grupos balanceados (6 RH + 6 Contadores).</li>
+          <li><strong>A:</strong> formulário (novo). <strong>B:</strong> grid (legado).</li>
+          <li>Cada participante executa todas as 5 tarefas em seu grupo. Crossover opcional (sessão 2) para neutralizar viés.</li>
+        </ul>
+
+        <h3>Tarefas</h3>
+        <ol>
+          <li>Cadastrar estabilidade por acidente de trabalho a partir de um afastamento existente.</li>
+          <li>Cadastrar estabilidade de gestante com início no parto.</li>
+          <li>Cadastrar estabilidade por convenção com dimensão Sexo=F e Idade≥18.</li>
+          <li>Tentar desligar colaborador com estabilidade ativa e interpretar o bloqueio.</li>
+          <li>Editar um período existente com override de data-limite e justificar.</li>
+        </ol>
+
+        <h3>Métricas</h3>
+        <table>
+          <thead><tr><th>Métrica</th><th>Definição</th><th>Critério de sucesso (vs Grid)</th></tr></thead>
+          <tbody>
+            <tr><td>Taxa de sucesso</td><td>% de tarefas concluídas sem ajuda</td><td>≥ +20pp</td></tr>
+            <tr><td>Tempo de tarefa</td><td>Mediana em segundos</td><td>≤ 80% do tempo do grid</td></tr>
+            <tr><td>Erros críticos</td><td>Ações que comprometem compliance</td><td>0 erros críticos no formulário</td></tr>
+            <tr><td>SUS</td><td>System Usability Scale (0–100)</td><td>≥ 75 (vs &lt; 65 no grid)</td></tr>
+            <tr><td>NPS pós-tarefa</td><td>0–10 "recomendaria a um colega"</td><td>≥ 8</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="objecoes">
+        <h2>20. Objeções &amp; Respostas (defesa)</h2>
+        <table>
+          <thead><tr><th>Objeção</th><th>Resposta</th></tr></thead>
+          <tbody>
+            <tr><td>"Usuário avançado prefere o grid — é mais rápido."</td><td>O grid continua disponível como consulta. Para criação, o wizard reduz erros e mede tempo &lt; 2 min, comparável ao grid mas com auditoria automática.</td></tr>
+            <tr><td>"Mais passos = mais cliques."</td><td>Cliques só aumentam quando há decisão real (motivo, dimensões). Passos não aplicáveis são pulados.</td></tr>
+            <tr><td>"E quem quer só editar uma data?"</td><td>Editar abre o wizard no passo necessário (Período). Não obriga revisitar todos os passos.</td></tr>
+            <tr><td>"Importação em massa?"</td><td>Está prevista na Fase 2 com validação no mesmo motor do wizard, evitando inconsistência.</td></tr>
+            <tr><td>"Bloqueio de desligamento pode atrapalhar urgências."</td><td>Existe o caminho "Registrar exceção" para perfis com permissão, sempre auditado.</td></tr>
+            <tr><td>"E as convenções específicas que ninguém mapeou?"</td><td>O Motivo "Outros" cobre o caso com justificativa + anexo + cálculo manual; logado para futura padronização.</td></tr>
+            <tr><td>"Tempo de implementação?"</td><td>Fase 1 (cadastro + bloqueio) é independente de Fase 2/3 e entrega o maior ganho de compliance.</td></tr>
+            <tr><td>"Vai gerar muitas notificações?"</td><td>D-30 e D-7 são configuráveis por perfil. Padrão: D-30 por e-mail; in-app silencioso.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="backlog">
+        <h2>21. Backlog Faseado</h2>
+        <h3>Fase 1 <span class="badge b1">MVP</span></h3>
+        <ul>
+          <li>T1 Configuração de Estabilidades (CRUD básico).</li>
+          <li>T2 Lista-resumo com filtros principais.</li>
+          <li>T3 Wizard Criar/Editar (5 passos).</li>
+          <li>T4 Detalhe com seções core + Auditoria.</li>
+          <li>T5 Bloqueio de desligamento.</li>
+          <li>Cálculos automáticos para Acidente, Maternidade, Adoção, Cipeiro, Dirigente sindical.</li>
+          <li>Telemetria mínima (wizard, calculos, criada, bloqueado).</li>
+        </ul>
+        <h3>Fase 2 <span class="badge b2">Escalar</span></h3>
+        <ul>
+          <li>Importação em massa de períodos (CSV) com motor de validação do wizard.</li>
+          <li>Edição em massa (encerramento por filtro).</li>
+          <li>Duplicação de regras entre empresas (escritório contábil).</li>
+          <li>Workflow opcional de aprovação para overrides.</li>
+        </ul>
+        <h3>Fase 3 <span class="badge b3">Proatividade</span></h3>
+        <ul>
+          <li>Alertas proativos D-30/D-7 do fim da estabilidade (in-app + e-mail).</li>
+          <li>Exibição do status de estabilidade em outros módulos (Folha, Rescisão, eSocial).</li>
+          <li>Painel de risco por empresa (sobreposições, vencimentos próximos, exceções recentes).</li>
+        </ul>
+      </section>
+
+      <section id="slides">
+        <h2>22. Roteiro de Slides (10–12 slides para a defesa)</h2>
+        <ol>
+          <li><strong>Capa — Estabilidade no Folha: do grid ao formulário guiado</strong>
+            <ul>
+              <li>Objetivo da iniciativa.</li>
+              <li>Hipótese: formulário reduz erros e custo de suporte.</li>
+              <li>Padrão de referência: Sindicato/Convenção.</li>
+            </ul>
+          </li>
+          <li><strong>Problema</strong>
+            <ul><li>Grid livre, erros de data, ausência de justificativa.</li><li>Sem bloqueio ativo de desligamento.</li><li>Risco trabalhista alto.</li></ul>
+          </li>
+          <li><strong>Quem dói</strong>
+            <ul><li>Gestor de RH — operação diária.</li><li>Contador — múltiplas empresas, regras de convenção.</li><li>Auditoria — dificuldade de rastrear.</li></ul>
+          </li>
+          <li><strong>Proposta</strong>
+            <ul><li>Wizard de 5 passos para criação/edição.</li><li>Lista-resumo + Detalhe + Auditoria.</li><li>Bloqueio ativo no desligamento.</li></ul>
+          </li>
+          <li><strong>Fluxos críticos</strong>
+            <ul><li>Configurar regra por convenção.</li><li>Criar estabilidade por afastamento.</li><li>Bloqueio + exceção justificada.</li></ul>
+          </li>
+          <li><strong>Cálculo automático</strong>
+            <ul><li>Por motivo (12 meses acidente, 5 meses gestante, etc.).</li><li>Override com justificativa obrigatória.</li><li>Memorial de cálculo acessível.</li></ul>
+          </li>
+          <li><strong>Auditoria embutida</strong>
+            <ul><li>Eventos logados em cada decisão.</li><li>Diff antes/depois por campo.</li><li>Permissões por perfil.</li></ul>
+          </li>
+          <li><strong>Stepper</strong>
+            <ul><li>Comportamento alinhado ao padrão Onvio.</li><li>Persistência de rascunho.</li><li>Passos condicionais e pulo de não aplicáveis.</li></ul>
+          </li>
+          <li><strong>Métricas e KPIs</strong>
+            <ul><li>≥ 99,5% precisão de cálculo.</li><li>≥ 60% redução de lançamentos manuais.</li><li>≤ 2 min mediana de cadastro.</li></ul>
+          </li>
+          <li><strong>Roteiro de validação</strong>
+            <ul><li>Teste A/B 12 participantes.</li><li>Métricas: sucesso, tempo, erros críticos, SUS.</li><li>Critério de go/no-go pré-acordado.</li></ul>
+          </li>
+          <li><strong>Backlog faseado</strong>
+            <ul><li>Fase 1: cadastro + bloqueio.</li><li>Fase 2: importação/edição em massa.</li><li>Fase 3: alertas + exibição cross-módulo.</li></ul>
+          </li>
+          <li><strong>Riscos e perguntas abertas</strong>
+            <ul><li>Mapeamento de afastamentos incompletos → "Outros".</li><li>Variedade de convenções → Duplicar regra + import.</li><li>Próximos passos e decisão necessária.</li></ul>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
