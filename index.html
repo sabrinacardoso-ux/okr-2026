@@ -3,796 +3,1874 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>OKR 2026 — Estabilidade (Folha)</title>
+  <title>OKR 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #f0f2f5;
       color: #1f1f1f;
-      line-height: 1.55;
+      line-height: 1.6;
     }
     header {
       background: #1f1f1f;
       color: #fff;
-      padding: 24px 48px 20px;
+      padding: 28px 48px 22px;
       border-bottom: 3px solid #d64000;
-      position: sticky; top: 0; z-index: 10;
     }
-    header h1 { font-size: 20px; font-weight: 600; }
-    header p { font-size: 12px; color: #aaa; margin-top: 4px; }
-    .wrap { display: grid; grid-template-columns: 260px 1fr; gap: 0; max-width: 1400px; margin: 0 auto; }
-    nav {
-      position: sticky; top: 75px; align-self: start;
-      background: #fff; border-right: 1px solid #e0e0e0;
-      max-height: calc(100vh - 75px); overflow-y: auto;
-      padding: 16px 12px; font-size: 12px;
+    header h1 { font-size: 22px; font-weight: 600; }
+
+    /* Button group de defesas */
+    .defesa-tabs {
+      display: flex;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 40px 0;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
     }
-    nav h4 { font-size: 11px; text-transform: uppercase; color: #888; margin: 12px 8px 4px; letter-spacing: .4px; }
-    nav h4:first-child { margin-top: 0; }
-    nav a {
-      display: block; padding: 4px 8px; color: #1f1f1f; text-decoration: none;
-      border-radius: 3px;
+    .defesa-tab {
+      flex: 1;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid #c4c4c4;
+      border-bottom: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+      transition: background .15s, color .15s, border-color .15s;
+      border-radius: 4px 4px 0 0;
     }
-    nav a:hover { background: #f4f4f4; }
-    main { padding: 32px 40px; background: #fff; min-height: calc(100vh - 75px); }
-    section { margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid #eee; }
-    section:last-child { border-bottom: none; }
-    h2 { font-size: 18px; margin-bottom: 12px; color: #1f1f1f; border-left: 3px solid #d64000; padding-left: 10px; }
-    h3 { font-size: 15px; margin: 18px 0 8px; color: #1f1f1f; }
-    h4 { font-size: 13px; margin: 14px 0 6px; color: #1f1f1f; text-transform: uppercase; letter-spacing: .3px; }
-    p, li { font-size: 13px; }
-    ul, ol { padding-left: 22px; margin: 6px 0 10px; }
-    li { margin-bottom: 4px; }
-    table {
-      width: 100%; border-collapse: collapse; margin: 10px 0 16px;
+    .defesa-tab + .defesa-tab { margin-left: -1px; }
+    .defesa-tab:hover { background: #f4f4f4; color: #1f1f1f; }
+    .defesa-tab.active {
+      background: #1f1f1f;
+      color: #fff;
+      border-color: #1f1f1f;
+      position: relative;
+      z-index: 1;
+    }
+    .defesa-content { display: none; }
+    .defesa-content.active { display: block; }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 40px 60px;
+      background: #fff;
+      min-height: 100vh;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Cards
+    ════════════════════════════════════════════════════════════ */
+    .info-card {
+      background: #fff;
+      border-top: 1px solid #d64000;
+      border-right: 1px solid #d64000;
+      border-bottom: 1px solid #d64000;
+      border-left: 3px solid #d64000;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .info-card-header {
+      background: rgba(214, 64, 0, 0.04);
+      border-bottom: 1px solid #f2f2f2;
+      padding: 16px 18px 13px;
+    }
+    .info-card-label {
+      font-family: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      color: #d64000;
+      display: block;
+    }
+    .info-card-body { padding: 18px; }
+    .info-card-body p {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #000;
+    }
+    .info-card-body p + p { margin-top: 8px; }
+    .info-card-body strong { font-weight: 700; }
+
+    .info-card.is-gray {
+      border-top: 3px solid #f2f2f2;
+      border-right: 1px solid #f2f2f2;
+      border-bottom: 1px solid #f2f2f2;
+      border-left: 1px solid #f2f2f2;
+    }
+    .info-card.is-gray .info-card-header {
+      background: #fff;
+      border-bottom-color: #f2f2f2;
+    }
+    .info-card.is-gray .info-card-label { color: #505050; }
+
+    .cards-row {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .cards-row .info-card {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 0;
+    }
+
+    .info-card-body .text-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0;
+    }
+    .info-card-body .text-list li {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #000;
+      padding: 2px 0;
+    }
+    .info-card-body h4 {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      color: #000;
+      margin: 12px 0 4px;
+    }
+    .info-card-body h4:first-child { margin-top: 0; }
+
+    .ref-visual {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #f2f2f2;
+    }
+    .ref-visual-label {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+    .upload-zone {
+      background: #fafafa;
+      border: 1px dashed #f2f2f2;
+      border-radius: 4px;
+      padding: 21px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-height: 124px;
+      justify-content: center;
+    }
+    .upload-zone-icon { color: #505050; width: 22px; height: 22px; }
+    .upload-zone-text {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+    }
+    .upload-zone-text strong {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+      color: #d64000;
+    }
+    .upload-zone-small {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+      opacity: 0.6;
+    }
+    .ref-visual-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      background: #fff;
+      cursor: zoom-in;
+      transition: opacity .15s;
+    }
+    .ref-visual-img:hover { opacity: .85; }
+
+    /* ════════════════════════════════════════════════════════════
+       Benchmark de Concorrentes (Figma node 5:3725)
+    ════════════════════════════════════════════════════════════ */
+    .benchmark-section {
+      display: flex;
+      flex-direction: column;
+      gap: 22.5px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #f2f2f2;
+    }
+    .section-tag {
+      align-self: flex-start;
+      background: #e6e6e6;
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      color: #505050;
+    }
+    .bm-card {
+      background: #fff;
+      border: 1px solid #f2f2f2;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px -2px rgba(0,0,0,0.06);
+    }
+    .bm-card.has-accent { border-left-width: 3px; }
+    .bm-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      padding: 12px 18px;
+      border-bottom: 1px solid #ececec;
+      flex-wrap: wrap;
+    }
+    .bm-card-header.is-shaded { background: #fafafa; }
+    .bm-card-label {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 1.12px;
+      text-transform: uppercase;
+      color: #505050;
+    }
+    .bm-header-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .bm-tag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(56, 124, 43, 0.06);
+      border: 1px solid rgba(56, 124, 43, 0.18);
+      border-radius: 100px;
+      padding: 2px 9px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      line-height: 16.5px;
+      color: #387c2b;
+      white-space: nowrap;
+    }
+    .bm-stat-row {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .bm-stat {
+      display: inline-flex;
+      align-items: center;
+      background: #e6e6e6;
+      border-left: 2px solid #1573d3;
+      border-radius: 100px;
+      padding: 1px 9px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 11px;
+      line-height: 16.5px;
+      color: #505050;
+      white-space: nowrap;
+    }
+    .bm-stat.is-features { border-left-color: #fea601; }
+    .bm-stat.is-gaps     { border-left-color: #dc0a0a; }
+    .bm-stat.is-personas { border-left-color: #387c2b; }
+    .bm-card-body { padding: 18px; }
+
+    .concorrentes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13.5px 18px;
+    }
+    .concorrente-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .concorrente-num {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+      width: 16px;
+      flex-shrink: 0;
+    }
+    .concorrente-line {
+      flex: 1;
+      border-bottom: 1px dashed #505050;
+      padding-bottom: 2px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #1f1f1f;
+      min-height: 23px;
+    }
+
+    .bm-quadrants {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    .bm-quad {
+      display: flex;
+      gap: 9px;
+      background: #fafafa;
+      border: 1px solid #f2f2f2;
+      border-radius: 4px;
+      padding: 12px;
+      align-items: flex-start;
+    }
+    .bm-quad-icon {
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .bm-quad-title {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 18.2px;
+      color: #1f1f1f;
+    }
+    .bm-quad-sub {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 11px;
+      line-height: 15.4px;
+      color: #505050;
+      margin-top: 2px;
+    }
+
+    .bm-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .bm-btn-primary {
+      background: #d64000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .15s;
+    }
+    .bm-btn-primary:hover { background: #b03600; }
+    .bm-btn-primary svg { width: 13px; height: 13px; }
+
+    .bm-ai-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(214, 64, 0, 0.1);
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #d64000;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .bm-ai-btn:hover { background: rgba(214, 64, 0, 0.18); }
+    .bm-ai-btn svg { width: 14px; height: 14px; }
+    .bm-ai-text {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #1f1f1f;
+      margin: 0;
+    }
+
+    .bm-upload {
+      background: #fafafa;
+      border: 1px dashed #d8d8d8;
+      border-radius: 8px;
+      padding: 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+    .bm-upload-icon {
+      background: rgba(214, 64, 0, 0.08);
+      border-radius: 50%;
+      width: 40.5px;
+      height: 40.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d64000;
+    }
+    .bm-upload-icon svg { width: 18px; height: 18px; }
+    .bm-upload-title {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      color: #d64000;
+      margin: 0;
+    }
+    .bm-upload-sub {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 21px;
+      color: #505050;
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .concorrentes-grid { grid-template-columns: 1fr; }
+      .bm-quadrants { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Benchmark Modal */
+    .bm-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+    .bm-modal.is-open { display: flex; }
+    .bm-modal-panel {
+      background: #fff;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 1280px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+    .bm-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #ececec;
+      flex-shrink: 0;
+    }
+    .bm-modal-title {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #1f1f1f;
+      margin: 0;
+    }
+    .bm-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #505050;
+      transition: background .15s, color .15s;
+    }
+    .bm-modal-close:hover {
+      background: #f2f2f2;
+      color: #1f1f1f;
+    }
+    .bm-modal-close svg { width: 18px; height: 18px; }
+    .bm-modal-body {
+      padding: 0;
+      overflow: auto;
+      flex: 1;
+    }
+
+    /* Benchmark table */
+    .bm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+    }
+    .bm-table thead th {
+      text-align: left;
+      padding: 14px 18px;
+      background: #fafafa;
+      border-bottom: 1px solid #ececec;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: #505050;
+      vertical-align: middle;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .bm-table thead th.add-col {
+      width: 44px;
+      text-align: center;
+      color: #d64000;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 14px 12px;
+    }
+    .bm-table thead th.add-col:hover { background: rgba(214, 64, 0, 0.06); }
+    .bm-table tbody td {
+      padding: 16px 18px;
+      vertical-align: top;
+      border-bottom: 1px solid #ececec;
+      font-size: 14px;
+      line-height: 21px;
+      color: #1f1f1f;
+    }
+    .bm-table tbody tr:last-child td { border-bottom: none; }
+    .bm-table tbody tr.is-highlighted { background: rgba(255, 165, 80, 0.10); }
+    .bm-table tbody tr.is-highlighted .player-cell {
+      color: #d64000;
+      font-weight: 600;
+    }
+    .bm-table .player-cell {
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 140px;
+    }
+    .bm-table .player-cell .star { color: #fea601; margin-left: 4px; }
+    .bm-table ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .bm-table li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .bm-table .ic {
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    .bm-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      border-top: 1px solid #ececec;
+      background: #fff;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .bm-modal-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .bm-modal-footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .bm-link {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #505050;
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .bm-link:hover {
+      color: #1f1f1f;
+      text-decoration: underline;
+    }
+    .bm-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #505050;
+      flex-wrap: wrap;
+    }
+    .bm-legend-label {
+      font-weight: 600;
+      color: #1f1f1f;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
       font-size: 12px;
     }
-    th, td {
-      border: 1px solid #e0e0e0; padding: 6px 8px; text-align: left;
+    .bm-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .bm-count {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #505050;
+    }
+
+    /* Benchmark table — estabilidade */
+    .bm-criterion {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18px;
+      color: #1f1f1f;
+      background: #fafafa;
+      min-width: 160px;
+      max-width: 190px;
       vertical-align: top;
+      border-right: 1px solid #ececec;
+      position: sticky;
+      left: 0;
+      z-index: 1;
     }
-    th { background: #f4f4f4; font-weight: 600; }
-    code, .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; background: #f4f4f4; padding: 1px 5px; border-radius: 3px; }
-    .tag { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 3px; background: #f4f4f4; color: #666; margin-right: 4px; }
-    .tag.req { background: #ffe0e0; color: #a00; }
-    .tag.opt { background: #e0f0ff; color: #036; }
-    .tag.cond { background: #fff3d0; color: #855; }
-    .note {
-      background: #fff8e1; border-left: 3px solid #d64000;
-      padding: 10px 14px; font-size: 12px; margin: 10px 0;
+    .bm-pending {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f2f2f2;
+      border: 1px solid #e0e0e0;
+      border-radius: 100px;
+      padding: 1px 8px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 11px;
+      color: #888;
+      white-space: nowrap;
     }
-    .kv { display: grid; grid-template-columns: 200px 1fr; gap: 4px 12px; font-size: 12px; margin: 8px 0; }
-    .kv dt { font-weight: 600; color: #555; }
-    .step-box {
-      border: 1px solid #e0e0e0; border-left: 3px solid #d64000;
-      padding: 12px 14px; margin: 8px 0; background: #fafafa;
+    .bm-pending::before {
+      content: '?';
+      font-weight: 700;
+      font-size: 10px;
     }
-    .step-box h4 { margin-top: 0; color: #d64000; }
-    .badge { font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-left: 6px; }
-    .badge.b1 { background: #d4edda; color: #155724; }
-    .badge.b2 { background: #fff3cd; color: #856404; }
-    .badge.b3 { background: #d1ecf1; color: #0c5460; }
+    .bm-insight-row td {
+      background: rgba(214, 64, 0, 0.04) !important;
+      border-top: 1px solid rgba(214, 64, 0, 0.15) !important;
+      font-size: 13px;
+      line-height: 20px;
+      color: #1f1f1f;
+      padding: 14px 18px;
+    }
+    .bm-insight-row strong { color: #d64000; font-weight: 600; }
+    .bm-table thead th { white-space: nowrap; }
+    .bm-table td { vertical-align: top; font-size: 13px; line-height: 19px; }
+    .bm-path {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #505050;
+      background: #f4f4f4;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      padding: 4px 8px;
+      display: inline-block;
+      line-height: 18px;
+    }
+    .bm-path .sep { color: #b0b0b0; margin: 0 2px; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+    .lightbox.is-open { display: flex; }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      cursor: default;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f1f1f;
+      transition: background .15s, transform .15s;
+      z-index: 1001;
+    }
+    .lightbox-close:hover {
+      background: #fff;
+      transform: scale(1.05);
+    }
+    .lightbox-close svg { width: 20px; height: 20px; }
+
+    /* ════════════════════════════════════════════════════════════
+       Quarter Cards (Q1–Q4)
+    ════════════════════════════════════════════════════════════ */
+    .quarter-section {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .quarter-cards {
+      display: flex;
+      gap: 12px;
+    }
+    .quarter-card {
+      flex: 1;
+      border: 1px solid #e0e0e0;
+      border-top: 3px solid #c4c4c4;
+      border-radius: 6px;
+      padding: 14px 16px 12px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: border-color .15s, background .15s, box-shadow .15s;
+      text-align: left;
+    }
+    .quarter-card:hover {
+      border-color: #d64000;
+      border-top-color: #d64000;
+      background: #fff;
+      box-shadow: 0 2px 8px -2px rgba(214, 64, 0, 0.12);
+    }
+    .quarter-card.is-active {
+      border-color: #d64000;
+      border-top-color: #d64000;
+      background: #fff;
+      box-shadow: 0 2px 8px -2px rgba(214, 64, 0, 0.15);
+    }
+    .quarter-card-label {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1;
+      color: #1f1f1f;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .quarter-card.is-active .quarter-card-label { color: #d64000; }
+    .quarter-card-dates {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 12px;
+      line-height: 18px;
+      color: #505050;
+      display: block;
+    }
+    .quarter-card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 100px;
+      padding: 2px 8px;
+    }
+    .quarter-card-status.is-done {
+      background: rgba(56, 124, 43, 0.08);
+      color: #387c2b;
+    }
+    .quarter-card-status.is-active-status {
+      background: rgba(214, 64, 0, 0.08);
+      color: #d64000;
+    }
+    .quarter-card-status.is-upcoming {
+      background: #f0f0f0;
+      color: #505050;
+    }
+    .quarter-card-status::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 720px) {
+      .quarter-cards { flex-direction: column; }
+      .quarter-section { padding: 16px 20px; }
+    }
+
+    @media (max-width: 720px) {
+      .cards-row { flex-direction: column; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       Heurísticas Violadas (Figma node 3:571)
+    ════════════════════════════════════════════════════════════ */
+    .heuristic-section {
+      border-top: 1px solid #f2f2f2;
+      margin-bottom: 24px;
+    }
+    .heuristic-header {
+      background: rgba(220, 10, 10, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 18px;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .heuristic-header-caret {
+      width: 12px; height: 12px;
+      color: #dc0a0a;
+      transition: transform .15s;
+      flex-shrink: 0;
+    }
+    .heuristic-section.is-open .heuristic-header-caret { transform: rotate(180deg); }
+    .heuristic-header-title {
+      flex: 1;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 0.98px;
+      text-transform: uppercase;
+      color: #dc0a0a;
+      margin: 0;
+    }
+    .heuristic-count {
+      background: rgba(220, 10, 10, 0.10);
+      border-radius: 100px;
+      padding: 1px 9px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      line-height: 16.5px;
+      color: #dc0a0a;
+      min-width: 21px;
+      text-align: center;
+    }
+    .heuristic-body {
+      padding: 4px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11.25px;
+    }
+    .heuristic-section:not(.is-open) .heuristic-body { display: none; }
+
+    .heuristic-panel {
+      background: #fafafa;
+      border-top: 1px solid rgba(214, 64, 0, 0.7);
+      border-right: 1px solid rgba(214, 64, 0, 0.7);
+      border-bottom: 1px solid rgba(214, 64, 0, 0.7);
+      border-left: 3px solid rgba(214, 64, 0, 0.7);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .heuristic-panel.is-blue {
+      border-top-color: rgba(21, 115, 211, 0.7);
+      border-right-color: rgba(21, 115, 211, 0.7);
+      border-bottom-color: rgba(21, 115, 211, 0.7);
+      border-left-color: rgba(21, 115, 211, 0.7);
+    }
+    .heuristic-panel-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13.5px;
+      border-bottom: 1px dashed #f2f2f2;
+      flex-wrap: wrap;
+    }
+    .heuristic-panel-title {
+      flex: 1;
+      min-width: 200px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+      color: #1f1f1f;
+      margin: 0;
+    }
+    .heuristic-origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 8px;
+      height: 20.5px;
+      border-radius: 100px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      line-height: 16.5px;
+      white-space: nowrap;
+    }
+    .heuristic-origin::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .heuristic-origin.is-cenario {
+      background: rgba(21, 115, 211, 0.1);
+      border: 1px solid rgba(21, 115, 211, 0.25);
+      color: #1573d3;
+    }
+    .heuristic-origin.is-cenario::before { background: #1573d3; }
+    .heuristic-origin.is-decisao {
+      background: rgba(214, 64, 0, 0.08);
+      border: 1px solid rgba(214, 64, 0, 0.22);
+      color: #d64000;
+    }
+    .heuristic-origin.is-decisao::before { background: #d64000; }
+
+    .heuristic-sev {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 7px;
+      height: 18.5px;
+      border-radius: 100px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      line-height: 16.5px;
+      white-space: nowrap;
+    }
+    .heuristic-sev.is-high { background: rgba(214, 64, 0, 0.1); color: #d64000; }
+    .heuristic-sev.is-med  { background: rgba(254, 166, 1, 0.14); color: #a16207; }
+    .heuristic-sev.is-low  { background: rgba(21, 115, 211, 0.1); color: #1573d3; }
+
+    .heuristic-meta {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16.5px;
+      color: #505050;
+      white-space: nowrap;
+    }
+
+    .heuristic-panel-body {
+      padding: 9px 13.5px;
+    }
+    .heuristic-panel-body p {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21.7px;
+      color: #1f1f1f;
+      margin: 0;
+    }
+    .heuristic-panel-body .spacer { height: 12px; }
+    .heuristic-evidencia {
+      margin-top: 9px;
+      padding-top: 9px;
+    }
+    .heuristic-evidencia .evid-title {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+      color: #505050;
+      margin-right: 4px;
+    }
+    .heuristic-evidencia .evid-text {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16.5px;
+      color: #505050;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>OKR 2026 — Módulo Estabilidade (Folha)</h1>
-    <p>Especificação funcional e UX • padrão formulário (Sindicato/Convenção) • grid apenas como consulta</p>
+    <h1>OKR 2026</h1>
   </header>
 
+  <div class="quarter-section">
+    <div class="quarter-cards">
+      <button class="quarter-card" type="button">
+        <span class="quarter-card-label">Q1</span>
+        <span class="quarter-card-dates">Jan – Mar 2026</span>
+        <span class="quarter-card-status is-done">Concluído</span>
+      </button>
+      <button class="quarter-card is-active" type="button">
+        <span class="quarter-card-label">Q2</span>
+        <span class="quarter-card-dates">Abr – Jun 2026</span>
+        <span class="quarter-card-status is-active-status">Em andamento</span>
+      </button>
+      <button class="quarter-card" type="button">
+        <span class="quarter-card-label">Q3</span>
+        <span class="quarter-card-dates">Jul – Set 2026</span>
+        <span class="quarter-card-status is-upcoming">Próximo</span>
+      </button>
+      <button class="quarter-card" type="button">
+        <span class="quarter-card-label">Q4</span>
+        <span class="quarter-card-dates">Out – Dez 2026</span>
+        <span class="quarter-card-status is-upcoming">Próximo</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="defesa-tabs">
+    <button class="defesa-tab active" data-tab="defesa-1" onclick="switchDefesa('defesa-1')">Defesa 1</button>
+    <button class="defesa-tab" data-tab="defesa-2" onclick="switchDefesa('defesa-2')">Defesa 2</button>
+    <button class="defesa-tab" data-tab="defesa-3" onclick="switchDefesa('defesa-3')">Defesa 3</button>
+  </div>
+
   <div class="wrap">
-    <nav>
-      <h4>Visão</h4>
-      <a href="#sumario">1. Sumário Executivo</a>
-      <a href="#supos">2. Suposições</a>
-      <a href="#personas">3. Personas & JTBD</a>
-      <a href="#fluxos">4. Mapa de Fluxos</a>
 
-      <h4>Telas</h4>
-      <a href="#telas">5. Inventário de Telas</a>
-      <a href="#config">6. Configuração de Estabilidades</a>
-      <a href="#wizard">7. Wizard Criar/Editar</a>
-      <a href="#lista">8. Lista-resumo</a>
-      <a href="#detalhe">9. Detalhe do Período</a>
+    <!-- ══ DEFESA 1 ══ -->
+    <div id="defesa-1" class="defesa-content active">
 
-      <h4>Regras</h4>
-      <a href="#campos">10. Tabela Mestre de Campos</a>
-      <a href="#calculos">11. Cálculos por Motivo</a>
-      <a href="#permissoes">12. Permissões & Auditoria</a>
-      <a href="#estados">13. Estados Obrigatórios</a>
-      <a href="#bloqueio">14. Bloqueio de Desligamento</a>
+      <div class="info-card">
+        <div class="info-card-header">
+          <span class="info-card-label">Decisão em Questão</span>
+        </div>
+        <div class="info-card-body">
+          <p><strong>Implementar a configuração de cadastro de estabilidade na área de sindicato, a partir da convenção coletiva vigente.</strong></p>
+          <p>O usuário precisa ter a autonomia de cadastrar uma estabilidade "personalizada" de acordo com o que foi definido em convenção, abrangendo diversos motivos e condições.</p>
+          <p>No legado, a partir do SQL e acesso a alguns clientes, foi verificado pelo produto que os clientes estão aplicando as regras de forma errada de acordo com a definição do documento da convenção coletiva. Desta forma, será necessário colocar algumas salvaguardas e restrições para que o usuário não gere tantos cadastros errados.</p>
+        </div>
+      </div>
 
-      <h4>Conteúdo</h4>
-      <a href="#microcopias">15. Microcópias</a>
-      <a href="#banners">16. Banners & Avisos</a>
+      <div class="cards-row">
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
+          <div class="info-card-body">
+            <p>A demanda partiu da necessidade de centralizar o cadastro de períodos de <strong>estabilidade</strong> — situações em que o colaborador não pode ser demitido, como acidente de trabalho (12 meses), gravidez e regras específicas de convenção/acordo coletivo. No legado, o lançamento fica em "Processo → Estabilidade", com campos pulverizados entre "Demais estabilidades" e "Configuração", sem padronização entre afastamentos, motivos legais e regras de convenção.</p>
 
-      <h4>Stepper</h4>
-      <a href="#stepper">17. Comportamento do Stepper</a>
+            <h4>Pontos-chave que evidenciaram o problema</h4>
+            <ul class="text-list">
+              <li>Cadastros pulverizados entre múltiplas telas (lançamento manual + histórico em locais diferentes)</li>
+              <li>Campos de "Demais estabilidades" (campo, regra, quantidade, condição, dias) precisam ser unificados com a Configuração</li>
+              <li>Falta critério para combinar dimensões: Sexo × Idade × Meses trabalhados — clientes aplicam de formas diferentes</li>
+              <li>Operadores (≥ ou =) precisam ser configuráveis por regra/cliente (ex.: convenção metalúrgica)</li>
+            </ul>
 
-      <h4>Métricas & Validação</h4>
-      <a href="#telemetria">18. Plano de Telemetria & KPIs</a>
-      <a href="#teste">19. Roteiro de Teste A/B</a>
-      <a href="#objecoes">20. Objeções & Respostas</a>
+            <h4>Checklist de sinais de que a decisão era necessária</h4>
+            <ul class="text-list">
+              <li>❌ Cadastro disperso entre múltiplas telas no legado</li>
+              <li>❌ Sem padronização de campos entre afastamento, motivo e convenção</li>
+              <li>❌ Não há documentação consolidada sobre a lógica atual</li>
+              <li>✅ Dados SQL e acesso a clientes disponíveis para priorizar motivos mais usados</li>
+            </ul>
 
-      <h4>Entrega</h4>
-      <a href="#backlog">21. Backlog Faseado</a>
-      <a href="#slides">22. Roteiro de Slides</a>
-    </nav>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <img src="assets/estabilidade-cenario.jpg" alt="Análise do legado: meses trabalhados configurados como dias (2190/2920) vs. cláusula da convenção que exige meses (72/96)" class="ref-visual-img">
+            </div>
+          </div>
+        </div>
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Decisão do Designer</span></div>
+          <div class="info-card-body">
+            <p>Após reorganizar a lógica que foi aplicada no Legado, para entender quais campos são identificadores e quais são condicionais, foi desenvolvido com Claude, o layout do <strong>cadastro da estabilidade por convenção coletiva</strong>. A intenção é diminuir os erros dos usuários identificados no Legado.</p>
+            <p>A lógica consiste em, setar as informações bases, começando pelo "Motivo", definir a quantidade de dias afastado, se terá uma quantidade mínima de meses trabalhados, se terá idade e sexo. E então, aplicas as condições que configurarão os dias de estabilidade, e o pagamento quando necessário, como quantidade de dias de estabilidade, se utiliza a quantidade de dias afastados como base, e as formas de cálculo da indenização.</p>
+            <p>A visualização no formato de formulário é mais estruturada, e direciona melhor os usuários, já que os campos são mostrados em uma divulgação progressiva, em que só aparecem os necessários para o tipo de motivo selecionado. Implementando uma frase explicativa sobre a regra que está sendo aplicada, para não ficar ambíguo o resultado esperado.</p>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <img src="assets/estabilidade-decisao.png" alt="Proposta de formulário guiado: cadastro de abrangência da convenção com stepper, divulgação progressiva de campos por motivo selecionado" class="ref-visual-img">
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <main>
+      <!-- Heurísticas -->
+      <div class="heuristic-section is-open">
+        <button class="heuristic-header" onclick="toggleHeuristic(this)" aria-expanded="true">
+          <svg class="heuristic-header-caret" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="heuristic-header-title">Heurísticas</span>
+          <span class="heuristic-count">8</span>
+        </button>
+        <div class="heuristic-body">
 
-      <section id="sumario">
-        <h2>1. Sumário Executivo (defesa em 10 bullets)</h2>
-        <ol>
-          <li>Estabilidade migra de <strong>grid de lançamento manual</strong> para <strong>formulário guiado</strong>, alinhado ao padrão do módulo Sindicato/Convenção; o grid permanece apenas como consulta pós-cadastro.</li>
-          <li>O <strong>wizard em 5 passos</strong> reduz erros de digitação, força preenchimento de dependências legais e produz registro de auditoria automático em cada decisão.</li>
-          <li>O <strong>cálculo da data-limite</strong> é automático por Motivo (ex.: Acidente de trabalho = 12 meses após retorno); override exige justificativa textual e fica logado.</li>
-          <li>A origem do período pode ser <strong>Manual</strong> ou derivada de um <strong>Afastamento</strong> existente — meta de ≥ 60% de redução em lançamentos manuais.</li>
-          <li>Os <strong>Motivos</strong> aparecem priorizados pelos mais usados (base SQL) com busca por texto, dispensando memorização de códigos.</li>
-          <li>Dimensões condicionais (<strong>Sexo, Idade, Meses Trabalhados</strong>) aparecem apenas quando ativadas, com comparador configurável (≥, =) ao lado do campo.</li>
-          <li>O sistema <strong>bloqueia o desligamento</strong> de colaborador com estabilidade ativa e exibe o motivo e a data de fim; exceção exige justificativa e permissão.</li>
-          <li><strong>Sobreposição de períodos</strong> é detectada e impedida por padrão; exceção administrativa com justificativa e registro.</li>
-          <li>Telemetria cobre <strong>precisão do cálculo, tempo por passo, tentativas bloqueadas, adoção por empresa</strong> — base para os KPIs do OKR.</li>
-          <li>Entrega faseada: <strong>Fase 1</strong> (cadastro + bloqueio), <strong>Fase 2</strong> (importação/edição em massa), <strong>Fase 3</strong> (alertas proativos e exibição em outros módulos).</li>
-        </ol>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">1. Visibilidade do status do sistema</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Etapas numeradas com rótulos "Completo/Em andamento" deixam claro o progresso do cadastro e onde a pessoa está na jornada.</p>
+              <p>Botões "Voltar" e "Concluir cadastro" indicam próximos passos e fechamento.</p>
+            </div>
+          </div>
 
-      <section id="supos">
-        <h2>2. Suposições e ambiguidades a confirmar</h2>
-        <table>
-          <thead><tr><th style="width:30%">Suposição</th><th>Implicação</th><th>Alternativa (se inválida)</th></tr></thead>
-          <tbody>
-            <tr><td>A lista priorizada de Motivos virá de uma view SQL atualizada periodicamente.</td><td>Ordenação dinâmica + cache no front; busca por texto sempre disponível.</td><td>Se lista for estática, definir prioridade manual em backoffice.</td></tr>
-            <tr><td>"Utiliza afastamento" é uma flag por regra de Motivo, não por período individual.</td><td>Configurar na tela de regras; herdar no wizard.</td><td>Se for por período, mover o campo para o passo 1 do wizard.</td></tr>
-            <tr><td>O override de data-limite pode estender ou encurtar o período.</td><td>Validar coerência (data ≥ início) e exigir justificativa em ambos os casos.</td><td>Restringir apenas à extensão; encurtamento via "Encerrar".</td></tr>
-            <tr><td>Sobreposição é validada para o mesmo CPF, independente da matrícula.</td><td>Útil para múltiplos vínculos; pode gerar falso-positivo.</td><td>Validar por matrícula; sobreposição entre vínculos vira aviso, não bloqueio.</td></tr>
-            <tr><td>Trilha de aprovação não é requerida em Fase 1.</td><td>Edição/encerramento liberados por permissão, sem workflow.</td><td>Incluir aprovador em campos sensíveis (override, exceção de sobreposição).</td></tr>
-            <tr><td>Anexos aceitos: PDF/JPG/PNG até 10 MB por arquivo.</td><td>Validação client + server, scan antivírus assumido.</td><td>Ajustar limites por política do produto.</td></tr>
-            <tr><td>O cálculo da data-limite usa o calendário corrido (não dias úteis).</td><td>Mais simples; cobre os casos legais conhecidos.</td><td>Suportar matriz por motivo se houver caso de dias úteis.</td></tr>
-          </tbody>
-        </table>
-        <div class="note">Cada suposição acima deve ser confirmada antes da Fase 1. As que falharem viram <em>spike</em> de descoberta.</div>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">2. Correspondência entre o sistema e o mundo real</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Vocabulário do domínio trabalhista ("Motivos", "Dias afastado", "Meses trabalhados", "Sexo", "Condições") conversa com o que foi descrito na reunião (ex.: estabilidade por acidente, gravidez).</p>
+              <p>Agrupamentos por seção ("Afastamento e estabilidade" e "Condições") espelham o raciocínio do usuário ao configurar regras.</p>
+            </div>
+          </div>
 
-      <section id="personas">
-        <h2>3. Personas e Jobs to be Done</h2>
-        <h3>Gestor de RH</h3>
-        <ul>
-          <li><strong>Contexto:</strong> opera dezenas a centenas de colaboradores; precisa garantir compliance trabalhista.</li>
-          <li><strong>Dor atual:</strong> grid livre permite erros de data e ausência de justificativa; descobre o problema só na auditoria.</li>
-          <li><strong>JTBD:</strong> "Quando recebo um atestado/afastamento, quero registrar a estabilidade corretamente em &lt; 2 min para não bloquear meu dia e não correr risco trabalhista."</li>
-        </ul>
-        <h3>Contador (escritório contábil)</h3>
-        <ul>
-          <li><strong>Contexto:</strong> opera múltiplas empresas; recorre a regras de convenção coletiva específicas por cliente.</li>
-          <li><strong>Dor atual:</strong> precisa duplicar conhecimento legal entre empresas; não há ponto único de configuração.</li>
-          <li><strong>JTBD:</strong> "Quando configuro uma nova empresa, quero replicar regras já validadas para reduzir retrabalho e padronizar atendimento."</li>
-        </ul>
-        <h3>User Story consolidada</h3>
-        <p>"Como gestor de RH e contador, quero <strong>gerenciar períodos de estabilidade de forma automatizada</strong> para garantir cumprimento legal e evitar demissões irregulares."</p>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">3. Controle e liberdade do usuário</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Ação "Remover" visível para descartar itens.</p>
+              <p>Link "Adicionar regra" permite construir regras de forma incremental.</p>
+            </div>
+          </div>
 
-      <section id="fluxos">
-        <h2>4. Mapa de Fluxos</h2>
-        <h3>4.1 Fluxos críticos (a prototipar)</h3>
-        <ol>
-          <li><strong>Configurar regra por convenção</strong> com dimensão (Sexo/Idade/Meses) e comparador.</li>
-          <li><strong>Criar estabilidade a partir de um afastamento</strong> (origem = Afastamento).</li>
-          <li><strong>Tentar desligar</strong> colaborador com estabilidade ativa → bloqueio com motivo e data.</li>
-          <li><strong>Editar período</strong> com override de data-limite (obriga justificativa).</li>
-          <li><strong>Encerrar estabilidade</strong> antes da data-limite (registra motivo).</li>
-        </ol>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">4. Consistência e padrões</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Padrões de formulário coesos: campos alinhados, radio para sexo, listas com "Selecione…", ícone consistente no botão primário.</p>
+              <p>Indicação de campo obrigatório com "*" (Motivos).</p>
+            </div>
+          </div>
 
-        <h3>4.2 Estado da arte vs. proposto</h3>
-        <table>
-          <thead><tr><th>Aspecto</th><th>Legado (grid)</th><th>Proposto (formulário)</th></tr></thead>
-          <tbody>
-            <tr><td>Entrada de dados</td><td>Linha por linha, sem dependências</td><td>Wizard com dependências e validação por passo</td></tr>
-            <tr><td>Cálculo de data-limite</td><td>Manual</td><td>Automático com override justificado</td></tr>
-            <tr><td>Histórico</td><td>Misturado à criação</td><td>Lista-resumo separada + detalhe com auditoria</td></tr>
-            <tr><td>Bloqueio de desligamento</td><td>Inexistente/passivo</td><td>Ativo, com mensagem e fim previsto</td></tr>
-            <tr><td>Configuração centralizada</td><td>Espalhada</td><td>Única tela de "Configuração de Estabilidades"</td></tr>
-          </tbody>
-        </table>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">5. Prevenção de erros</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Uso de dropdown para "Motivos" evita valores inválidos.</p>
+              <p>Campos numéricos separados (dias, meses, idade) reduzem ambiguidade de entrada.</p>
+            </div>
+          </div>
 
-        <h3>4.3 Diagrama textual do fluxo principal</h3>
-        <pre style="background:#f4f4f4;padding:10px;font-size:12px;overflow-x:auto;">
-[Início]
-  → [Lista-resumo de Estabilidades]
-       ├── (vazio) → CTA "Cadastrar primeira estabilidade"
-       ├── [+ Nova] → [Wizard: Passo 1 Origem]
-       │                ├── Manual → seleciona colaborador
-       │                └── Afastamento → seleciona afastamento existente
-       │             → [Passo 2 Motivo + Condições]
-       │             → [Passo 3 Período & Cálculo]
-       │                ├── usa data automática
-       │                └── override → justificativa obrigatória
-       │             → [Passo 4 Revisão & Anexos]
-       │             → [Passo 5 Confirmação]
-       │                → grava + registra auditoria
-       │                → retorna à Lista-resumo com toast de sucesso
-       ├── [Ver detalhe] → [Detalhe do Período]
-       │                     ├── Editar (reabre wizard no passo aplicável)
-       │                     ├── Duplicar (pré-preenche novo período)
-       │                     ├── Encerrar (justificativa)
-       │                     └── Exportar
-       └── [Tentar desligar colaborador]
-                          → se estabilidade ATIVA → [Bloqueio com motivo + fim previsto]
-                          → senão → segue fluxo de desligamento</pre>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">6. Reconhecimento em vez de memorização</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Placeholders e rótulos explícitos reduzem carga de memória.</p>
+              <p>Opção de "Aplicar percentual sobre a base de cálculo" como checkbox torna a regra "explícita", sem exigir lembrar configurações escondidas.</p>
+            </div>
+          </div>
 
-      <section id="telas">
-        <h2>5. Inventário de Telas</h2>
-        <table>
-          <thead><tr><th>#</th><th>Tela</th><th>Propósito</th><th>Quem usa</th><th>Frequência</th></tr></thead>
-          <tbody>
-            <tr><td>T1</td><td>Configuração de Estabilidades</td><td>Definir regras (motivos, dimensões, cálculos) que valem para a empresa/convenção</td><td>Contador, RH avançado</td><td>Baixa (setup + ajustes pontuais)</td></tr>
-            <tr><td>T2</td><td>Lista-resumo de Estabilidades</td><td>Consultar, filtrar e iniciar ações sobre períodos</td><td>RH, Contador</td><td>Alta</td></tr>
-            <tr><td>T3</td><td>Wizard Criar/Editar Estabilidade</td><td>Cadastrar/atualizar um período com validação guiada</td><td>RH</td><td>Média</td></tr>
-            <tr><td>T4</td><td>Detalhe do Período</td><td>Visão completa de um período (regras, cálculo, justificativas, anexos, auditoria)</td><td>RH, Auditoria</td><td>Média</td></tr>
-            <tr><td>T5</td><td>Modal de Bloqueio de Desligamento</td><td>Interromper desligamento quando há estabilidade ativa</td><td>RH</td><td>Baixa (mas crítica)</td></tr>
-            <tr><td>T6</td><td>Modal de Encerramento</td><td>Encerrar período com justificativa antes da data-limite</td><td>RH</td><td>Baixa</td></tr>
-          </tbody>
-        </table>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">7. Estética e design minimalista</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Boa hierarquia visual, espaçamento e poucos elementos concorrendo pela atenção, o que facilita a leitura de uma tarefa complexa.</p>
+            </div>
+          </div>
 
-      <section id="config">
-        <h2>6. Tela T1 — Configuração de Estabilidades</h2>
-        <h3>Objetivo</h3>
-        <p>Centralizar a definição das regras que serão aplicadas no cadastro de períodos. Esta tela substitui a configuração espalhada do legado.</p>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">8. Ajuda no diagnóstico e recuperação de erros (parcial)</h4>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Separação por seções e controles discretos facilitam localizar onde ajustar quando algo "não fecha".</p>
+            </div>
+          </div>
 
-        <h3>Estrutura</h3>
-        <ul>
-          <li>Cabeçalho com escopo (Empresa atual / Convenção vinculada) e ações: <code>Nova regra</code>, <code>Duplicar</code>, <code>Importar</code> (Fase 2).</li>
-          <li>Tabela de regras existentes (consulta), com filtros: Motivo, Origem, Ativa/Inativa.</li>
-          <li>Painel/diálogo de edição da regra com os campos abaixo.</li>
-        </ul>
+        </div>
+      </div>
 
-        <h3>Campos da regra</h3>
-        <table>
-          <thead><tr><th>Campo</th><th>Tipo</th><th>Tags</th><th>Comportamento</th></tr></thead>
-          <tbody>
-            <tr><td>Motivo</td><td>Select (busca por texto)</td><td><span class="tag req">obrigatório</span></td><td>Lista priorizada por uso; mostra código + descrição.</td></tr>
-            <tr><td>Origem permitida</td><td>Multi-select</td><td><span class="tag req">obrigatório</span></td><td>Valores: <em>Manual</em>, <em>Afastamento</em>. Permite ambos.</td></tr>
-            <tr><td>Utiliza afastamento</td><td>Toggle</td><td><span class="tag req">obrigatório</span></td><td>Quando ON, o cálculo considera a data de retorno do afastamento como base.</td></tr>
-            <tr><td>Dimensão Sexo</td><td>Toggle + select</td><td><span class="tag cond">condicional</span></td><td>Valores: Feminino, Masculino, Outro. Aparece quando toggle ON.</td></tr>
-            <tr><td>Dimensão Idade</td><td>Toggle + número + comparador</td><td><span class="tag cond">condicional</span></td><td>Comparadores: ≥, =. Validar 0–120.</td></tr>
-            <tr><td>Dimensão Meses Trabalhados</td><td>Toggle + número + comparador</td><td><span class="tag cond">condicional</span></td><td>Comparadores: ≥, =. Validar 0–600.</td></tr>
-            <tr><td>Duração</td><td>Radio + número</td><td><span class="tag req">obrigatório</span></td><td>Opções: "Dias" ou "Período derivado (meses após retorno/evento)".</td></tr>
-            <tr><td>Condição</td><td>Texto livre curto</td><td><span class="tag opt">opcional</span></td><td>Ex.: "Se atestado emitido por médico do trabalho".</td></tr>
-            <tr><td>Resultado</td><td>Select</td><td><span class="tag req">obrigatório</span></td><td>Valores: <em>Bloqueia desligamento</em>, <em>Apenas alerta</em>.</td></tr>
-            <tr><td>Vigência</td><td>Período (datas)</td><td><span class="tag req">obrigatório</span></td><td>Quando a regra começa/encerra a valer (independente do período do colaborador).</td></tr>
-            <tr><td>Ativa</td><td>Toggle</td><td><span class="tag req">obrigatório</span></td><td>Inativar não apaga; preserva auditoria.</td></tr>
-          </tbody>
-        </table>
+      <!-- Benchmark de Concorrentes -->
+      <div class="benchmark-section">
+        <div class="section-tag">C · Benchmark de Concorrentes</div>
 
-        <h3>Ações</h3>
-        <ul>
-          <li><code>Salvar</code> — valida, persiste e registra auditoria.</li>
-          <li><code>Duplicar regra</code> — abre nova regra pré-preenchida, exigindo novo Motivo/escopo distinto.</li>
-          <li><code>Cancelar</code> — confirma descarte se houver alterações.</li>
-        </ul>
-      </section>
-
-      <section id="wizard">
-        <h2>7. Tela T3 — Wizard Criar/Editar Estabilidade</h2>
-        <p>Segue rigorosamente o comportamento de stepper descrito em <a href="#stepper">§17</a>: passos podem ser revisitados (clique no número), o passo mais avançado nunca regride, passos condicionais aparecem/desaparecem e renumeram, o botão "Próximo" pode pular passos não aplicáveis.</p>
-
-        <div class="step-box">
-          <h4>Passo 1 — Origem &amp; Identificação</h4>
-          <p><strong>Pergunta-âncora:</strong> "De onde vem este período?"</p>
-          <ul>
-            <li>Radio <em>Origem</em>: <code>Manual</code> | <code>Afastamento</code>.</li>
-            <li>Se Manual → busca de colaborador (nome/CPF/matrícula).</li>
-            <li>Se Afastamento → seleção de afastamento existente do colaborador (mostra: tipo, início, fim, motivo do afastamento).</li>
-            <li>Pré-visualização do colaborador selecionado: nome, matrícula, cargo, data de admissão.</li>
-          </ul>
-          <p><strong>Validações:</strong> colaborador obrigatório; se Origem = Afastamento, afastamento obrigatório.</p>
-          <p><strong>Erros visíveis:</strong> "Selecione um colaborador para continuar." • "Este afastamento já gerou um período de estabilidade ativo."</p>
+        <div class="bm-card has-accent">
+          <div class="bm-card-header">
+            <span class="bm-card-label">Principais Concorrentes Analisados</span>
+          </div>
+          <div class="bm-card-body">
+            <div class="concorrentes-grid">
+              <div class="concorrente-item">
+                <span class="concorrente-num">1.</span>
+                <span class="concorrente-line">Senior</span>
+              </div>
+              <div class="concorrente-item">
+                <span class="concorrente-num">2.</span>
+                <span class="concorrente-line">Omie</span>
+              </div>
+              <div class="concorrente-item">
+                <span class="concorrente-num">3.</span>
+                <span class="concorrente-line">IOB</span>
+              </div>
+              <div class="concorrente-item">
+                <span class="concorrente-num">4.</span>
+                <span class="concorrente-line">Questor</span>
+              </div>
+              <div class="concorrente-item">
+                <span class="concorrente-num">5.</span>
+                <span class="concorrente-line">Alterdata</span>
+              </div>
+            </div>
+            <div class="bm-actions" style="margin-top:16px">
+              <button class="bm-btn-primary" type="button" onclick="openBenchmarkModal()">
+                <svg viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                  <path d="M2 3h9M2 6.5h9M2 10h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                Abrir benchmark
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="step-box">
-          <h4>Passo 2 — Motivo &amp; Condições</h4>
-          <p><strong>Pergunta-âncora:</strong> "Qual o fundamento legal?"</p>
-          <ul>
-            <li>Select <em>Motivo</em> com busca por texto e priorização SQL.</li>
-            <li>Ao escolher, exibir um chip + descrição legal curta (microcópia em <a href="#microcopias">§15</a>).</li>
-            <li>Dimensões condicionais (Sexo/Idade/Meses) aparecem se a regra associada ao Motivo as ativar.</li>
-            <li>Comparador visível ao lado do input numérico (≥ ou =).</li>
-          </ul>
-          <p><strong>Validações:</strong> Motivo obrigatório; dimensões obrigatórias quando ativadas; comparador exige valor numérico válido.</p>
-          <p><strong>Erros visíveis:</strong> "Selecione um motivo." • "Informe a idade mínima ou troque o comparador."</p>
+        <div class="bm-card has-accent">
+          <div class="bm-card-header">
+            <span class="bm-card-label">Padrão Identificado</span>
+            <button class="bm-ai-btn" type="button">
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1.5l1.3 3.2L11.5 6 8.3 7.3 7 10.5 5.7 7.3 2.5 6l3.2-1.3L7 1.5zM11.5 10l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6.6-1.4z" fill="currentColor"/>
+              </svg>
+              Regerar
+            </button>
+          </div>
+          <div class="bm-card-body">
+            <p class="bm-ai-text">Um padrão claro no benchmarking é a existência de dois modelos de gestão de "estabilidade": o baseado em herança por entidade coletiva (ex.: por Sindicato, como em Senior e Questor) e o lançamento manual por colaborador (como em Alterdata). Ambos reconhecem a estabilidade como dado que impacta a rescisão e tendem a exibir alertas, mas o modelo por herança reduz o risco de esquecimento individual e concentra a governança em poucos cadastros-mãe, enquanto o modelo manual é mais flexível porém exige rotina de auditoria e checklists para evitar inconsistências. Omie e IOB ainda carecem de evidências para confirmar em qual modelo se enquadram.</p>
+          </div>
         </div>
 
-        <div class="step-box">
-          <h4>Passo 3 — Período &amp; Cálculo</h4>
-          <p><strong>Pergunta-âncora:</strong> "Qual o intervalo desta estabilidade?"</p>
-          <ul>
-            <li>Data inicial: auto-preenchida (regra de cálculo do Motivo) e editável com justificativa.</li>
-            <li>Data-limite: calculada automaticamente; mostrar memorial de cálculo via link "Como é calculado?".</li>
-            <li>Override de qualquer das datas → abre campo <em>Justificativa</em> (mín. 20 caracteres).</li>
-            <li>Aviso de sobreposição em tempo real se houver outro período ativo para o mesmo colaborador.</li>
-          </ul>
-          <p><strong>Validações:</strong> data-limite ≥ data inicial; sobreposição bloqueia o avanço (exceto com permissão e justificativa); justificativa obrigatória em override.</p>
-          <p><strong>Erros visíveis:</strong> "Data-limite não pode ser anterior à data inicial." • "Período sobreposto a um existente (12/03/2026 – 11/03/2027). Justifique para prosseguir."</p>
+        <div class="bm-card has-accent">
+          <div class="bm-card-header">
+            <span class="bm-card-label">Referências Visuais</span>
+          </div>
+          <div class="bm-card-body">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div>
+                <div class="ref-visual-label" style="margin-bottom:6px;">Senior — Cadastro de Sindicato Trabalhadores</div>
+                <img src="assets/senior.png" alt="Senior: tela Cadastro de Sindicato Trabalhadores, aba Dados Variáveis, seção Estabilidade com campos CIPA, Acidente de Trabalho, Serviço Militar, Licença Maternidade e Auxílio Doença" class="ref-visual-img" style="cursor:zoom-in;">
+              </div>
+              <div>
+                <div class="ref-visual-label" style="margin-bottom:6px;">Omie — Verbas da Convenção Coletiva</div>
+                <img src="assets/Omie.png" alt="Omie: modal Verbas da convenção coletiva com campos Tipo, Rubrica, Referência, Percentual, Periodicidade e restrição de período de cálculo" class="ref-visual-img" style="cursor:zoom-in;">
+              </div>
+              <div>
+                <div class="ref-visual-label" style="margin-bottom:6px;">IOB — Movimentação (Afastamento / Estabilidade)</div>
+                <img src="assets/IOB.png" alt="IOB: tela Movimentação com campos Início Estabilidade e Fim Estabilidade visíveis na aba Afastamento" class="ref-visual-img" style="cursor:zoom-in;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ RESEARCH & LAYOUT ══ -->
+      <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;">
+        <div class="section-tag">D · Benchmarking – Research &amp; Layout</div>
+
+        <div class="cards-row">
+          <div class="info-card is-gray" style="flex:1">
+            <div class="info-card-header">
+              <span class="info-card-label">Benchmarking – Research</span>
+            </div>
+            <div class="info-card-body">
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione referência</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP · PDF</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card is-gray" style="flex:1">
+            <div class="info-card-header">
+              <span class="info-card-label">Layout</span>
+            </div>
+            <div class="info-card-body">
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione referência</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP · PDF</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="step-box">
-          <h4>Passo 4 — Revisão &amp; Anexos</h4>
-          <p><strong>Pergunta-âncora:</strong> "Os dados estão corretos? O que comprova?"</p>
-          <ul>
-            <li>Resumo read-only de todos os campos preenchidos.</li>
-            <li>Upload de anexos (atestado, laudo, decisão judicial) — múltiplos arquivos.</li>
-            <li>Campo opcional "Observações internas" (não aparece na lista pública).</li>
-          </ul>
-          <p><strong>Validações:</strong> ao menos 1 anexo recomendado (não bloqueante), exceto se a regra do Motivo exigir comprovação documental, quando passa a ser obrigatório.</p>
-          <p><strong>Erros visíveis:</strong> "Este motivo exige anexo de comprovação." • "Arquivo excede 10 MB."</p>
+      </div>
+
+    </div>
+
+    <!-- ══ DEFESA 2 ══ -->
+    <div id="defesa-2" class="defesa-content">
+
+      <div class="info-card">
+        <div class="info-card-header"><span class="info-card-label">Decisão em Questão</span></div>
+        <div class="info-card-body">
+          <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</strong>, quis nostrud exercitation.</p>
+          <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate.</p>
         </div>
+      </div>
 
-        <div class="step-box">
-          <h4>Passo 5 — Confirmação</h4>
-          <p><strong>Pergunta-âncora:</strong> "Confirma o registro?"</p>
-          <ul>
-            <li>Resumo final com data-limite destacada.</li>
-            <li>Botão primário <code>Confirmar e registrar</code>; secundário <code>Voltar</code>.</li>
-            <li>Após confirmar: toast de sucesso + redirecionamento à Lista-resumo, com o novo período em destaque por 5s.</li>
-          </ul>
-          <p><strong>Auditoria:</strong> entrada criada com snapshot completo dos campos, usuário, IP, data/hora.</p>
+      <div class="cards-row">
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
+          <div class="info-card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h4>Pontos-chave que evidenciaram o problema</h4>
+            <ul class="text-list">
+              <li>Lorem ipsum dolor sit amet consectetur</li>
+              <li>Sed do eiusmod tempor incididunt</li>
+              <li>Ut enim ad minim veniam quis nostrud</li>
+              <li>Duis aute irure dolor in reprehenderit</li>
+            </ul>
+            <h4>Checklist de sinais de que a decisão era necessária</h4>
+            <ul class="text-list">
+              <li>❌ Lorem ipsum dolor sit amet</li>
+              <li>❌ Consectetur adipiscing elit sed</li>
+              <li>❌ Ut labore et dolore magna aliqua</li>
+              <li>✅ Quis nostrud exercitation ullamco</li>
+            </ul>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione screenshot</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP</span>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Decisão do Designer</span></div>
+          <div class="info-card-body">
+            <p><strong>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</strong>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione screenshot</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <h3>Persistência entre passos</h3>
-        <ul>
-          <li>Rascunho salvo automaticamente a cada mudança de passo.</li>
-          <li>Se o usuário fechar sem confirmar: rascunho retomável por 7 dias na Lista-resumo (badge "Em rascunho").</li>
-          <li>Ao retomar, abre no último passo válido; passos anteriores ficam <em>Completo</em>.</li>
-        </ul>
-      </section>
+      <div class="heuristic-section is-open">
+        <button class="heuristic-header" onclick="toggleHeuristic(this)" aria-expanded="true">
+          <svg class="heuristic-header-caret" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="heuristic-header-title">Heurísticas</span>
+          <span class="heuristic-count">5</span>
+        </button>
+        <div class="heuristic-body">
 
-      <section id="lista">
-        <h2>8. Tela T2 — Lista-resumo de Estabilidades</h2>
-        <h3>Colunas</h3>
-        <table>
-          <thead><tr><th>Coluna</th><th>Conteúdo</th><th>Ordenável</th><th>Filtrável</th></tr></thead>
-          <tbody>
-            <tr><td>Motivo</td><td>Código + descrição curta (chip)</td><td>Sim</td><td>Sim (multi)</td></tr>
-            <tr><td>Colaborador</td><td>Nome + matrícula</td><td>Sim</td><td>Sim (busca)</td></tr>
-            <tr><td>Origem</td><td>Manual / Afastamento</td><td>Sim</td><td>Sim</td></tr>
-            <tr><td>Status</td><td>Ativa / Agendada / Encerrada / Rascunho</td><td>Sim</td><td>Sim</td></tr>
-            <tr><td>Vigência</td><td>Início — Fim (data)</td><td>Sim (por início)</td><td>Sim (range)</td></tr>
-            <tr><td>Dimensões aplicadas</td><td>Chips: Sexo, Idade, Meses</td><td>Não</td><td>Sim</td></tr>
-            <tr><td>Última alteração</td><td>Usuário + timestamp relativo</td><td>Sim</td><td>Não</td></tr>
-          </tbody>
-        </table>
-        <h3>Ações por linha</h3>
-        <ul>
-          <li><code>Ver detalhe</code> — abre Tela T4.</li>
-          <li><code>Editar</code> — abre wizard no último passo válido.</li>
-          <li><code>Duplicar</code> — pré-preenche novo período (sem colaborador).</li>
-          <li><code>Encerrar</code> — abre modal de encerramento (justificativa obrigatória).</li>
-          <li><code>Exportar</code> — gera CSV/PDF do período.</li>
-        </ul>
-        <h3>Ações em massa</h3>
-        <ul>
-          <li>Exportar seleção.</li>
-          <li>Encerrar seleção (Fase 2 — exige justificativa única ou por linha).</li>
-        </ul>
-      </section>
+          <div class="heuristic-panel is-blue">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">1. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-cenario">Cenário / Solicitação</span>
+              <span class="heuristic-sev is-high">Sev. 3/4</span>
+              <span class="heuristic-meta">Alta · Atrasa</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit:</p>
+              <p>sed do eiusmod tempor incididunt ut labore;</p>
+              <p>ut enim ad minim veniam quis nostrud;</p>
+              <p>duis aute irure dolor in reprehenderit voluptate.</p>
+              <div class="spacer"></div>
+              <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.</p>
+            </div>
+          </div>
 
-      <section id="detalhe">
-        <h2>9. Tela T4 — Detalhe do Período</h2>
-        <h3>Seções (ordem)</h3>
-        <ol>
-          <li><strong>Dados principais</strong>: Motivo, Colaborador, Origem, Status, Vigência, Resultado.</li>
-          <li><strong>Regras condicionais aplicadas</strong>: dimensões com comparador e valor (chips).</li>
-          <li><strong>Cálculo &amp; justificativas</strong>: método utilizado, parâmetros, links a regras de origem, justificativas de override.</li>
-          <li><strong>Anexos</strong>: lista com nome, tamanho, quem subiu, ação <em>Baixar</em>.</li>
-          <li><strong>Auditoria</strong>: linha do tempo com quem, o quê, quando, antes/depois (diff legível).</li>
-          <li><strong>Eventos relacionados</strong>: tentativas de desligamento bloqueadas, edições, encerramentos.</li>
-        </ol>
-        <h3>Ações no detalhe</h3>
-        <ul>
-          <li><code>Editar</code> — abre wizard.</li>
-          <li><code>Encerrar</code> — exige justificativa.</li>
-          <li><code>Duplicar</code> — novo período pré-preenchido.</li>
-          <li><code>Exportar</code> — PDF com o conteúdo da tela.</li>
-        </ul>
-      </section>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">2. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-med">Sev. 2/4</span>
+              <span class="heuristic-meta">Média · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet:</p>
+              <div class="spacer"></div>
+              <p>consectetur adipiscing elit sed do eiusmod,</p>
+              <p>tempor incididunt ut labore et dolore,</p>
+              <p>magna aliqua ut enim ad minim veniam.</p>
+              <div class="spacer"></div>
+              <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <div class="heuristic-evidencia">
+                <span class="evid-title">Evidência:</span>
+                <span class="evid-text">Lorem ipsum dolor sit amet (Nielsen Norman Group): consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua (Author, 2024).</span>
+              </div>
+            </div>
+          </div>
 
-      <section id="campos">
-        <h2>10. Tabela Mestre de Campos</h2>
-        <table>
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">3. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur:</p>
+              <div class="spacer"></div>
+              <p>adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore;</p>
+              <p>magna aliqua ut enim ad minim veniam quis nostrud exercitation;</p>
+              <p>ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">4. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+              <p>Sed do eiusmod tempor incididunt ut labore:</p>
+              <div class="spacer"></div>
+              <p>et dolore magna aliqua ut enim;</p>
+              <p>ad minim veniam quis nostrud;</p>
+              <p>exercitation ullamco laboris nisi.</p>
+              <div class="spacer"></div>
+              <p>Ut aliquip ex ea commodo consequat duis aute irure dolor.</p>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">5. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet:</p>
+              <div class="spacer"></div>
+              <p>consectetur adipiscing elit sed;</p>
+              <p>do eiusmod tempor incididunt;</p>
+              <p>ut labore et dolore magna aliqua;</p>
+              <p>ut enim ad minim veniam.</p>
+              <div class="spacer"></div>
+              <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ DEFESA 3 ══ -->
+    <div id="defesa-3" class="defesa-content">
+
+      <div class="info-card">
+        <div class="info-card-header"><span class="info-card-label">Decisão em Questão</span></div>
+        <div class="info-card-body">
+          <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</strong>, quis nostrud exercitation.</p>
+          <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate.</p>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
+          <div class="info-card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h4>Pontos-chave que evidenciaram o problema</h4>
+            <ul class="text-list">
+              <li>Lorem ipsum dolor sit amet consectetur</li>
+              <li>Sed do eiusmod tempor incididunt</li>
+              <li>Ut enim ad minim veniam quis nostrud</li>
+              <li>Duis aute irure dolor in reprehenderit</li>
+            </ul>
+            <h4>Checklist de sinais de que a decisão era necessária</h4>
+            <ul class="text-list">
+              <li>❌ Lorem ipsum dolor sit amet</li>
+              <li>❌ Consectetur adipiscing elit sed</li>
+              <li>❌ Ut labore et dolore magna aliqua</li>
+              <li>✅ Quis nostrud exercitation ullamco</li>
+            </ul>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione screenshot</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card is-gray">
+          <div class="info-card-header"><span class="info-card-label">Decisão do Designer</span></div>
+          <div class="info-card-body">
+            <p><strong>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</strong>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="ref-visual">
+              <div class="ref-visual-label">Referência visual</div>
+              <div class="upload-zone">
+                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <p class="upload-zone-text">Arraste ou <strong>adicione screenshot</strong></p>
+                <span class="upload-zone-small">PNG · JPG · WEBP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="heuristic-section is-open">
+        <button class="heuristic-header" onclick="toggleHeuristic(this)" aria-expanded="true">
+          <svg class="heuristic-header-caret" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="heuristic-header-title">Heurísticas</span>
+          <span class="heuristic-count">5</span>
+        </button>
+        <div class="heuristic-body">
+
+          <div class="heuristic-panel is-blue">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">1. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-cenario">Cenário / Solicitação</span>
+              <span class="heuristic-sev is-high">Sev. 3/4</span>
+              <span class="heuristic-meta">Alta · Atrasa</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit:</p>
+              <p>sed do eiusmod tempor incididunt ut labore;</p>
+              <p>ut enim ad minim veniam quis nostrud;</p>
+              <p>duis aute irure dolor in reprehenderit voluptate.</p>
+              <div class="spacer"></div>
+              <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia.</p>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">2. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-med">Sev. 2/4</span>
+              <span class="heuristic-meta">Média · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet:</p>
+              <div class="spacer"></div>
+              <p>consectetur adipiscing elit sed do eiusmod,</p>
+              <p>tempor incididunt ut labore et dolore,</p>
+              <p>magna aliqua ut enim ad minim veniam.</p>
+              <div class="spacer"></div>
+              <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <div class="heuristic-evidencia">
+                <span class="evid-title">Evidência:</span>
+                <span class="evid-text">Lorem ipsum dolor sit amet (Nielsen Norman Group): consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua (Author, 2024).</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">3. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur:</p>
+              <div class="spacer"></div>
+              <p>adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore;</p>
+              <p>magna aliqua ut enim ad minim veniam quis nostrud exercitation;</p>
+              <p>ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">4. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+              <p>Sed do eiusmod tempor incididunt ut labore:</p>
+              <div class="spacer"></div>
+              <p>et dolore magna aliqua ut enim;</p>
+              <p>ad minim veniam quis nostrud;</p>
+              <p>exercitation ullamco laboris nisi.</p>
+              <div class="spacer"></div>
+              <p>Ut aliquip ex ea commodo consequat duis aute irure dolor.</p>
+            </div>
+          </div>
+
+          <div class="heuristic-panel">
+            <div class="heuristic-panel-header">
+              <h4 class="heuristic-panel-title">5. Lorem ipsum (Descrição curta entre parênteses)</h4>
+              <span class="heuristic-origin is-decisao">Decisão do Designer</span>
+              <span class="heuristic-sev is-low">Sev. 1/4</span>
+              <span class="heuristic-meta">Baixa · Confunde</span>
+            </div>
+            <div class="heuristic-panel-body">
+              <p>Lorem ipsum dolor sit amet:</p>
+              <div class="spacer"></div>
+              <p>consectetur adipiscing elit sed;</p>
+              <p>do eiusmod tempor incididunt;</p>
+              <p>ut labore et dolore magna aliqua;</p>
+              <p>ut enim ad minim veniam.</p>
+              <div class="spacer"></div>
+              <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Benchmark Modal -->
+  <div class="bm-modal" id="benchmark-modal" onclick="closeBenchmarkModal(event)">
+    <div class="bm-modal-panel" onclick="event.stopPropagation()">
+      <div class="bm-modal-header">
+        <h2 class="bm-modal-title">Benchmark — Estabilidade por Convenção Coletiva</h2>
+        <button class="bm-modal-close" type="button" onclick="closeBenchmarkModal(event)" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="bm-modal-body" id="benchmark-modal-body">
+        <table class="bm-table">
           <thead>
             <tr>
-              <th>Campo</th><th>Tipo</th><th>Obrig.</th><th>Dependências</th><th>Validação</th><th>Máscara/Unid.</th><th>Exemplo</th><th>Mensagem de erro</th>
+              <th>Critério</th>
+              <th>Senior</th>
+              <th>Omie</th>
+              <th>IOB</th>
+              <th>Questor</th>
+              <th>Alterdata</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Origem</td><td>Radio</td><td>Sim</td><td>—</td><td>1 dos 2 valores</td><td>—</td><td>Afastamento</td><td>"Selecione a origem do período."</td></tr>
-            <tr><td>Colaborador</td><td>Lookup</td><td>Sim</td><td>Origem</td><td>Existente, ativo</td><td>—</td><td>"Ana Silva — 1023"</td><td>"Selecione um colaborador."</td></tr>
-            <tr><td>Afastamento</td><td>Select</td><td>Cond.</td><td>Origem = Afastamento</td><td>Existente, mesmo CPF</td><td>—</td><td>"Atestado 12/03–10/04"</td><td>"Selecione o afastamento de origem."</td></tr>
-            <tr><td>Motivo</td><td>Select busca</td><td>Sim</td><td>—</td><td>Da lista oficial</td><td>—</td><td>"03 — Acidente de trabalho &gt; 15 dias"</td><td>"Selecione um motivo."</td></tr>
-            <tr><td>Sexo (condicional)</td><td>Select</td><td>Cond.</td><td>Regra do Motivo</td><td>Da lista</td><td>—</td><td>"Feminino"</td><td>"Informe o sexo aplicável."</td></tr>
-            <tr><td>Idade + comparador</td><td>Número + select</td><td>Cond.</td><td>Regra do Motivo</td><td>0–120; comparador ≥ ou =</td><td>anos</td><td>≥ 18</td><td>"Informe a idade e o comparador."</td></tr>
-            <tr><td>Meses trabalhados + comparador</td><td>Número + select</td><td>Cond.</td><td>Regra do Motivo</td><td>0–600; comparador ≥ ou =</td><td>meses</td><td>≥ 12</td><td>"Informe os meses trabalhados."</td></tr>
-            <tr><td>Data inicial</td><td>Data</td><td>Sim</td><td>Motivo</td><td>Não futura sem justificativa</td><td>DD/MM/AAAA</td><td>10/04/2026</td><td>"Data inicial inválida."</td></tr>
-            <tr><td>Data-limite</td><td>Data (auto)</td><td>Sim</td><td>Motivo, Data inicial</td><td>≥ Data inicial</td><td>DD/MM/AAAA</td><td>10/04/2027</td><td>"Data-limite não pode ser anterior à data inicial."</td></tr>
-            <tr><td>Justificativa de override</td><td>Texto</td><td>Cond.</td><td>Override de data</td><td>Mín. 20 caracteres</td><td>—</td><td>"Acordo extrajudicial homologado em…"</td><td>"Justificativa muito curta (mín. 20 caracteres)."</td></tr>
-            <tr><td>Anexos</td><td>Upload múltiplo</td><td>Cond.</td><td>Regra do Motivo</td><td>PDF/JPG/PNG, ≤10 MB cada</td><td>—</td><td>atestado.pdf</td><td>"Arquivo excede 10 MB." / "Formato não suportado."</td></tr>
-            <tr><td>Observações internas</td><td>Texto longo</td><td>Não</td><td>—</td><td>≤ 2000 chars</td><td>—</td><td>"Cliente solicitou revisão em 30 dias."</td><td>—</td></tr>
-            <tr><td>Status</td><td>Enum sistema</td><td>Sim</td><td>Datas</td><td>Derivado</td><td>—</td><td>Ativa</td><td>—</td></tr>
+            <tr>
+              <td class="bm-criterion">Onde configura (menu)</td>
+              <td><span class="bm-path">FPG <span class="sep">›</span> Cadastros <span class="sep">›</span> Sindicatos <span class="sep">›</span> aba Dados Variáveis</span></td>
+              <td>–</td>
+              <td>–</td>
+              <td><span class="bm-path">RH/Folha <span class="sep">›</span> Cadastros <span class="sep">›</span> Estabilidade</span><br><span style="font-size:12px;color:#505050">(+ "Estabilidade por Sindicato")</span></td>
+              <td><span class="bm-path">DP <span class="sep">›</span> Funcionário <span class="sep">›</span> Informações de Folha <span class="sep">›</span> Complemento da Folha</span></td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Nível de parametrização</td>
+              <td>Por Sindicato</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Por Sindicato</td>
+              <td>Por Colaborador <span style="color:#505050;font-size:12px">(manual no cadastro)</span></td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Tipos de estabilidade suportados</td>
+              <td>CIPA <span style="color:#505050;font-size:12px">(confirmado; outros a confirmar)</span></td>
+              <td>–</td>
+              <td>Indícios de Estabilidade/afastamentos <span style="color:#505050;font-size:12px">(rótulos exatos a confirmar)</span></td>
+              <td>CIPA, gestante, outras <span style="color:#505050;font-size:12px">(rótulos exatos a confirmar)</span></td>
+              <td>Motivo em lista <span style="color:#505050;font-size:12px">(ex.: "Suspensão"; catálogo a confirmar)</span></td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Parâmetros principais</td>
+              <td>Meses de estabilidade por tipo <span style="color:#505050;font-size:12px">(ex.: "Estabilidade – CIPA: [n] meses")</span></td>
+              <td>–</td>
+              <td>–</td>
+              <td>Período em meses/dias por tipo <span style="color:#505050;font-size:12px">(rótulos a confirmar)</span></td>
+              <td>Data da estabilidade + Motivo</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Vínculo no cadastro do colaborador</td>
+              <td>Campo Sindicato + flag "Participa da CIPA" <span style="color:#505050;font-size:12px">(herda regra do sindicato)</span></td>
+              <td>–</td>
+              <td>–</td>
+              <td>Vínculo ao Sindicato do colaborador <span style="color:#505050;font-size:12px">(campo exato a confirmar)</span></td>
+              <td>Lançado diretamente no cadastro do colaborador</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Validação operacional (rescisão/lançamento)</td>
+              <td>– <span style="color:#505050;font-size:12px">(aviso ou bloqueio)</span></td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Aviso na rescisão se a data conflitar com a estabilidade</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Relatórios/consulta para auditoria</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>"Estabilidade disponível para conferência"</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Mensagens/alertas ao usuário</td>
+              <td>Sim, no fluxo <span style="color:#505050;font-size:12px">(detalhes a confirmar)</span></td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Sim — lembrete na rescisão</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Permissões/perfis</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td class="bm-criterion">Fluxo típico</td>
+              <td>Parametriza no Sindicato → vincula funcionário ao Sindicato → marca participação (ex.: CIPA) → regras herdadas</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Cadastra tipos → associa ao Sindicato → funcionário herda via Sindicato</td>
+              <td>Abre funcionário → Informações de Folha → Complemento da Folha → lança Data/Motivo</td>
+            </tr>
+            <tr class="bm-insight-row">
+              <td colspan="6">
+                <strong>Leitura rápida para decisão (UX/risco) —</strong>
+                <strong>Senior e Questor (por Sindicato):</strong> menor risco de esquecimento individual; exige cadastro sindical correto e campo de participação bem mantido. &nbsp;·&nbsp;
+                <strong>Alterdata (por Colaborador):</strong> flexível e direto, porém dependente de lançamento manual caso a caso; recomenda-se rotina de auditoria/relatório periódico. &nbsp;·&nbsp;
+                <strong>Omie e IOB:</strong> faltam evidências para afirmar o nível de regra e o tipo de validação; isso impacta diretamente o risco operacional.
+              </td>
+            </tr>
           </tbody>
         </table>
-      </section>
-
-      <section id="calculos">
-        <h2>11. Cálculos por Motivo</h2>
-        <h3>Princípios</h3>
-        <ul>
-          <li>Calendário corrido por padrão (não dias úteis).</li>
-          <li>Data inicial padrão = <em>data do evento gerador</em> (atestado, parto, retorno do afastamento, posse, eleição).</li>
-          <li>Override permitido com justificativa; memorial do cálculo sempre acessível.</li>
-        </ul>
-
-        <h3>Matriz</h3>
-        <table>
-          <thead>
-            <tr><th>Motivo (exemplo)</th><th>Base da data inicial</th><th>Duração</th><th>Exceções</th><th>Comprovação</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>03 — Acidente de trabalho &gt; 15 dias</td><td>Data de retorno do afastamento</td><td>12 meses</td><td>Se o afastamento ultrapassar 12 meses, recomeça contagem a partir do retorno efetivo.</td><td>CAT + atestado médico</td></tr>
-            <tr><td>05 — Licença maternidade</td><td>Data do parto (ou início da licença)</td><td>5 meses após o parto (Constituição + ADCT art. 10, II, b)</td><td>Adoção: matriz própria por idade da criança.</td><td>Atestado/declaração</td></tr>
-            <tr><td>20 — Adoção 1 ano</td><td>Data da guarda provisória</td><td>120 dias</td><td>—</td><td>Termo de guarda</td></tr>
-            <tr><td>21 — Adoção 1 até 4 anos</td><td>Data da guarda</td><td>120 dias (a confirmar com matriz cliente)</td><td>—</td><td>Termo de guarda</td></tr>
-            <tr><td>22 — Adoção 4 a 8 anos</td><td>Data da guarda</td><td>60 dias (placeholder — confirmar)</td><td>—</td><td>Termo de guarda</td></tr>
-            <tr><td>Dirigente sindical (convenção)</td><td>Data de registro da candidatura/posse</td><td>Mandato + 1 ano após o fim</td><td>Por convenção; pode haver limite de número de dirigentes.</td><td>Ata, ofício do sindicato</td></tr>
-            <tr><td>Cipeiro</td><td>Data do registro da candidatura</td><td>Até 1 ano após o término do mandato</td><td>Pré-candidatura também coberta.</td><td>Ata da eleição</td></tr>
-            <tr><td>Pré-aposentadoria (convenção)</td><td>Data atingida X meses antes da elegibilidade</td><td>Conforme convenção (ex.: 12 ou 24 meses)</td><td>Depende da regra de cada convenção.</td><td>Declaração</td></tr>
-            <tr><td>Doença ocupacional</td><td>Data do retorno do afastamento por B91</td><td>12 meses</td><td>—</td><td>Laudo + CAT</td></tr>
-            <tr><td>Outros (motivo livre)</td><td>Definida pelo usuário</td><td>Definida (dias ou meses)</td><td>Sempre requer justificativa + anexo.</td><td>Conforme caso</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Regras de arredondamento</h3>
-        <ul>
-          <li>Meses → soma calendário-civil (10/04 → 10/05 mesmo se o mês tiver 28/30/31 dias).</li>
-          <li>Quando o dia-alvo não existe (ex.: 31/01 + 1 mês → 28/02 ou 29/02), usar último dia do mês de destino.</li>
-          <li>Dias → soma corrida.</li>
-          <li>Final em dia não útil não desloca; o sistema apenas informa (não bloqueia desligamento por isso).</li>
-        </ul>
-      </section>
-
-      <section id="permissoes">
-        <h2>12. Permissões &amp; Auditoria</h2>
-        <h3>Matriz de permissões</h3>
-        <table>
-          <thead><tr><th>Ação</th><th>RH</th><th>RH Avançado</th><th>Contador</th><th>Auditor</th></tr></thead>
-          <tbody>
-            <tr><td>Visualizar lista</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
-            <tr><td>Criar período</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Editar campos não-críticos</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Override de data-limite</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Encerrar antes do prazo</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Aceitar sobreposição (exceção)</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Configurar regras (T1)</td><td>✘</td><td>✔</td><td>✔</td><td>✘</td></tr>
-            <tr><td>Ver detalhe + auditoria</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
-            <tr><td>Exportar</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Eventos logados (modelo)</h3>
-        <table>
-          <thead><tr><th>Evento</th><th>Quando</th><th>Conteúdo do log</th></tr></thead>
-          <tbody>
-            <tr><td><code>estabilidade.criada</code></td><td>Confirmação do wizard</td><td>Snapshot de todos os campos, usuário, IP, hora, hash</td></tr>
-            <tr><td><code>estabilidade.editada</code></td><td>Salvar edição</td><td>Diff antes/depois por campo + justificativa (se houver)</td></tr>
-            <tr><td><code>estabilidade.override</code></td><td>Override de data</td><td>Valor calculado, valor manual, justificativa, usuário</td></tr>
-            <tr><td><code>estabilidade.encerrada</code></td><td>Encerramento</td><td>Data efetiva, motivo, justificativa, usuário</td></tr>
-            <tr><td><code>estabilidade.sobreposicao_aceita</code></td><td>Exceção a sobreposição</td><td>IDs dos períodos envolvidos, justificativa, usuário</td></tr>
-            <tr><td><code>desligamento.bloqueado</code></td><td>Tentativa em período ativo</td><td>ID do período, usuário que tentou, motivo do bloqueio</td></tr>
-            <tr><td><code>regra.configurada</code></td><td>Salvar regra em T1</td><td>Diff antes/depois, escopo (empresa/convenção), usuário</td></tr>
-          </tbody>
-        </table>
-
-        <p><strong>Exemplo de entrada de log:</strong></p>
-        <pre style="background:#f4f4f4;padding:10px;font-size:12px;overflow-x:auto;">{
-  "event": "estabilidade.override",
-  "user": "ana.silva@cliente.com.br",
-  "ts": "2026-04-12T14:22:08-03:00",
-  "ip": "189.x.x.x",
-  "entity_id": "EST-00193",
-  "before": { "data_limite": "2027-04-10" },
-  "after":  { "data_limite": "2027-06-30" },
-  "justificativa": "Acordo extrajudicial homologado em 11/04/2026 estende prazo para 30/06/2027.",
-  "hash": "sha256:..."
-}</pre>
-      </section>
-
-      <section id="estados">
-        <h2>13. Estados Obrigatórios</h2>
-        <table>
-          <thead><tr><th>Estado</th><th>Quando aparece</th><th>O que mostrar</th></tr></thead>
-          <tbody>
-            <tr><td>Vazio (sem regras)</td><td>T1 sem regras configuradas</td><td>Texto explicativo + CTA "Configurar primeira regra"</td></tr>
-            <tr><td>Vazio (sem períodos)</td><td>T2 sem cadastros</td><td>Texto explicativo + CTA "Cadastrar estabilidade"</td></tr>
-            <tr><td>Carregando</td><td>Qualquer chamada &gt; 300ms</td><td>Skeleton da estrutura final (sem espinner solto)</td></tr>
-            <tr><td>Erro</td><td>Falha de rede/servidor</td><td>Mensagem clara + ação "Tentar novamente"</td></tr>
-            <tr><td>Sem permissão</td><td>Usuário sem grant para a ação</td><td>Mensagem + link "Solicitar acesso"</td></tr>
-            <tr><td>Sucesso</td><td>Pós-confirmação</td><td>Toast verde + destaque do item recém-criado</td></tr>
-            <tr><td>Conflito (sobreposição)</td><td>Passo 3 do wizard</td><td>Banner com os IDs/datas dos períodos conflitantes</td></tr>
-            <tr><td>Bloqueio de desligamento</td><td>Ação de desligar com período ativo</td><td>Modal T5 com motivo e data-limite</td></tr>
-            <tr><td>Rascunho retomável</td><td>Wizard fechado sem confirmar</td><td>Badge "Em rascunho" na lista; expira em 7 dias</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="bloqueio">
-        <h2>14. Bloqueio de Desligamento — Tela T5</h2>
-        <h3>Trigger</h3>
-        <p>Toda ação de "Desligar colaborador" verifica se existe período de estabilidade <em>Ativo</em> na data atual. Se sim, abre modal bloqueante.</p>
-
-        <h3>Conteúdo do modal</h3>
-        <ul>
-          <li>Título: "Desligamento bloqueado por estabilidade".</li>
-          <li>Linha 1: motivo + data-limite. Ex.: "Acidente de trabalho &gt; 15 dias — estabilidade até <strong>10/04/2027</strong>".</li>
-          <li>Linha 2: link para o detalhe do período.</li>
-          <li>Linha 3 (somente para perfis com permissão): botão "Registrar exceção" → abre formulário com justificativa obrigatória, anexo recomendado, e aviso de que o evento será auditado.</li>
-          <li>Ações: <code>Voltar</code> (padrão), <code>Registrar exceção</code> (condicional).</li>
-        </ul>
-
-        <h3>Auditoria</h3>
-        <p>Toda abertura do modal gera evento <code>desligamento.bloqueado</code>. Toda exceção registrada gera <code>desligamento.excecao_registrada</code> com justificativa.</p>
-      </section>
-
-      <section id="microcopias">
-        <h2>15. Microcópias (rótulos, ajuda, erros, avisos)</h2>
-
-        <h3>Rótulos &amp; ajuda contextual</h3>
-        <table>
-          <thead><tr><th>Campo</th><th>Rótulo</th><th>Texto de ajuda (curto)</th></tr></thead>
-          <tbody>
-            <tr><td>Motivo</td><td>Motivo da estabilidade</td><td>"Fundamento legal do período. Use a busca por código ou palavra-chave."</td></tr>
-            <tr><td>Origem</td><td>Origem do período</td><td>"Manual: você informa as datas. Afastamento: o sistema deriva do afastamento."</td></tr>
-            <tr><td>Comparador</td><td>Como comparar</td><td>"≥ exige valor igual ou maior. = exige valor exato."</td></tr>
-            <tr><td>Dias / Período</td><td>Duração</td><td>"Em dias corridos ou em meses a partir da data inicial."</td></tr>
-            <tr><td>Data inicial</td><td>Início da estabilidade</td><td>"Padrão: data do evento gerador. Edite somente quando houver fato concreto."</td></tr>
-            <tr><td>Data-limite</td><td>Fim da estabilidade</td><td>"Calculada automaticamente. Override exige justificativa."</td></tr>
-            <tr><td>Justificativa</td><td>Justificativa de override</td><td>"Descreva o fato que motivou a alteração. Mín. 20 caracteres."</td></tr>
-            <tr><td>Status</td><td>Situação</td><td>"Ativa: em vigor agora. Agendada: começa no futuro. Encerrada: já passou ou foi encerrada manualmente."</td></tr>
-            <tr><td>Auditoria</td><td>Histórico de alterações</td><td>"Lista cronológica de quem alterou o quê e quando."</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Mensagens de validação</h3>
-        <ul>
-          <li>Obrigatório: "Campo obrigatório."</li>
-          <li>Sobreposição: "Período sobreposto com estabilidade existente (DD/MM/AAAA – DD/MM/AAAA). Justifique para prosseguir."</li>
-          <li>Comparador inválido: "Selecione ≥ ou = para esta dimensão."</li>
-          <li>Permissão: "Você não tem permissão para esta ação. Solicite acesso ao administrador."</li>
-          <li>Override sem justificativa: "Para alterar esta data, descreva o motivo (mín. 20 caracteres)."</li>
-          <li>Anexo inválido: "Arquivo excede 10 MB." / "Formato não suportado. Use PDF, JPG ou PNG."</li>
-          <li>Data inconsistente: "Data-limite não pode ser anterior à data inicial."</li>
-        </ul>
-
-        <h3>Ajuda legal curta (chips/popovers)</h3>
-        <ul>
-          <li><em>Acidente de trabalho</em>: "Estabilidade de 12 meses após retorno do afastamento (Lei 8.213/91, art. 118)."</li>
-          <li><em>Gestante</em>: "Estabilidade desde a confirmação da gravidez até 5 meses após o parto (ADCT art. 10, II, b)."</li>
-          <li><em>Cipeiro</em>: "Estabilidade desde o registro da candidatura até 1 ano após o fim do mandato (CF art. 8º, ADCT art. 10, II, a)."</li>
-          <li><em>Dirigente sindical</em>: "Estabilidade durante o mandato e até 1 ano após o término (CLT art. 543, §3º)."</li>
-          <li><em>Pré-aposentadoria</em>: "Conforme convenção/acordo coletivo aplicável."</li>
-        </ul>
-      </section>
-
-      <section id="banners">
-        <h2>16. Banners &amp; Avisos</h2>
-        <ul>
-          <li><strong>Banner em detalhe (período ativo):</strong> "Estabilidade ativa até DD/MM/AAAA. Desligamento bloqueado."</li>
-          <li><strong>Aviso no wizard (override):</strong> "Você está alterando a data calculada. A alteração será registrada na auditoria."</li>
-          <li><strong>Aviso de sobreposição:</strong> "Sobreposição detectada com [EST-00112] (10/02/2026 – 09/02/2027)."</li>
-          <li><strong>Aviso de proximidade do fim (D-30):</strong> "Esta estabilidade termina em 30 dias. Verifique se aplica-se renovação ou alerta ao RH."</li>
-          <li><strong>Toast de sucesso:</strong> "Estabilidade registrada. Vigência até DD/MM/AAAA."</li>
-          <li><strong>Toast de erro:</strong> "Não foi possível salvar. Tente novamente. (cod. ERR-EST-014)"</li>
-        </ul>
-      </section>
-
-      <section id="stepper">
-        <h2>17. Comportamento do Stepper (alinhado ao prompt)</h2>
-        <p>Referência integral: <code>stepper-behavior-prompt.md</code>. Pontos a respeitar no wizard de Estabilidade:</p>
-        <ul>
-          <li><strong>Estados:</strong> Pendente, Em andamento (active), Completo (complete). O passo atual é sempre <em>active</em>; passos visitados ficam <em>complete</em>.</li>
-          <li><strong>Navegação por clique:</strong> qualquer step pode ser clicado se já estiver visitado (Completo); steps Pendentes não são clicáveis até serem alcançados pelo botão "Próximo".</li>
-          <li><strong>maxStepIndex não regride:</strong> ao voltar para um passo anterior, ele permanece <em>complete</em>; o passo atual vira <em>active</em>.</li>
-          <li><strong>Passos condicionais:</strong> dimensões (Sexo/Idade/Meses) podem inserir <em>substeps</em> ou ramificar perguntas no Passo 2 — quando aplicável, renumerar os steps visíveis.</li>
-          <li><strong>Pular passos não aplicáveis:</strong> se a regra do Motivo não exige anexo, o Passo 4 reduz-se ao resumo; o botão "Próximo" avança para o Passo 5 sem fricção.</li>
-          <li><strong>Persistência de rascunho:</strong> ao sair, o stepper preserva o último passo alcançado; ao retomar, abre nele.</li>
-          <li><strong>Validação por passo:</strong> "Próximo" só é habilitado quando todos os campos obrigatórios do passo atual passam na validação.</li>
-          <li><strong>Recuperação de erro:</strong> ao tentar avançar com erro, os campos inválidos ganham foco e mensagem; o stepper indica o passo com problema (badge discreta na step-status).</li>
-        </ul>
-
-        <h3>Mapeamento concreto (placeholders)</h3>
-        <table>
-          <thead><tr><th>Passo</th><th>step-name</th><th>page-id (placeholder)</th><th>Condicional</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>Origem &amp; Identificação</td><td><code>page-est-origem</code></td><td>Não</td></tr>
-            <tr><td>2</td><td>Motivo &amp; Condições</td><td><code>page-est-motivo</code></td><td>Não</td></tr>
-            <tr><td>3</td><td>Período &amp; Cálculo</td><td><code>page-est-periodo</code></td><td>Não</td></tr>
-            <tr><td>4</td><td>Revisão &amp; Anexos</td><td><code>page-est-revisao</code></td><td>Condicional: oculta upload se regra não exigir</td></tr>
-            <tr><td>5</td><td>Confirmação</td><td><code>page-est-confirmacao</code></td><td>Não</td></tr>
-          </tbody>
-        </table>
-        <div class="note">As constantes <code>FLOW_PAGES</code> e <code>STEP_NAME_TO_PAGE</code> do prompt devem ser preenchidas com estes valores na implementação. Steps condicionais (caso surjam dimensões dinâmicas) devem ter <code>id</code> único e iniciar ocultos.</div>
-      </section>
-
-      <section id="telemetria">
-        <h2>18. Plano de Telemetria &amp; KPIs</h2>
-        <h3>Eventos</h3>
-        <table>
-          <thead><tr><th>Evento</th><th>Propriedades</th><th>Quando dispara</th></tr></thead>
-          <tbody>
-            <tr><td><code>est.wizard.iniciado</code></td><td>origem, motivo (se já escolhido), empresa_id, perfil</td><td>Abertura do Passo 1</td></tr>
-            <tr><td><code>est.passo.avancado</code></td><td>passo_de, passo_para, tempo_no_passo_ms</td><td>Clique em "Próximo"</td></tr>
-            <tr><td><code>est.passo.voltou</code></td><td>passo_de, passo_para</td><td>Clique em step anterior</td></tr>
-            <tr><td><code>est.calculo_ok</code></td><td>motivo, data_inicial, data_limite</td><td>Cálculo automático bem-sucedido</td></tr>
-            <tr><td><code>est.calculo_override</code></td><td>motivo, valor_auto, valor_manual, tem_justificativa</td><td>Confirmação do override</td></tr>
-            <tr><td><code>est.calculo_erro</code></td><td>motivo, mensagem</td><td>Falha no cálculo (ex.: data inválida)</td></tr>
-            <tr><td><code>est.criada</code></td><td>origem, motivo, dimensoes_aplicadas, anexos_qtd, tempo_total_ms</td><td>Confirmação do Passo 5</td></tr>
-            <tr><td><code>est.rascunho_salvo</code></td><td>passo_atual, motivo (opcional)</td><td>Auto-save</td></tr>
-            <tr><td><code>est.rascunho_retomado</code></td><td>idade_rascunho_h, passo_atual</td><td>Reabertura de rascunho</td></tr>
-            <tr><td><code>est.encerrada</code></td><td>motivo, dias_antes_do_limite</td><td>Encerramento antecipado</td></tr>
-            <tr><td><code>est.sobreposicao_detectada</code></td><td>motivo, conflito_id</td><td>Validação no Passo 3</td></tr>
-            <tr><td><code>est.sobreposicao_aceita</code></td><td>motivo, conflito_id, justificativa_len</td><td>Aceitação de exceção</td></tr>
-            <tr><td><code>desligamento_bloqueado</code></td><td>est_id, motivo</td><td>Modal T5 aberto</td></tr>
-            <tr><td><code>empresa_configurada</code></td><td>empresa_id, qtd_regras</td><td>Primeira regra ativa salva</td></tr>
-          </tbody>
-        </table>
-
-        <h3>Funis</h3>
-        <ol>
-          <li><strong>Funil de cadastro:</strong> <code>est.wizard.iniciado</code> → <code>est.passo.avancado</code> (1→2→3→4→5) → <code>est.criada</code>.</li>
-          <li><strong>Funil de adoção:</strong> <code>empresa_configurada</code> → primeira <code>est.criada</code> → 5ª <code>est.criada</code>.</li>
-          <li><strong>Funil de proteção:</strong> <code>est.criada</code> → <code>desligamento_bloqueado</code> (positivo, proteção funcionou).</li>
-        </ol>
-
-        <h3>KPIs</h3>
-        <table>
-          <thead><tr><th>KPI</th><th>Meta</th><th>Cálculo</th></tr></thead>
-          <tbody>
-            <tr><td>Precisão do cálculo de data-limite</td><td>≥ 99,5%</td><td>(calculo_ok) / (calculo_ok + calculo_erro)</td></tr>
-            <tr><td>Redução de lançamentos manuais</td><td>≥ 60%</td><td>1 - (origem=Manual) / (origem=Manual + origem=Afastamento)</td></tr>
-            <tr><td>Tickets sobre estabilidade</td><td>↓ ≥ 40%</td><td>Comparação trimestral pós-rollout</td></tr>
-            <tr><td>Tempo mediano de cadastro</td><td>≤ 2 min</td><td>Mediana de <code>tempo_total_ms</code> em est.criada</td></tr>
-            <tr><td>Desligamentos bloqueados corretamente</td><td>100%</td><td>1 - falsos positivos confirmados em auditoria</td></tr>
-            <tr><td>Adoção por empresa</td><td>≥ 80% até D+60</td><td>empresas com empresa_configurada / total elegível</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="teste">
-        <h2>19. Roteiro de Teste de Usabilidade A/B (Formulário vs Grid)</h2>
-        <h3>Objetivo</h3>
-        <p>Provar que o formulário guiado supera o grid legado em sucesso, tempo, erros críticos e satisfação (SUS).</p>
-
-        <h3>Amostra</h3>
-        <ul>
-          <li><strong>12 participantes</strong> divididos em 2 grupos balanceados (6 RH + 6 Contadores).</li>
-          <li><strong>A:</strong> formulário (novo). <strong>B:</strong> grid (legado).</li>
-          <li>Cada participante executa todas as 5 tarefas em seu grupo. Crossover opcional (sessão 2) para neutralizar viés.</li>
-        </ul>
-
-        <h3>Tarefas</h3>
-        <ol>
-          <li>Cadastrar estabilidade por acidente de trabalho a partir de um afastamento existente.</li>
-          <li>Cadastrar estabilidade de gestante com início no parto.</li>
-          <li>Cadastrar estabilidade por convenção com dimensão Sexo=F e Idade≥18.</li>
-          <li>Tentar desligar colaborador com estabilidade ativa e interpretar o bloqueio.</li>
-          <li>Editar um período existente com override de data-limite e justificar.</li>
-        </ol>
-
-        <h3>Métricas</h3>
-        <table>
-          <thead><tr><th>Métrica</th><th>Definição</th><th>Critério de sucesso (vs Grid)</th></tr></thead>
-          <tbody>
-            <tr><td>Taxa de sucesso</td><td>% de tarefas concluídas sem ajuda</td><td>≥ +20pp</td></tr>
-            <tr><td>Tempo de tarefa</td><td>Mediana em segundos</td><td>≤ 80% do tempo do grid</td></tr>
-            <tr><td>Erros críticos</td><td>Ações que comprometem compliance</td><td>0 erros críticos no formulário</td></tr>
-            <tr><td>SUS</td><td>System Usability Scale (0–100)</td><td>≥ 75 (vs &lt; 65 no grid)</td></tr>
-            <tr><td>NPS pós-tarefa</td><td>0–10 "recomendaria a um colega"</td><td>≥ 8</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="objecoes">
-        <h2>20. Objeções &amp; Respostas (defesa)</h2>
-        <table>
-          <thead><tr><th>Objeção</th><th>Resposta</th></tr></thead>
-          <tbody>
-            <tr><td>"Usuário avançado prefere o grid — é mais rápido."</td><td>O grid continua disponível como consulta. Para criação, o wizard reduz erros e mede tempo &lt; 2 min, comparável ao grid mas com auditoria automática.</td></tr>
-            <tr><td>"Mais passos = mais cliques."</td><td>Cliques só aumentam quando há decisão real (motivo, dimensões). Passos não aplicáveis são pulados.</td></tr>
-            <tr><td>"E quem quer só editar uma data?"</td><td>Editar abre o wizard no passo necessário (Período). Não obriga revisitar todos os passos.</td></tr>
-            <tr><td>"Importação em massa?"</td><td>Está prevista na Fase 2 com validação no mesmo motor do wizard, evitando inconsistência.</td></tr>
-            <tr><td>"Bloqueio de desligamento pode atrapalhar urgências."</td><td>Existe o caminho "Registrar exceção" para perfis com permissão, sempre auditado.</td></tr>
-            <tr><td>"E as convenções específicas que ninguém mapeou?"</td><td>O Motivo "Outros" cobre o caso com justificativa + anexo + cálculo manual; logado para futura padronização.</td></tr>
-            <tr><td>"Tempo de implementação?"</td><td>Fase 1 (cadastro + bloqueio) é independente de Fase 2/3 e entrega o maior ganho de compliance.</td></tr>
-            <tr><td>"Vai gerar muitas notificações?"</td><td>D-30 e D-7 são configuráveis por perfil. Padrão: D-30 por e-mail; in-app silencioso.</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="backlog">
-        <h2>21. Backlog Faseado</h2>
-        <h3>Fase 1 <span class="badge b1">MVP</span></h3>
-        <ul>
-          <li>T1 Configuração de Estabilidades (CRUD básico).</li>
-          <li>T2 Lista-resumo com filtros principais.</li>
-          <li>T3 Wizard Criar/Editar (5 passos).</li>
-          <li>T4 Detalhe com seções core + Auditoria.</li>
-          <li>T5 Bloqueio de desligamento.</li>
-          <li>Cálculos automáticos para Acidente, Maternidade, Adoção, Cipeiro, Dirigente sindical.</li>
-          <li>Telemetria mínima (wizard, calculos, criada, bloqueado).</li>
-        </ul>
-        <h3>Fase 2 <span class="badge b2">Escalar</span></h3>
-        <ul>
-          <li>Importação em massa de períodos (CSV) com motor de validação do wizard.</li>
-          <li>Edição em massa (encerramento por filtro).</li>
-          <li>Duplicação de regras entre empresas (escritório contábil).</li>
-          <li>Workflow opcional de aprovação para overrides.</li>
-        </ul>
-        <h3>Fase 3 <span class="badge b3">Proatividade</span></h3>
-        <ul>
-          <li>Alertas proativos D-30/D-7 do fim da estabilidade (in-app + e-mail).</li>
-          <li>Exibição do status de estabilidade em outros módulos (Folha, Rescisão, eSocial).</li>
-          <li>Painel de risco por empresa (sobreposições, vencimentos próximos, exceções recentes).</li>
-        </ul>
-      </section>
-
-      <section id="slides">
-        <h2>22. Roteiro de Slides (10–12 slides para a defesa)</h2>
-        <ol>
-          <li><strong>Capa — Estabilidade no Folha: do grid ao formulário guiado</strong>
-            <ul>
-              <li>Objetivo da iniciativa.</li>
-              <li>Hipótese: formulário reduz erros e custo de suporte.</li>
-              <li>Padrão de referência: Sindicato/Convenção.</li>
-            </ul>
-          </li>
-          <li><strong>Problema</strong>
-            <ul><li>Grid livre, erros de data, ausência de justificativa.</li><li>Sem bloqueio ativo de desligamento.</li><li>Risco trabalhista alto.</li></ul>
-          </li>
-          <li><strong>Quem dói</strong>
-            <ul><li>Gestor de RH — operação diária.</li><li>Contador — múltiplas empresas, regras de convenção.</li><li>Auditoria — dificuldade de rastrear.</li></ul>
-          </li>
-          <li><strong>Proposta</strong>
-            <ul><li>Wizard de 5 passos para criação/edição.</li><li>Lista-resumo + Detalhe + Auditoria.</li><li>Bloqueio ativo no desligamento.</li></ul>
-          </li>
-          <li><strong>Fluxos críticos</strong>
-            <ul><li>Configurar regra por convenção.</li><li>Criar estabilidade por afastamento.</li><li>Bloqueio + exceção justificada.</li></ul>
-          </li>
-          <li><strong>Cálculo automático</strong>
-            <ul><li>Por motivo (12 meses acidente, 5 meses gestante, etc.).</li><li>Override com justificativa obrigatória.</li><li>Memorial de cálculo acessível.</li></ul>
-          </li>
-          <li><strong>Auditoria embutida</strong>
-            <ul><li>Eventos logados em cada decisão.</li><li>Diff antes/depois por campo.</li><li>Permissões por perfil.</li></ul>
-          </li>
-          <li><strong>Stepper</strong>
-            <ul><li>Comportamento alinhado ao padrão Onvio.</li><li>Persistência de rascunho.</li><li>Passos condicionais e pulo de não aplicáveis.</li></ul>
-          </li>
-          <li><strong>Métricas e KPIs</strong>
-            <ul><li>≥ 99,5% precisão de cálculo.</li><li>≥ 60% redução de lançamentos manuais.</li><li>≤ 2 min mediana de cadastro.</li></ul>
-          </li>
-          <li><strong>Roteiro de validação</strong>
-            <ul><li>Teste A/B 12 participantes.</li><li>Métricas: sucesso, tempo, erros críticos, SUS.</li><li>Critério de go/no-go pré-acordado.</li></ul>
-          </li>
-          <li><strong>Backlog faseado</strong>
-            <ul><li>Fase 1: cadastro + bloqueio.</li><li>Fase 2: importação/edição em massa.</li><li>Fase 3: alertas + exibição cross-módulo.</li></ul>
-          </li>
-          <li><strong>Riscos e perguntas abertas</strong>
-            <ul><li>Mapeamento de afastamentos incompletos → "Outros".</li><li>Variedade de convenções → Duplicar regra + import.</li><li>Próximos passos e decisão necessária.</li></ul>
-          </li>
-        </ol>
-      </section>
-
-    </main>
+      </div>
+    </div>
   </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" alt="" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    function openBenchmarkModal() {
+      document.getElementById('benchmark-modal').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBenchmarkModal(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('benchmark-modal').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function openLightbox(img) {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('lightbox').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeBenchmarkModal();
+      }
+    });
+    document.addEventListener('click', e => {
+      if (e.target.classList && e.target.classList.contains('ref-visual-img')) {
+        openLightbox(e.target);
+      }
+    });
+
+    function switchDefesa(id) {
+      document.querySelectorAll('.defesa-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.tab === id);
+      });
+      document.querySelectorAll('.defesa-content').forEach(c => {
+        c.classList.toggle('active', c.id === id);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleHeuristic(btn) {
+      const section = btn.closest('.heuristic-section');
+      const isOpen = section.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+  </script>
 </body>
 </html>
