@@ -62,9 +62,58 @@
     .wrap {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 32px 40px 60px;
       background: #fff;
       min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+    }
+    .side-nav {
+      width: 172px;
+      flex-shrink: 0;
+      border-right: 1px solid #efefef;
+      position: sticky;
+      top: 0;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 28px 0 40px;
+    }
+    .side-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side-nav-item a {
+      display: block;
+      padding: 8px 16px;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #707070;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      margin-left: -1px;
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    .side-nav-item a:hover {
+      color: #1f1f1f;
+      background: #f9f9f9;
+    }
+    .side-nav-item a.is-active {
+      color: #d64000;
+      border-left-color: #d64000;
+      font-weight: 600;
+      background: rgba(214,64,0,.04);
+    }
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 40px 60px;
+    }
+    .nav-anchor {
+      display: block;
+      height: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -850,6 +899,55 @@
       .quarter-section { padding: 16px 20px; }
     }
 
+    /* Link cards */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-left: 3px solid #d64000;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      flex: 1;
+      min-width: 0;
+      transition: box-shadow .15s, background .15s;
+    }
+    .link-card:hover {
+      box-shadow: 0 4px 14px -4px rgba(0,0,0,0.12);
+      background: #fdfaf9;
+    }
+    .link-card-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(214, 64, 0, 0.08);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d64000;
+      flex-shrink: 0;
+    }
+    .link-card-icon svg { width: 18px; height: 18px; }
+    .link-card-body { flex: 1; min-width: 0; }
+    .link-card-title {
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #1f1f1f;
+      display: block;
+    }
+    .link-card-arrow {
+      color: #c4c4c4;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      transition: color .15s, transform .15s;
+    }
+    .link-card:hover .link-card-arrow { color: #d64000; transform: translateX(3px); }
+
     @media (max-width: 720px) {
       .cards-row { flex-direction: column; }
     }
@@ -1074,9 +1172,32 @@
 
   <div class="wrap">
 
+    <nav class="side-nav">
+      <ul class="side-nav-list" id="nav-defesa-1">
+        <li class="side-nav-item"><a href="#d1-decisao">Decisão em Questão</a></li>
+        <li class="side-nav-item"><a href="#d1-cenario">Cenário &amp; Decisão</a></li>
+        <li class="side-nav-item"><a href="#d1-heuristicas">Heurísticas</a></li>
+        <li class="side-nav-item"><a href="#d1-benchmark">Benchmark</a></li>
+        <li class="side-nav-item"><a href="#d1-figma">Figma</a></li>
+      </ul>
+      <ul class="side-nav-list" id="nav-defesa-2" style="display:none">
+        <li class="side-nav-item"><a href="#d2-decisao">Decisão em Questão</a></li>
+        <li class="side-nav-item"><a href="#d2-cenario">Cenário &amp; Decisão</a></li>
+        <li class="side-nav-item"><a href="#d2-heuristicas">Heurísticas</a></li>
+      </ul>
+      <ul class="side-nav-list" id="nav-defesa-3" style="display:none">
+        <li class="side-nav-item"><a href="#d3-decisao">Decisão em Questão</a></li>
+        <li class="side-nav-item"><a href="#d3-cenario">Cenário &amp; Decisão</a></li>
+        <li class="side-nav-item"><a href="#d3-heuristicas">Heurísticas</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+
     <!-- ══ DEFESA 1 ══ -->
     <div id="defesa-1" class="defesa-content active">
 
+      <span id="d1-decisao" class="nav-anchor"></span>
       <div class="info-card">
         <div class="info-card-header">
           <span class="info-card-label">Decisão em Questão</span>
@@ -1092,6 +1213,7 @@
         <div class="info-card is-gray">
           <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
           <div class="info-card-body">
+            <span id="d1-cenario" class="nav-anchor"></span>
             <p>A demanda partiu da necessidade de centralizar o cadastro de períodos de <strong>estabilidade</strong> — situações em que o colaborador não pode ser demitido, como acidente de trabalho (12 meses), gravidez e regras específicas de convenção/acordo coletivo. No legado, o lançamento fica em "Processo → Estabilidade", com campos pulverizados entre "Demais estabilidades" e "Configuração", sem padronização entre afastamentos, motivos legais e regras de convenção.</p>
 
             <h4>Pontos-chave que evidenciaram o problema</h4>
@@ -1137,6 +1259,7 @@
             <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="heuristic-header-title">Heurísticas</span>
+          <span id="d1-heuristicas" class="nav-anchor"></span>
           <span class="heuristic-count">8</span>
         </button>
         <div class="heuristic-body">
@@ -1224,7 +1347,8 @@
 
       <!-- Benchmark de Concorrentes -->
       <div class="benchmark-section">
-        <div class="section-tag">C · Benchmark de Concorrentes</div>
+        <span id="d1-benchmark" class="nav-anchor"></span>
+        <div class="section-tag">Benchmark de Concorrentes</div>
 
         <div class="bm-card has-accent">
           <div class="bm-card-header">
@@ -1302,44 +1426,62 @@
         </div>
       </div>
 
-      <!-- ══ RESEARCH & LAYOUT ══ -->
+      <!-- Figma links section -->
       <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;">
-        <div class="section-tag">D · Benchmarking – Research &amp; Layout</div>
+        <span id="d1-figma" class="nav-anchor"></span>
+        <div class="section-tag">Figma</div>
 
         <div class="cards-row">
-          <div class="info-card is-gray" style="flex:1">
-            <div class="info-card-header">
-              <span class="info-card-label">Benchmarking – Research</span>
+          <a class="link-card" href="https://www.figma.com/design/aCjTgHZfsEDFEVLhtoOcpu/-FL----Estabilidade?node-id=1-2" target="_blank" rel="noopener">
+            <div class="link-card-icon">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="10" y="2" width="6" height="4" rx="1" fill="currentColor"/>
+                <rect x="10" y="8" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="2" y="12" width="6" height="4" rx="1" fill="currentColor" opacity=".7"/>
+              </svg>
             </div>
-            <div class="info-card-body">
-              <div class="upload-zone">
-                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-                <p class="upload-zone-text">Arraste ou <strong>adicione referência</strong></p>
-                <span class="upload-zone-small">PNG · JPG · WEBP · PDF</span>
-              </div>
+            <div class="link-card-body">
+              <span class="link-card-title">Research</span>
             </div>
-          </div>
+            <svg class="link-card-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
 
-          <div class="info-card is-gray" style="flex:1">
-            <div class="info-card-header">
-              <span class="info-card-label">Layout</span>
+          <a class="link-card" href="https://www.figma.com/design/aCjTgHZfsEDFEVLhtoOcpu/-FL----Estabilidade?node-id=1-3" target="_blank" rel="noopener">
+            <div class="link-card-icon">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="10" y="2" width="6" height="4" rx="1" fill="currentColor"/>
+                <rect x="10" y="8" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="2" y="12" width="6" height="4" rx="1" fill="currentColor" opacity=".7"/>
+              </svg>
             </div>
-            <div class="info-card-body">
-              <div class="upload-zone">
-                <svg class="upload-zone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="8.5" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M3 16l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-                <p class="upload-zone-text">Arraste ou <strong>adicione referência</strong></p>
-                <span class="upload-zone-small">PNG · JPG · WEBP · PDF</span>
-              </div>
+            <div class="link-card-body">
+              <span class="link-card-title">Benchmarking</span>
             </div>
-          </div>
+            <svg class="link-card-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a class="link-card" href="https://www.figma.com/design/aCjTgHZfsEDFEVLhtoOcpu/-FL----Estabilidade?node-id=122-907" target="_blank" rel="noopener">
+            <div class="link-card-icon">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="10" y="2" width="6" height="4" rx="1" fill="currentColor"/>
+                <rect x="10" y="8" width="6" height="8" rx="1" fill="currentColor" opacity=".4"/>
+                <rect x="2" y="12" width="6" height="4" rx="1" fill="currentColor" opacity=".7"/>
+              </svg>
+            </div>
+            <div class="link-card-body">
+              <span class="link-card-title">Design</span>
+            </div>
+            <svg class="link-card-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
 
       </div>
@@ -1349,6 +1491,7 @@
     <!-- ══ DEFESA 2 ══ -->
     <div id="defesa-2" class="defesa-content">
 
+      <span id="d2-decisao" class="nav-anchor"></span>
       <div class="info-card">
         <div class="info-card-header"><span class="info-card-label">Decisão em Questão</span></div>
         <div class="info-card-body">
@@ -1357,6 +1500,7 @@
         </div>
       </div>
 
+      <span id="d2-cenario" class="nav-anchor"></span>
       <div class="cards-row">
         <div class="info-card is-gray">
           <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
@@ -1416,6 +1560,7 @@
             <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="heuristic-header-title">Heurísticas</span>
+          <span id="d2-heuristicas" class="nav-anchor"></span>
           <span class="heuristic-count">5</span>
         </button>
         <div class="heuristic-body">
@@ -1521,6 +1666,7 @@
     <!-- ══ DEFESA 3 ══ -->
     <div id="defesa-3" class="defesa-content">
 
+      <span id="d3-decisao" class="nav-anchor"></span>
       <div class="info-card">
         <div class="info-card-header"><span class="info-card-label">Decisão em Questão</span></div>
         <div class="info-card-body">
@@ -1529,6 +1675,7 @@
         </div>
       </div>
 
+      <span id="d3-cenario" class="nav-anchor"></span>
       <div class="cards-row">
         <div class="info-card is-gray">
           <div class="info-card-header"><span class="info-card-label">Cenário / Solicitação</span></div>
@@ -1588,6 +1735,7 @@
             <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="heuristic-header-title">Heurísticas</span>
+          <span id="d3-heuristicas" class="nav-anchor"></span>
           <span class="heuristic-count">5</span>
         </button>
         <div class="heuristic-body">
@@ -1690,7 +1838,9 @@
 
     </div>
 
-  </div>
+    </div><!-- /.main-content -->
+
+  </div><!-- /.wrap -->
 
   <!-- Benchmark Modal -->
   <div class="bm-modal" id="benchmark-modal" onclick="closeBenchmarkModal(event)">
@@ -1863,8 +2013,29 @@
       document.querySelectorAll('.defesa-content').forEach(c => {
         c.classList.toggle('active', c.id === id);
       });
+      document.querySelectorAll('.side-nav-list').forEach(l => {
+        l.style.display = l.id === 'nav-' + id ? '' : 'none';
+      });
+      updateActiveNav();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    function updateActiveNav() {
+      const active = document.querySelector('.defesa-content.active');
+      if (!active) return;
+      const links = document.querySelectorAll('.side-nav-list:not([style*="none"]) a');
+      let current = null;
+      active.querySelectorAll('.nav-anchor[id]').forEach(a => {
+        if (a.getBoundingClientRect().top <= 80) current = a.id;
+      });
+      links.forEach(l => {
+        const href = l.getAttribute('href').replace('#', '');
+        l.classList.toggle('is-active', href === current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    document.addEventListener('DOMContentLoaded', updateActiveNav);
 
     function toggleHeuristic(btn) {
       const section = btn.closest('.heuristic-section');
