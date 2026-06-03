@@ -4886,6 +4886,18 @@
         return i >= 0 ? 't' + i : null;
       }
 
+      // ── Converte criterion (q1d1c1) → chave semântica (q1_d1_rtg_c1) ──────
+      function ratingKey(c) {
+        const m = c.match(/^(q\d+)(d\d+)(c\d+)$/);
+        return m ? m[1] + '_' + m[2] + '_rtg_' + m[3] : 'rtg_' + c;
+      }
+
+      // ── Converte radio name (q1d1-status) → chave semântica (q1_d1_status) ─
+      function statusKey(name) {
+        const m = name.match(/^(q\d+)(d\d+)-status$/);
+        return m ? m[1] + '_' + m[2] + '_status' : 'status_' + name;
+      }
+
       // ── Restore UI from data object ───────────────────────────────────────
       function restore(data) {
         document.querySelectorAll('input[type="text"]').forEach(el => {
@@ -4895,12 +4907,18 @@
         document.querySelectorAll('.status-option').forEach(opt => {
           const inp = opt.querySelector('input[type="radio"]');
           if (!inp) return;
-          if (data['r_' + inp.name + '_' + inp.value]) opt.click();
+          if (data[statusKey(inp.name)] === inp.value) {
+            inp.checked = true;
+            opt.closest('.res-card-body')
+              ?.querySelectorAll('.status-option')
+              .forEach(o => o.classList.remove('is-selected'));
+            opt.classList.add('is-selected');
+          }
         });
         document.querySelectorAll('.rating-buttons').forEach(group => {
           const c = group.dataset.criterion;
           if (!c) return;
-          const val = data['rtg_' + c];
+          const val = data[ratingKey(c)];
           if (!val) return;
           group.querySelectorAll('.rating-btn').forEach(btn => {
             if (btn.dataset.val === val) {
@@ -4951,10 +4969,7 @@
         opt.addEventListener('click', function() {
           const inp = opt.querySelector('input[type="radio"]');
           if (!inp) return;
-          document.querySelectorAll('input[name="' + inp.name + '"]').forEach(r => {
-            saveField('r_' + r.name + '_' + r.value, '');
-          });
-          saveField('r_' + inp.name + '_' + inp.value, '1');
+          saveField(statusKey(inp.name), inp.value);
         }, true);
       });
 
@@ -4963,7 +4978,7 @@
           btn.addEventListener('click', function() {
             const c = group.dataset.criterion;
             if (!c) return;
-            saveField('rtg_' + c, btn.dataset.val);
+            saveField(ratingKey(c), btn.dataset.val);
           }, true);
         });
       });
