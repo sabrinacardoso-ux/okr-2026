@@ -4568,6 +4568,7 @@
     <img class="lightbox-img" id="lightbox-img" alt="" onclick="event.stopPropagation()">
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
     function openBenchmarkModal() {
       document.getElementById('benchmark-modal').classList.add('is-open');
@@ -4843,86 +4844,102 @@
       selectQuarterContent('q1');
     })();
 
-    // ─── Persistência (localStorage) ────────────────────────────────────────
+    // ─── Persistência (Supabase + localStorage fallback) ────────────────────
     (function initPersistence() {
-      const STORE = 'okr2026_persist';
+      const SB_URL = 'https://zzvavuohwqwtufucmokb.supabase.co';
+      const SB_KEY = 'sb_publishable_k2OpT5Vr0_gSL8ZtHBEicA_TPhG-7Ah';
+      const TABLE  = 'okr_fields';
+      const LSKEY  = 'okr2026_persist';
 
-      function load() {
-        try { return JSON.parse(localStorage.getItem(STORE) || '{}'); }
-        catch { return {}; }
+      const sb = window.supabase ? window.supabase.createClient(SB_URL, SB_KEY) : null;
+
+      // ── localStorage helpers ──────────────────────────────────────────────
+      function lsLoad() {
+        try { return JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch { return {}; }
       }
-      function save(d) {
-        try { localStorage.setItem(STORE, JSON.stringify(d)); }
-        catch {}
+      function lsSave(d) {
+        try { localStorage.setItem(LSKEY, JSON.stringify(d)); } catch {}
       }
 
-      // Stable key for text inputs based on document position
+      // ── Supabase helpers ──────────────────────────────────────────────────
+      async function sbLoad() {
+        if (!sb) return null;
+        try {
+          const { data, error } = await sb.from(TABLE).select('key,value');
+          if (error) throw error;
+          const obj = {};
+          data.forEach(r => { obj[r.key] = r.value; });
+          return obj;
+        } catch { return null; }
+      }
+
+      function sbSave(key, value) {
+        if (!sb) return;
+        sb.from(TABLE).upsert({ key, value }, { onConflict: 'key' }).then(() => {});
+      }
+
+      // ── Stable key for text inputs by DOM position ────────────────────────
       function textKey(el) {
         const all = Array.from(document.querySelectorAll('input[type="text"]'));
         const i = all.indexOf(el);
         return i >= 0 ? 't' + i : null;
       }
 
-      // ── Restore ─────────────────────────────────────────────────────────
-      const data = load();
-
-      // Text inputs
-      document.querySelectorAll('input[type="text"]').forEach(el => {
-        const k = textKey(el);
-        if (k && data[k] !== undefined) el.value = data[k];
-      });
-
-      // Radio / status-option
-      document.querySelectorAll('.status-option').forEach(opt => {
-        const inp = opt.querySelector('input[type="radio"]');
-        if (!inp) return;
-        if (data['r_' + inp.name + '_' + inp.value]) opt.click();
-      });
-
-      // Rating buttons
-      document.querySelectorAll('.rating-buttons').forEach(group => {
-        const c = group.dataset.criterion;
-        if (!c) return;
-        group.querySelectorAll('.rating-btn').forEach(btn => {
-          if (data['rtg_' + c + '_' + btn.dataset.val]) btn.click();
+      // ── Restore UI from data object ───────────────────────────────────────
+      function restore(data) {
+        document.querySelectorAll('input[type="text"]').forEach(el => {
+          const k = textKey(el);
+          if (k && data[k] !== undefined) el.value = data[k];
         });
-      });
+        document.querySelectorAll('.status-option').forEach(opt => {
+          const inp = opt.querySelector('input[type="radio"]');
+          if (!inp) return;
+          if (data['r_' + inp.name + '_' + inp.value]) opt.click();
+        });
+        document.querySelectorAll('.rating-buttons').forEach(group => {
+          const c = group.dataset.criterion;
+          if (!c) return;
+          group.querySelectorAll('.rating-btn').forEach(btn => {
+            if (data['rtg_' + c + '_' + btn.dataset.val]) btn.click();
+          });
+        });
+      }
 
-      // ── Save on interaction ──────────────────────────────────────────────
+      // ── Boot: Supabase first, localStorage fallback ───────────────────────
+      sbLoad().then(data => restore(data || lsLoad()));
 
-      // Text inputs — save on every keystroke
+      // ── Persist helper ────────────────────────────────────────────────────
+      function saveField(key, value) {
+        const d = lsLoad(); d[key] = value; lsSave(d);
+        sbSave(key, value);
+      }
+
+      // ── Event listeners ───────────────────────────────────────────────────
       document.addEventListener('input', function(e) {
         const el = e.target;
         if (el.tagName !== 'INPUT' || el.type !== 'text') return;
         const k = textKey(el);
-        if (!k) return;
-        const d = load(); d[k] = el.value; save(d);
+        if (k) saveField(k, el.value);
       });
 
-      // Status-option radios
       document.querySelectorAll('.status-option').forEach(opt => {
         opt.addEventListener('click', function() {
           const inp = opt.querySelector('input[type="radio"]');
           if (!inp) return;
-          const d = load();
           document.querySelectorAll('input[name="' + inp.name + '"]').forEach(r => {
-            delete d['r_' + r.name + '_' + r.value];
+            saveField('r_' + r.name + '_' + r.value, '');
           });
-          d['r_' + inp.name + '_' + inp.value] = true;
-          save(d);
+          saveField('r_' + inp.name + '_' + inp.value, '1');
         }, true);
       });
 
-      // Rating buttons
       document.querySelectorAll('.rating-buttons').forEach(group => {
         group.querySelectorAll('.rating-btn').forEach(btn => {
           btn.addEventListener('click', function() {
             const c = group.dataset.criterion;
             if (!c) return;
-            const d = load();
-            group.querySelectorAll('.rating-btn').forEach(b => delete d['rtg_' + c + '_' + b.dataset.val]);
-            d['rtg_' + c + '_' + btn.dataset.val] = true;
-            save(d);
+            group.querySelectorAll('.rating-btn').forEach(b => saveField('rtg_' + c + '_' + b.dataset.val, ''));
+            saveField('rtg_' + c + '_' + btn.dataset.val, '1');
           }, true);
         });
       });
