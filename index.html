@@ -4889,7 +4889,7 @@
       // ── Converte criterion (q1d1c1) → chave semântica (q1_d1_rtg_c1) ──────
       function ratingKey(c) {
         const m = c.match(/^(q\d+)(d\d+)(c\d+)$/);
-        return m ? m[1] + '_' + m[2] + '_rtg_' + m[3] : 'rtg_' + c;
+        return m ? m[1] + '_' + m[2] + '_aval_' + m[3] : 'aval_' + c;
       }
 
       // ── Converte radio name (q1d1-status) → chave semântica (q1_d1_status) ─
