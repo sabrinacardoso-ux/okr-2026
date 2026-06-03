@@ -4905,8 +4905,24 @@
         });
       }
 
-      // ── Boot: Supabase first, localStorage fallback ───────────────────────
-      sbLoad().then(data => restore(data || lsLoad()));
+      // ── Boot: Supabase first; se vazio, migra localStorage ───────────────
+      sbLoad().then(sbData => {
+        const lsData = lsLoad();
+        if (sbData && Object.keys(sbData).length > 0) {
+          restore(sbData);
+        } else {
+          restore(lsData);
+          // Migra localStorage → Supabase na primeira vez
+          if (sb && Object.keys(lsData).length > 0) {
+            const rows = Object.entries(lsData)
+              .filter(([, v]) => v !== false && v !== undefined && v !== null)
+              .map(([key, value]) => ({ key, value: value === true ? '1' : String(value) }));
+            if (rows.length > 0) {
+              sb.from(TABLE).upsert(rows, { onConflict: 'key' }).then(() => {});
+            }
+          }
+        }
+      });
 
       // ── Persist helper ────────────────────────────────────────────────────
       function saveField(key, value) {
