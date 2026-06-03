@@ -4900,9 +4900,10 @@
         document.querySelectorAll('.rating-buttons').forEach(group => {
           const c = group.dataset.criterion;
           if (!c) return;
+          const val = data['rtg_' + c];
+          if (!val) return;
           group.querySelectorAll('.rating-btn').forEach(btn => {
-            if (data['rtg_' + c + '_' + btn.dataset.val] === '1') {
-              // Restaura visual diretamente, sem acionar o listener de save
+            if (btn.dataset.val === val) {
               group.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('is-active'));
               btn.classList.add('is-active');
               if (typeof updateNotaFinal === 'function') {
@@ -4962,12 +4963,7 @@
           btn.addEventListener('click', function() {
             const c = group.dataset.criterion;
             if (!c) return;
-            // Salva o selecionado PRIMEIRO (evita race condition)
-            saveField('rtg_' + c + '_' + btn.dataset.val, '1');
-            // Depois limpa os demais
-            group.querySelectorAll('.rating-btn').forEach(b => {
-              if (b !== btn) saveField('rtg_' + c + '_' + b.dataset.val, '');
-            });
+            saveField('rtg_' + c, btn.dataset.val);
           }, true);
         });
       });
