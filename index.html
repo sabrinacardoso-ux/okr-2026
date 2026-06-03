@@ -4901,7 +4901,14 @@
           const c = group.dataset.criterion;
           if (!c) return;
           group.querySelectorAll('.rating-btn').forEach(btn => {
-            if (data['rtg_' + c + '_' + btn.dataset.val]) btn.click();
+            if (data['rtg_' + c + '_' + btn.dataset.val] === '1') {
+              // Restaura visual diretamente, sem acionar o listener de save
+              group.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('is-active'));
+              btn.classList.add('is-active');
+              if (typeof updateNotaFinal === 'function') {
+                updateNotaFinal(btn.closest('.defesa-content'));
+              }
+            }
           });
         });
       }
@@ -4955,8 +4962,12 @@
           btn.addEventListener('click', function() {
             const c = group.dataset.criterion;
             if (!c) return;
-            group.querySelectorAll('.rating-btn').forEach(b => saveField('rtg_' + c + '_' + b.dataset.val, ''));
+            // Salva o selecionado PRIMEIRO (evita race condition)
             saveField('rtg_' + c + '_' + btn.dataset.val, '1');
+            // Depois limpa os demais
+            group.querySelectorAll('.rating-btn').forEach(b => {
+              if (b !== btn) saveField('rtg_' + c + '_' + b.dataset.val, '');
+            });
           }, true);
         });
       });
