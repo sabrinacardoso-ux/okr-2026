@@ -4842,6 +4842,91 @@
       document.getElementById('okr-view').style.display = '';
       selectQuarterContent('q1');
     })();
+
+    // ─── Persistência (localStorage) ────────────────────────────────────────
+    (function initPersistence() {
+      const STORE = 'okr2026_persist';
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem(STORE) || '{}'); }
+        catch { return {}; }
+      }
+      function save(d) {
+        try { localStorage.setItem(STORE, JSON.stringify(d)); }
+        catch {}
+      }
+
+      // Stable key for text inputs based on document position
+      function textKey(el) {
+        const all = Array.from(document.querySelectorAll('input[type="text"]'));
+        const i = all.indexOf(el);
+        return i >= 0 ? 't' + i : null;
+      }
+
+      // ── Restore ─────────────────────────────────────────────────────────
+      const data = load();
+
+      // Text inputs
+      document.querySelectorAll('input[type="text"]').forEach(el => {
+        const k = textKey(el);
+        if (k && data[k] !== undefined) el.value = data[k];
+      });
+
+      // Radio / status-option
+      document.querySelectorAll('.status-option').forEach(opt => {
+        const inp = opt.querySelector('input[type="radio"]');
+        if (!inp) return;
+        if (data['r_' + inp.name + '_' + inp.value]) opt.click();
+      });
+
+      // Rating buttons
+      document.querySelectorAll('.rating-buttons').forEach(group => {
+        const c = group.dataset.criterion;
+        if (!c) return;
+        group.querySelectorAll('.rating-btn').forEach(btn => {
+          if (data['rtg_' + c + '_' + btn.dataset.val]) btn.click();
+        });
+      });
+
+      // ── Save on interaction ──────────────────────────────────────────────
+
+      // Text inputs — save on every keystroke
+      document.addEventListener('input', function(e) {
+        const el = e.target;
+        if (el.tagName !== 'INPUT' || el.type !== 'text') return;
+        const k = textKey(el);
+        if (!k) return;
+        const d = load(); d[k] = el.value; save(d);
+      });
+
+      // Status-option radios
+      document.querySelectorAll('.status-option').forEach(opt => {
+        opt.addEventListener('click', function() {
+          const inp = opt.querySelector('input[type="radio"]');
+          if (!inp) return;
+          const d = load();
+          document.querySelectorAll('input[name="' + inp.name + '"]').forEach(r => {
+            delete d['r_' + r.name + '_' + r.value];
+          });
+          d['r_' + inp.name + '_' + inp.value] = true;
+          save(d);
+        }, true);
+      });
+
+      // Rating buttons
+      document.querySelectorAll('.rating-buttons').forEach(group => {
+        group.querySelectorAll('.rating-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const c = group.dataset.criterion;
+            if (!c) return;
+            const d = load();
+            group.querySelectorAll('.rating-btn').forEach(b => delete d['rtg_' + c + '_' + b.dataset.val]);
+            d['rtg_' + c + '_' + btn.dataset.val] = true;
+            save(d);
+          }, true);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
