@@ -1308,71 +1308,6 @@
     }
     .nota-range { opacity: 0.6; }
 
-    /* ── Anexos e Referências ──────────────────────────────────── */
-    .annexes-card {
-      background: #fff;
-      border: 0.8px solid #ececec;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    .annex-row {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 0 22.5px;
-      height: 78px;
-      border-bottom: 0.8px solid #ececec;
-    }
-    .annex-row:last-child { border-bottom: none; }
-    .annex-row-info {
-      width: 180px;
-      flex-shrink: 0;
-    }
-    .annex-row-title {
-      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      color: #1f1f1f;
-      display: block;
-    }
-    .annex-row-sub {
-      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
-      font-size: 14px;
-      color: #505050;
-      display: block;
-    }
-    .annex-row-input-wrap {
-      flex: 1;
-      background: #fafafa;
-      border: 0.8px solid #f2f2f2;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 0 14.3px;
-      height: 40px;
-      min-width: 0;
-    }
-    .annex-arrow {
-      font-size: 14px;
-      color: #505050;
-      flex-shrink: 0;
-    }
-    .annex-input {
-      flex: 1;
-      border: none;
-      border-bottom: 0.8px dashed #505050;
-      outline: none;
-      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
-      font-size: 14px;
-      color: #1f1f1f;
-      background: transparent;
-      padding: 2px 0;
-      min-width: 0;
-    }
-    .annex-input:focus { border-bottom-color: #d64000; }
-
     /* Comment field */
     .comment-field {
       background: #fafafa;
@@ -2424,7 +2359,6 @@
                 <li class="side-nav-item"><a href="#q2d1-resultado">Resultado</a></li>
                 <li class="side-nav-item"><a href="#q2d1-aprendizados">Aprendizados</a></li>
                 <li class="side-nav-item"><a href="#q2d1-avaliacao">Avaliação de Qualidade</a></li>
-                <li class="side-nav-item"><a href="#q2d1-anexos">Anexos e Referências</a></li>
               </ul>
               <ul class="side-nav-list" id="nav-q2-2" style="display:none">
                 <li class="side-nav-item"><a href="#q2d2-decisao">Decisão em Questão</a></li>
@@ -2436,7 +2370,6 @@
                 <li class="side-nav-item"><a href="#q2d2-resultado">Resultado</a></li>
                 <li class="side-nav-item"><a href="#q2d2-aprendizados">Aprendizados</a></li>
                 <li class="side-nav-item"><a href="#q2d2-avaliacao">Avaliação de Qualidade</a></li>
-                <li class="side-nav-item"><a href="#q2d2-anexos">Anexos e Referências</a></li>
               </ul>
               <ul class="side-nav-list" id="nav-q2-3" style="display:none">
                 <li class="side-nav-item"><a href="#q2d3-decisao">Decisão em Questão</a></li>
@@ -2448,7 +2381,6 @@
                 <li class="side-nav-item"><a href="#q2d3-resultado">Resultado</a></li>
                 <li class="side-nav-item"><a href="#q2d3-aprendizados">Aprendizados</a></li>
                 <li class="side-nav-item"><a href="#q2d3-avaliacao">Avaliação de Qualidade</a></li>
-                <li class="side-nav-item"><a href="#q2d3-anexos">Anexos e Referências</a></li>
               </ul>
             </nav>
             <div class="main-content">
@@ -2608,11 +2540,6 @@
                   <span id="q2d1-avaliacao" class="nav-anchor"></span>
                   <div class="section-tag">Avaliação de Qualidade</div>
                   <div class="eval-card"><div class="eval-card-header"><span class="eval-header-title">Avaliação de Qualidade</span><div class="eval-header-right"><span class="eval-header-context">Argumentação</span></div></div><div class="eval-card-body"><div class="eval-meta-row"><div class="eval-meta-field"><span class="eval-meta-label">Avaliador</span><input class="eval-meta-input" type="text" placeholder="" data-persist-key="q2_d1_aval_nome"></div><div class="eval-meta-field"><span class="eval-meta-label">Data</span><input class="eval-meta-input" type="text" placeholder="" style="width:110px" data-persist-key="q2_d1_aval_data"></div></div><div class="rating-table"><div class="rating-row"><span class="rating-label">Completude (3 pilares presentes)</span><div class="rating-buttons" data-criterion="q2d1c1"><button class="rating-btn" type="button" data-val="1">1</button><button class="rating-btn" type="button" data-val="2">2</button><button class="rating-btn" type="button" data-val="3">3</button><button class="rating-btn" type="button" data-val="4">4</button><button class="rating-btn" type="button" data-val="5">5</button></div></div><div class="rating-row"><span class="rating-label">Qualidade dos dados</span><div class="rating-buttons" data-criterion="q2d1c2"><button class="rating-btn" type="button" data-val="1">1</button><button class="rating-btn" type="button" data-val="2">2</button><button class="rating-btn" type="button" data-val="3">3</button><button class="rating-btn" type="button" data-val="4">4</button><button class="rating-btn" type="button" data-val="5">5</button></div></div><div class="rating-row"><span class="rating-label">Pensamento crítico (trade-offs)</span><div class="rating-buttons" data-criterion="q2d1c3"><button class="rating-btn" type="button" data-val="1">1</button><button class="rating-btn" type="button" data-val="2">2</button><button class="rating-btn" type="button" data-val="3">3</button><button class="rating-btn" type="button" data-val="4">4</button><button class="rating-btn" type="button" data-val="5">5</button></div></div><div class="rating-row"><span class="rating-label">Clareza da apresentação</span><div class="rating-buttons" data-criterion="q2d1c4"><button class="rating-btn" type="button" data-val="1">1</button><button class="rating-btn" type="button" data-val="2">2</button><button class="rating-btn" type="button" data-val="3">3</button><button class="rating-btn" type="button" data-val="4">4</button><button class="rating-btn" type="button" data-val="5">5</button></div></div><div class="rating-row"><span class="rating-label">Impacto na decisão</span><div class="rating-buttons" data-criterion="q2d1c5"><button class="rating-btn" type="button" data-val="1">1</button><button class="rating-btn" type="button" data-val="2">2</button><button class="rating-btn" type="button" data-val="3">3</button><button class="rating-btn" type="button" data-val="4">4</button><button class="rating-btn" type="button" data-val="5">5</button></div></div></div><div class="nota-final-bar"><span class="nota-final-label">Nota Final</span><span class="nota-final-value">&mdash; / 5.0</span></div></div></div>
-                  <div style="margin-top:32px;padding-top:24px;border-top:1px solid #f2f2f2;">
-                    <span id="q2d1-anexos" class="nav-anchor"></span>
-                    <div class="section-tag" style="margin-bottom:18px;">Anexos e Referências</div>
-                    <div class="annexes-card"><div class="annex-row"><div class="annex-row-info"><span class="annex-row-title">Link do Figma</span><span class="annex-row-sub">Design / protótipos</span></div><div class="annex-row-input-wrap"><span class="annex-arrow">&#8599;</span><input class="annex-input" type="text" placeholder="" data-persist-key="q2_d1_anx_figma"></div></div><div class="annex-row"><div class="annex-row-info"><span class="annex-row-title">Relatório de Pesquisa</span><span class="annex-row-sub">Dados qualitativos</span></div><div class="annex-row-input-wrap"><span class="annex-arrow">&#8599;</span><input class="annex-input" type="text" placeholder="" data-persist-key="q2_d1_anx_pesq"></div></div><div class="annex-row"><div class="annex-row-info"><span class="annex-row-title">Dashboard Analytics</span><span class="annex-row-sub">Dados quantitativos</span></div><div class="annex-row-input-wrap"><span class="annex-arrow">&#8599;</span><input class="annex-input" type="text" placeholder="" data-persist-key="q2_d1_anx_anal"></div></div><div class="annex-row"><div class="annex-row-info"><span class="annex-row-title">Apresentação</span><span class="annex-row-sub">Stakeholders</span></div><div class="annex-row-input-wrap"><span class="annex-arrow">&#8599;</span><input class="annex-input" type="text" placeholder="" data-persist-key="q2_d1_anx_apres"></div></div><div class="annex-row"><div class="annex-row-info"><span class="annex-row-title">Outros documentos</span><span class="annex-row-sub">Referências extras</span></div><div class="annex-row-input-wrap"><span class="annex-arrow">&#8599;</span><input class="annex-input" type="text" placeholder="" data-persist-key="q2_d1_anx_outr"></div></div></div>
-                  </div>
                 </div>
 
               </div><!-- /defesa-q2-1 -->
@@ -2632,7 +2559,7 @@
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d2-backup" class="nav-anchor"></span><div class="section-tag">Histórico de Iterações</div><div class="info-card is-gray"><div class="info-card-header"><span class="info-card-label">Histórico de Iterações</span></div><div class="info-card-body"><p class="kr-text-pending">—</p></div></div></div>
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d2-resultado" class="nav-anchor"></span><div class="section-tag">Resultado</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d2-aprendizados" class="nav-anchor"></span><div class="section-tag">Aprendizados</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
-                <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d2-avaliacao" class="nav-anchor"></span><div class="section-tag">Avaliação de Qualidade</div><p class="kr-text-pending" style="padding:8px 0">—</p><span id="q2d2-anexos" class="nav-anchor"></span></div>
+                <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d2-avaliacao" class="nav-anchor"></span><div class="section-tag">Avaliação de Qualidade</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
               </div><!-- /defesa-q2-2 -->
 
               <!-- ══ Q2 DEFESA 3 ══ -->
@@ -2650,7 +2577,7 @@
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d3-backup" class="nav-anchor"></span><div class="section-tag">Histórico de Iterações</div><div class="info-card is-gray"><div class="info-card-header"><span class="info-card-label">Histórico de Iterações</span></div><div class="info-card-body"><p class="kr-text-pending">—</p></div></div></div>
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d3-resultado" class="nav-anchor"></span><div class="section-tag">Resultado</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d3-aprendizados" class="nav-anchor"></span><div class="section-tag">Aprendizados</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
-                <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d3-avaliacao" class="nav-anchor"></span><div class="section-tag">Avaliação de Qualidade</div><p class="kr-text-pending" style="padding:8px 0">—</p><span id="q2d3-anexos" class="nav-anchor"></span></div>
+                <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;"><span id="q2d3-avaliacao" class="nav-anchor"></span><div class="section-tag">Avaliação de Qualidade</div><p class="kr-text-pending" style="padding:8px 0">—</p></div>
               </div><!-- /defesa-q2-3 -->
 
             </div><!-- /main-content -->
@@ -2754,7 +2681,6 @@
         <li class="side-nav-item"><a href="#d1-resultado">Resultado</a></li>
         <li class="side-nav-item"><a href="#d1-aprendizados">Aprendizados</a></li>
         <li class="side-nav-item"><a href="#d1-avaliacao">Avaliação de Qualidade</a></li>
-        <li class="side-nav-item"><a href="#d1-anexos">Anexos e Referências</a></li>
       </ul>
       <ul class="side-nav-list" id="nav-defesa-2" style="display:none">
         <li class="side-nav-item"><a href="#d2-decisao">Decisão em Questão</a></li>
@@ -2766,7 +2692,6 @@
         <li class="side-nav-item"><a href="#d2-resultado">Resultado</a></li>
         <li class="side-nav-item"><a href="#d2-aprendizados">Aprendizados</a></li>
         <li class="side-nav-item"><a href="#d2-avaliacao">Avaliação de Qualidade</a></li>
-        <li class="side-nav-item"><a href="#d2-anexos">Anexos e Referências</a></li>
       </ul>
       <ul class="side-nav-list" id="nav-defesa-3" style="display:none">
         <li class="side-nav-item"><a href="#d3-decisao">Decisão em Questão</a></li>
@@ -2778,7 +2703,6 @@
         <li class="side-nav-item"><a href="#d3-resultado">Resultado</a></li>
         <li class="side-nav-item"><a href="#d3-aprendizados">Aprendizados</a></li>
         <li class="side-nav-item"><a href="#d3-avaliacao">Avaliação de Qualidade</a></li>
-        <li class="side-nav-item"><a href="#d3-anexos">Anexos e Referências</a></li>
       </ul>
     </nav>
 
@@ -3283,63 +3207,6 @@
           </div>
         </div>
 
-        <!-- Anexos e Referências -->
-        <div style="margin-top:32px;padding-top:24px;border-top:1px solid #f2f2f2;">
-          <span id="d1-anexos" class="nav-anchor"></span>
-          <div class="section-tag" style="margin-bottom:18px;">Anexos e Referências</div>
-          <div class="annexes-card">
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Link do Figma</span>
-                <span class="annex-row-sub">Design / protótipos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d1_anx_figma">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Relatório de Pesquisa</span>
-                <span class="annex-row-sub">Dados qualitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d1_anx_pesq">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Dashboard Analytics</span>
-                <span class="annex-row-sub">Dados quantitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d1_anx_anal">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Apresentação</span>
-                <span class="annex-row-sub">Stakeholders</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d1_anx_apres">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Outros documentos</span>
-                <span class="annex-row-sub">Referências extras</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d1_anx_outr">
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -3809,63 +3676,6 @@
           </div>
         </div>
 
-        <!-- Anexos e Referências -->
-        <div style="margin-top:32px;padding-top:24px;border-top:1px solid #f2f2f2;">
-          <span id="d2-anexos" class="nav-anchor"></span>
-          <div class="section-tag" style="margin-bottom:18px;">Anexos e Referências</div>
-          <div class="annexes-card">
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Link do Figma</span>
-                <span class="annex-row-sub">Design / protótipos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d2_anx_figma">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Relatório de Pesquisa</span>
-                <span class="annex-row-sub">Dados qualitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d2_anx_pesq">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Dashboard Analytics</span>
-                <span class="annex-row-sub">Dados quantitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d2_anx_anal">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Apresentação</span>
-                <span class="annex-row-sub">Stakeholders</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d2_anx_apres">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Outros documentos</span>
-                <span class="annex-row-sub">Referências extras</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d2_anx_outr">
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -4307,63 +4117,6 @@
           </div>
         </div>
 
-        <!-- Anexos e Referências -->
-        <div style="margin-top:32px;padding-top:24px;border-top:1px solid #f2f2f2;">
-          <span id="d3-anexos" class="nav-anchor"></span>
-          <div class="section-tag" style="margin-bottom:18px;">Anexos e Referências</div>
-          <div class="annexes-card">
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Link do Figma</span>
-                <span class="annex-row-sub">Design / protótipos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d3_anx_figma">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Relatório de Pesquisa</span>
-                <span class="annex-row-sub">Dados qualitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d3_anx_pesq">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Dashboard Analytics</span>
-                <span class="annex-row-sub">Dados quantitativos</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d3_anx_anal">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Apresentação</span>
-                <span class="annex-row-sub">Stakeholders</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d3_anx_apres">
-              </div>
-            </div>
-            <div class="annex-row">
-              <div class="annex-row-info">
-                <span class="annex-row-title">Outros documentos</span>
-                <span class="annex-row-sub">Referências extras</span>
-              </div>
-              <div class="annex-row-input-wrap">
-                <span class="annex-arrow">&#8599;</span>
-                <input class="annex-input" type="text" placeholder="" data-persist-key="q1_d3_anx_outr">
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
 
@@ -5033,8 +4786,9 @@
     (function initPersistence() {
       const SB_URL = 'https://zzvavuohwqwtufucmokb.supabase.co';
       const SB_KEY = 'sb_publishable_k2OpT5Vr0_gSL8ZtHBEicA_TPhG-7Ah';
-      const TABLE  = 'okr_fields';
-      const LSKEY  = 'okr2026_persist';
+      const TABLE   = 'okr_fields';
+      const HISTORY = 'okr_fields_history';
+      const LSKEY   = 'okr2026_persist';
 
       const sb = window.supabase ? window.supabase.createClient(SB_URL, SB_KEY) : null;
 
@@ -5061,6 +4815,11 @@
       function sbSave(key, value) {
         if (!sb) return;
         sb.from(TABLE).upsert({ key, value }, { onConflict: 'key' }).then(() => {});
+      }
+
+      function sbHistory(key, value) {
+        if (!sb || value === '' || value === null || value === undefined) return;
+        sb.from(HISTORY).insert({ key, value }).then(() => {});
       }
 
       // ── Stable key for text inputs (data-persist-key preferred) ─────────
@@ -5150,11 +4909,19 @@
         if (k) saveField(k, el.value);
       });
 
+      document.addEventListener('blur', function(e) {
+        const el = e.target;
+        if (el.tagName !== 'INPUT' || el.type !== 'text') return;
+        const k = textKey(el);
+        if (k && el.value !== '') sbHistory(k, el.value);
+      }, true);
+
       document.querySelectorAll('.status-option').forEach(opt => {
         opt.addEventListener('click', function() {
           const inp = opt.querySelector('input[type="radio"]');
           if (!inp) return;
           saveField(statusKey(inp.name), inp.value);
+          sbHistory(statusKey(inp.name), inp.value);
         }, true);
       });
 
@@ -5164,6 +4931,7 @@
             const c = group.dataset.criterion;
             if (!c) return;
             saveField(ratingKey(c), btn.dataset.val);
+            sbHistory(ratingKey(c), btn.dataset.val);
           }, true);
         });
       });
