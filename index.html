@@ -2904,85 +2904,60 @@
           </svg>
           <span class="heuristic-header-title">Heurísticas</span>
           <span id="d2-heuristicas" class="nav-anchor"></span>
-          <span class="heuristic-count">8</span>
+          <span class="heuristic-count">5</span>
         </button>
         <div class="heuristic-body">
 
           <div class="heuristic-panel">
             <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">1. Lorem ipsum dolor sit amet</h4>
+              <h4 class="heuristic-panel-title">1. Prevenção de erros</h4>
+              <span class="heuristic-meta">Campos condicionais reduzem entradas desnecessárias</span>
             </div>
             <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p>O formulário exibe campos adicionais — quantidade de dias, datas de encerramento e prorrogação — somente quando o usuário seleciona uma modalidade de prazo determinado. Campos pré-preenchidos como Código e Matrícula eSocial têm ícone de edição explícito, protegendo contra alterações acidentais.</p>
+              <p>Ponto de atenção: "Data final do contrato" e "Data final da prorrogação" poderiam ser calculadas automaticamente a partir dos dias informados, eliminando a possibilidade de inconsistência entre os dois campos.</p>
             </div>
           </div>
 
           <div class="heuristic-panel">
             <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">2. Consectetur adipiscing elit</h4>
+              <h4 class="heuristic-panel-title">2. Eficiência de uso</h4>
+              <span class="heuristic-meta">Wizard em 4 etapas divide a complexidade do cadastro</span>
             </div>
             <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <p>A estrutura em 4 passos (Contratação → Vínculos → Salário → Benefícios) distribui um cadastro complexo em etapas focadas. A divulgação progressiva de campos por modalidade evita apresentar informações irrelevantes ao usuário.</p>
+              <p>Oportunidade: filtrar o campo "Categoria" com base no "Vínculo empregatício" selecionado — por exemplo, "Celetista teletrabalho" deveria restringir as categorias compatíveis — reduziria o esforço de decisão e o risco de combinações inválidas.</p>
             </div>
           </div>
 
           <div class="heuristic-panel">
             <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">3. Sed do eiusmod tempor incididunt</h4>
+              <h4 class="heuristic-panel-title">3. Reconhecimento em vez de lembrança</h4>
+              <span class="heuristic-meta">Referências legais e ícones de contexto apoiam o usuário</span>
             </div>
             <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ação "Lorem ipsum" visível para descartar itens.</p>
-              <p>Link "Consectetur adipiscing" permite construir regras de forma incremental.</p>
+              <p>Código e Matrícula eSocial chegam pré-preenchidos, eliminando a necessidade de consulta externa. O toggle de estabilidade cita diretamente o art. 479/480 da CLT no próprio rótulo — o usuário reconhece o contexto legal sem precisar lembrá-lo. Os ícones ⓘ nos campos "Prazo vinculado a um objeto determinante" e no toggle disponibilizam ajuda contextual sob demanda.</p>
             </div>
           </div>
 
           <div class="heuristic-panel">
             <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">4. Ut labore et dolore magna aliqua</h4>
+              <h4 class="heuristic-panel-title">4. Correspondência entre o sistema e o mundo real</h4>
+              <span class="heuristic-meta">Nomenclatura alinhada ao eSocial e à CLT</span>
             </div>
             <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Padrões de formulário coesos: campos alinhados, listas com "Selecione…".</p>
-              <p>Indicação de campo obrigatório com "*" para os campos principais.</p>
+              <p>Rótulos como "Matrícula eSocial", "Tipo de admissão", "Indicativo" e as modalidades de contrato ("Indeterminado", "Contrato de experiência", "Contrato com prazo determinado") espelham a nomenclatura dos documentos oficiais e do leiaute do eSocial. Essa correspondência reduz o esforço de tradução para o contador, que já opera com esses termos no dia a dia.</p>
             </div>
           </div>
 
           <div class="heuristic-panel">
             <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">5. Ut enim ad minim veniam</h4>
+              <h4 class="heuristic-panel-title">5. Feedback visível</h4>
+              <span class="heuristic-meta">Stepper e estados comunicam o progresso da etapa</span>
             </div>
             <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Uso de dropdown evita valores inválidos.</p>
-              <p>Campos numéricos separados reduzem ambiguidade de entrada.</p>
-            </div>
-          </div>
-
-          <div class="heuristic-panel">
-            <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">6. Quis nostrud exercitation ullamco</h4>
-            </div>
-            <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholders e rótulos explícitos reduzem carga de memória.</p>
-              <p>Opção de configuração como checkbox torna a regra explícita, sem exigir lembrar configurações escondidas.</p>
-            </div>
-          </div>
-
-          <div class="heuristic-panel">
-            <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">7. Lorem ipsum estética e design</h4>
-            </div>
-            <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Boa hierarquia visual, espaçamento e poucos elementos concorrendo pela atenção.</p>
-            </div>
-          </div>
-
-          <div class="heuristic-panel">
-            <div class="heuristic-panel-header">
-              <h4 class="heuristic-panel-title">8. Duis aute irure dolor (parcial)</h4>
-            </div>
-            <div class="heuristic-panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Separação por seções e controles discretos facilitam localizar onde ajustar.</p>
+              <p>O indicador de etapas mostra "Em andamento" para a etapa atual e "Pendente" para as seguintes, dando ao usuário clareza sobre sua posição no fluxo. O toggle verde com ícone de check comunica seu estado ativo de forma inequívoca.</p>
+              <p>Ponto de atenção: não há resumo de campos obrigatórios pendentes antes de "Avançar" — uma validação em linha ou sumário ao clicar ajudaria o usuário a entender o que ainda precisa ser preenchido sem percorrer o formulário novamente.</p>
             </div>
           </div>
 
