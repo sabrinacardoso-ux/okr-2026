@@ -847,6 +847,7 @@
     .status-option.is-red    { background: rgba(220,10,10,0.04);  border-color: rgba(220,10,10,0.15); }
     .status-option.is-gray   { background: rgba(80,80,80,0.04);   border-color: rgba(80,80,80,0.14); }
     .status-option.is-blue   { background: rgba(21,115,211,0.05); border-color: rgba(21,115,211,0.20); }
+    .status-option.is-purple { background: rgba(120,60,200,0.05); border-color: rgba(120,60,200,0.20); }
     .status-option input[type="radio"] { display: none; }
     .status-accent {
       width: 4px;
@@ -858,6 +859,7 @@
     .status-option.is-red    .status-accent { background: rgba(220,10,10,0.5); }
     .status-option.is-gray   .status-accent { background: rgba(80,80,80,0.35); }
     .status-option.is-blue   .status-accent { background: rgba(21,115,211,0.6); }
+    .status-option.is-purple .status-accent { background: rgba(120,60,200,0.6); }
     .status-inner {
       display: flex;
       align-items: center;
@@ -881,11 +883,13 @@
     .status-option.is-red    .status-radio { border-color: rgba(220,10,10,0.5); }
     .status-option.is-gray   .status-radio { border-color: rgba(80,80,80,0.35); }
     .status-option.is-blue   .status-radio { border-color: rgba(21,115,211,0.6); }
+    .status-option.is-purple .status-radio { border-color: rgba(120,60,200,0.6); }
     .status-option.is-green  input:checked ~ .status-inner .status-radio { background: #387c2b; border-color: #387c2b; }
     .status-option.is-yellow input:checked ~ .status-inner .status-radio { background: #fea601; border-color: #fea601; }
     .status-option.is-red    input:checked ~ .status-inner .status-radio { background: #dc0a0a; border-color: #dc0a0a; }
     .status-option.is-gray   input:checked ~ .status-inner .status-radio { background: #505050; border-color: #505050; }
     .status-option.is-blue   input:checked ~ .status-inner .status-radio { background: #1573d3; border-color: #1573d3; }
+    .status-option.is-purple input:checked ~ .status-inner .status-radio { background: #783cc8; border-color: #783cc8; }
 
     /* ── Avaliação de Qualidade ───────────────────────────────── */
     .eval-card {
@@ -2228,7 +2232,7 @@
                 <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;">
                   <span id="q2d1-resultado" class="nav-anchor"></span>
                   <div class="section-tag">Resultado</div>
-                  <div class="res-card"><div class="res-card-header"><span class="res-card-label">Status da Decisão</span></div><div class="res-card-body"><label class="status-option is-blue"><input type="radio" name="q2d1-status" value="em-definicao"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Em definição/desenvolvimento</span><span class="status-desc">Decisão em fase de definição de produto, análise e implementação</span></div></label><label class="status-option is-green"><input type="radio" name="q2d1-status" value="implementada"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Implementada</span><span class="status-desc">Decisão de design implementada conforme planejado</span></div></label><label class="status-option is-yellow"><input type="radio" name="q2d1-status" value="parcialmente"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Parcialmente</span><span class="status-desc">Implementada com adaptações ou escopo reduzido</span></div></label><label class="status-option is-red is-selected"><input type="radio" name="q2d1-status" value="nao-implementada" checked><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Não implementada</span><span class="status-desc">Decisão foi revisada ou substituída por outra abordagem</span></div></label><p style="margin-top:16px;font-size:13px;color:#555;line-height:1.6;padding:0 4px;">A demanda de Estabilidade foi pausada devido à reorganização das prioridades do produto e das demais demandas da Folha. Por esse motivo, não houve defesa oficial junto ao Produto.</p></div></div>
+                  <div class="res-card"><div class="res-card-header"><span class="res-card-label">Status da Decisão</span></div><div class="res-card-body"><label class="status-option is-blue"><input type="radio" name="q2d1-status" value="em-definicao"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Em definição/desenvolvimento</span><span class="status-desc">Decisão em fase de definição de produto, análise e implementação</span></div></label><label class="status-option is-green"><input type="radio" name="q2d1-status" value="implementada"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Implementada</span><span class="status-desc">Decisão de design implementada conforme planejado</span></div></label><label class="status-option is-yellow"><input type="radio" name="q2d1-status" value="parcialmente"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Parcialmente</span><span class="status-desc">Implementada com adaptações ou escopo reduzido</span></div></label><label class="status-option is-red"><input type="radio" name="q2d1-status" value="nao-implementada"><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Não implementada</span><span class="status-desc">Decisão foi revisada ou substituída por outra abordagem</span></div></label><label class="status-option is-purple is-selected"><input type="radio" name="q2d1-status" value="pausada" checked><div class="status-accent"></div><div class="status-inner"><div class="status-radio"></div><span class="status-title">Pausada</span><span class="status-desc">Demanda pausada devido à priorização do produto; não houve defesa formal</span></div></label></div></div>
                                   </div>
 
                 <!-- Avaliação de Qualidade + Anexos -->
