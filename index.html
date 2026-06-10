@@ -3024,66 +3024,6 @@
         </div>
       </div>
 
-      <!-- Alternativas / Decisão Escolhida -->
-      <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;">
-
-        <span class="procon-section-label">Alternativas Consideradas</span>
-        <div class="procon-grid">
-          <div class="procon-col">
-            <div class="procon-col-header is-pro">Prós — Alternativas Consideradas</div>
-            <div class="procon-col-body">
-              <ul>
-                <li>Alinhamento imediato com o padrão dominante de mercado (vínculo dentro do cadastro do colaborador).</li>
-                <li>Menor curva de aprendizado para usuários vindos de sistemas enterprise (TOTVS, Senior).</li>
-                <li>Menor risco funcional no curto prazo por reutilizar estruturas já conhecidas.</li>
-                <li>Implementação técnica potencialmente mais simples (menos estados e regras).</li>
-              </ul>
-            </div>
-          </div>
-          <div class="procon-col">
-            <div class="procon-col-header is-con">Contras — Alternativas Consideradas</div>
-            <div class="procon-col-body">
-              <ul>
-                <li>Mantém problemas recorrentes já observados nos concorrentes (listas longas, erros de alocação).</li>
-                <li>Pouca diferenciação competitiva do produto.</li>
-                <li>Maior carga cognitiva para usuários em cenários simples.</li>
-                <li>Não resolve dores relatadas em reviews: erros de seleção, excesso de campos sempre visíveis e falta de contexto.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:20px">
-          <span class="procon-section-label">Decisão Escolhida</span>
-          <div class="procon-grid">
-            <div class="procon-col">
-              <div class="procon-col-header is-pro">Prós — Decisão Escolhida</div>
-              <div class="procon-col-body">
-                <ul>
-                  <li>Cria diferenciação clara de UX frente ao mercado (dependências encadeadas, toggle de jornada, herança de defaults).</li>
-                  <li>Reduz erros de preenchimento por meio de validação implícita (seleções contextuais).</li>
-                  <li>Melhora a escaneabilidade e compreensão do formulário com pares semânticos e progressive disclosure.</li>
-                  <li>Mantém compatibilidade com o padrão de dados do eSocial, sem comprometer requisitos legais.</li>
-                  <li>Escala melhor para evolução futura (novos tipos de vínculo, regras e exceções).</li>
-                </ul>
-              </div>
-            </div>
-            <div class="procon-col">
-              <div class="procon-col-header is-con">Contras — Decisão Escolhida</div>
-              <div class="procon-col-body">
-                <ul>
-                  <li>Pode causar estranhamento inicial para usuários acostumados ao padrão legacy.</li>
-                  <li>Exige maior esforço de documentação, microcopy e onboarding.</li>
-                  <li>Introduz mais regras de estado (dependências, heranças), aumentando complexidade de UX + Dev.</li>
-                  <li>Risco controlado de rejeição em segmentos muito enterprise se não houver boa comunicação do valor.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
       <!-- Resultado -->
       <div class="benchmark-section" style="margin-top:0;padding-top:24px;border-top:1px solid #f2f2f2;">
         <span id="d2-resultado" class="nav-anchor"></span>
@@ -3092,8 +3032,8 @@
         <div class="res-card">
           <div class="res-card-header"><span class="res-card-label">Status da Decisão</span></div>
           <div class="res-card-body">
-            <label class="status-option is-blue">
-              <input type="radio" name="q1d2-status" value="em-definicao">
+            <label class="status-option is-blue is-selected">
+              <input type="radio" name="q1d2-status" value="em-definicao" checked>
               <div class="status-accent"></div>
               <div class="status-inner">
                 <div class="status-radio"></div>
